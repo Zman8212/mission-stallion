@@ -44,6 +44,18 @@
   .goal-card .goal-target { font-size: 13px; color: #71717a; }
   .goal-bar { height: 6px; background: #1e1e2a; border-radius: 3px; margin-top: 12px; overflow: hidden; }
   .goal-fill { height: 100%; border-radius: 3px; }
+  .workout-row { background: #18181f; border-radius: 8px; padding: 12px 16px; margin-bottom: 6px; }
+  .workout-row-header { display: flex; justify-content: space-between; align-items: center; }
+  .workout-type { font-weight: 600; font-size: 14px; }
+  .workout-date { color: #71717a; font-size: 12px; margin-left: 8px; }
+  .workout-vol { color: #a1a1aa; font-size: 13px; }
+  .workout-exercises { color: #71717a; font-size: 12px; margin-top: 6px; line-height: 1.6; }
+  .workout-exercises span { color: #d4d4d8; }
+  .lift-card { background: #18181f; border-radius: 8px; padding: 16px; text-align: center; }
+  .lift-name { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #71717a; }
+  .lift-current { font-size: 28px; font-weight: 700; color: #4ade80; margin: 6px 0 2px; }
+  .lift-change { font-size: 12px; color: #a1a1aa; }
+  .lift-change span { color: #4ade80; font-weight: 600; }
   @media (max-width: 900px) {
     .grid { grid-template-columns: repeat(2, 1fr); }
     .card.wide { grid-column: span 2; }
@@ -57,7 +69,7 @@
 <div class="header">
   <h1>Mission Stallion</h1>
   <div class="subtitle">Zak Columber — Health & Performance Dashboard</div>
-  <div class="updated">Data from Oura Ring | Last updated: May 28, 2026</div>
+  <div class="updated">Oura Ring + Hevy + Apple Health | Last updated: May 28, 2026</div>
 </div>
 
 <!-- WEEKLY AVERAGES -->
@@ -65,22 +77,22 @@
   <div class="card">
     <div class="card-label">Avg Sleep (7d)</div>
     <div class="card-value ok">6.4h</div>
-    <div class="card-detail">Range: <span>4.8 – 8.2h</span></div>
+    <div class="card-detail">Range: <span>4.8 - 8.2h</span></div>
   </div>
   <div class="card">
     <div class="card-label">Avg Sleep Score</div>
     <div class="card-value ok">77</div>
-    <div class="card-detail">Range: <span>63 – 91</span></div>
+    <div class="card-detail">Range: <span>63 - 91</span></div>
   </div>
   <div class="card">
     <div class="card-label">Avg Readiness</div>
     <div class="card-value ok">72</div>
-    <div class="card-detail">Range: <span>42 – 89</span></div>
+    <div class="card-detail">Range: <span>42 - 89</span></div>
   </div>
   <div class="card">
     <div class="card-label">Avg Steps (7d)</div>
     <div class="card-value good">11,806</div>
-    <div class="card-detail">Range: <span>651 – 23,454</span></div>
+    <div class="card-detail">Range: <span>651 - 23,454</span></div>
   </div>
 </div>
 
@@ -214,11 +226,213 @@
   </div>
 </div>
 
+<!-- STRENGTH TRAINING -->
+<div class="section-title">Strength Training — May 2026</div>
+<div class="grid">
+  <div class="card">
+    <div class="card-label">Sessions (May)</div>
+    <div class="card-value good">9</div>
+    <div class="card-detail">A/B/C rotation | <span>~2.3x/week</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">Avg Session Volume</div>
+    <div class="card-value good">3,289 kg</div>
+    <div class="card-detail">Total May: <span>29,604 kg</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">Avg Duration</div>
+    <div class="card-value good">53 min</div>
+    <div class="card-detail">Range: <span>47 - 96 min</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">Avg Calories</div>
+    <div class="card-value ok">282 kcal</div>
+    <div class="card-detail">Per session (Apple Watch)</div>
+  </div>
+</div>
+
+<!-- KEY LIFT PROGRESSIONS -->
+<div class="grid">
+  <div class="card full">
+    <div class="card-label">Key Lift Progressions — May 2026 (Top Set)</div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px;">
+      <div class="lift-card">
+        <div class="lift-name">Front Squat</div>
+        <div class="lift-current">85 kg</div>
+        <div class="lift-change">70 kg &rarr; 85 kg | <span>+21%</span></div>
+      </div>
+      <div class="lift-card">
+        <div class="lift-name">Hip Thrust</div>
+        <div class="lift-current">120 kg</div>
+        <div class="lift-change">80 kg &rarr; 120 kg | <span>+50%</span></div>
+      </div>
+      <div class="lift-card">
+        <div class="lift-name">Floor Press (DB)</div>
+        <div class="lift-current">30 kg</div>
+        <div class="lift-change">17.5 kg &rarr; 30 kg | <span>+71%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STRENGTH CHARTS -->
+<div class="grid">
+  <div class="card wide">
+    <div class="card-label">Session Volume (kg)</div>
+    <div class="chart-container">
+      <canvas id="volumeChart"></canvas>
+    </div>
+  </div>
+  <div class="card wide">
+    <div class="card-label">Key Lift Progression — Top Set (kg)</div>
+    <div class="chart-container">
+      <canvas id="liftChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- RECENT WORKOUTS -->
+<div class="grid">
+  <div class="card full">
+    <div class="card-label">Recent Workouts</div>
+    <div style="margin-top: 12px;">
+      <div class="workout-row">
+        <div class="workout-row-header">
+          <div><span class="workout-type" style="color: #22d3ee;">Workout C</span><span class="workout-date">May 27</span></div>
+          <span class="workout-vol">4,335 kg | 54 min</span>
+        </div>
+        <div class="workout-exercises"><span>Front Squat</span> 85kg x 6 &middot; <span>Push Up +5kg</span> x 8 &middot; <span>SLDL</span> 50kg x 10 &middot; <span>Split Squat</span> 15kg x 10 &middot; <span>Bent Over Row</span> 50kg x 10</div>
+      </div>
+      <div class="workout-row">
+        <div class="workout-row-header">
+          <div><span class="workout-type" style="color: #818cf8;">Workout B</span><span class="workout-date">May 22</span></div>
+          <span class="workout-vol">5,384 kg | 63 min</span>
+        </div>
+        <div class="workout-exercises"><span>Hip Thrust</span> 120kg x 12 &middot; <span>Chin Up</span> BW x 5 &middot; <span>DB Row</span> 20kg x 12 &middot; <span>Hammer Curl</span> 12.5kg x 10 &middot; <span>Ring Push Up</span> BW x 12 &middot; <span>Goblet Squat</span> 24kg x 16</div>
+      </div>
+      <div class="workout-row">
+        <div class="workout-row-header">
+          <div><span class="workout-type" style="color: #f97316;">Workout A</span><span class="workout-date">May 20</span></div>
+          <span class="workout-vol">2,470 kg | 47 min</span>
+        </div>
+        <div class="workout-exercises"><span>Floor Press</span> 30kg x 8 &middot; <span>Inverted Row</span> BW x 10 &middot; <span>Incline DB Press</span> 20kg x 12 &middot; <span>Landmine Squat Press</span> 20kg x 20 &middot; <span>SL Hip Thrust</span> 20kg x 12</div>
+      </div>
+      <div class="workout-row">
+        <div class="workout-row-header">
+          <div><span class="workout-type" style="color: #22d3ee;">Workout C</span><span class="workout-date">May 18</span></div>
+          <span class="workout-vol">4,020 kg | 50 min</span>
+        </div>
+        <div class="workout-exercises"><span>Front Squat</span> 80kg x 10 &middot; <span>Push Up</span> BW x 16 &middot; <span>SLDL</span> 50kg x 10 &middot; <span>Split Squat</span> 15kg x 10 &middot; <span>Bent Over Row</span> 50kg x 10</div>
+      </div>
+      <div class="workout-row">
+        <div class="workout-row-header">
+          <div><span class="workout-type" style="color: #818cf8;">Workout B</span><span class="workout-date">May 13</span></div>
+          <span class="workout-vol">4,290 kg | 58 min</span>
+        </div>
+        <div class="workout-exercises"><span>Hip Thrust</span> 100kg x 12 &middot; <span>Chin Up</span> BW x 10 &middot; <span>DB Row</span> 17.5kg x 12 &middot; <span>Hammer Curl</span> 10kg x 12 &middot; <span>Ring Push Up</span> BW x 12 &middot; <span>Goblet Squat</span> 24kg x 15</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RUNNING & CARDIO -->
+<div class="section-title">Running & Cardio — April/May 2026</div>
+<div class="grid">
+  <div class="card">
+    <div class="card-label">Runs (May)</div>
+    <div class="card-value ok">3</div>
+    <div class="card-detail">Target: <span>2-3x/week</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">May Distance</div>
+    <div class="card-value ok">12.9 km</div>
+    <div class="card-detail">Avg: <span>4.3 km/run</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">Best Pace</div>
+    <div class="card-value good">6:52 /km</div>
+    <div class="card-detail">May 7 | <span>4.38 km in 30 min</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">Total Cardio</div>
+    <div class="card-value good">8</div>
+    <div class="card-detail"><span>6 runs + 2 rides</span> since Apr 2</div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card wide">
+    <div class="card-label">Run Distance (km)</div>
+    <div class="chart-container">
+      <canvas id="runChart"></canvas>
+    </div>
+  </div>
+  <div class="card wide">
+    <div class="card-label">Run Pace (min/km) — lower is faster</div>
+    <div class="chart-container">
+      <canvas id="paceChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card full">
+    <div class="card-label">Run Log</div>
+    <div class="day-grid" style="grid-template-columns: repeat(6, 1fr);">
+      <div class="day-cell">
+        <div class="day-label">Apr 2</div>
+        <div class="day-value good">5.2 km</div>
+        <div class="day-sub">33:48</div>
+        <div class="day-sub">6:30/km</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-label">Apr 6</div>
+        <div class="day-value good">6.1 km</div>
+        <div class="day-sub">43:00</div>
+        <div class="day-sub">7:00/km</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-label">Apr 14</div>
+        <div class="day-value ok">4.8 km</div>
+        <div class="day-sub">38:06</div>
+        <div class="day-sub">7:59/km</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-label">May 5</div>
+        <div class="day-value ok">4.1 km</div>
+        <div class="day-sub">36:54</div>
+        <div class="day-sub">9:07/km</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-label">May 7</div>
+        <div class="day-value good">4.4 km</div>
+        <div class="day-sub">30:06</div>
+        <div class="day-sub">6:52/km</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-label">May 21</div>
+        <div class="day-value ok">4.5 km</div>
+        <div class="day-sub">32:24</div>
+        <div class="day-sub">7:14/km</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- COACH INSIGHTS -->
 <div class="section-title">Patterns & Insights for Coach KSD</div>
 <div class="insights">
   <div class="insight-item">
     <strong>Bedtime consistency is the #1 lever.</strong> Bedtimes ranged from 1:01am to 4:44am. The two best nights (7.6h and 8.2h, scores 88 and 91) both had bedtimes around 1am. The two worst (4.8-4.9h, scores 63) had bedtimes after 3am. Getting to bed by midnight-1am consistently would likely push the sleep average above 7h.
+  </div>
+  <div class="insight-item">
+    <strong>Strength training compliance is solid.</strong> 9 sessions in May across the A/B/C rotation. Frequency: 2.3x/week (target is 3x). Volume trending up from 1,445 kg (May 1) to 5,384 kg (May 22). All key lifts are progressing: front squat +21%, hip thrust +50%, floor press +71%.
+  </div>
+  <div class="insight-item">
+    <strong>Running is below target.</strong> 3 runs in May vs. target of 2-3x/week. That said, when he runs, the distance and pace are reasonable (4-4.5 km at ~7:00/km). The pattern: running drops off when sleep is poor. May 5 was the slowest run (9:07/km) and followed a stretch of disrupted sleep.
+  </div>
+  <div class="insight-item">
+    <strong>The volume jump is real.</strong> Session volume nearly quadrupled from May 1 (1,445 kg) to May 22 (5,384 kg). Part of this is progressive overload on the big lifts, part is the A/B/C workouts having different natural volume loads (B workouts are highest due to hip thrusts + accessory work).
   </div>
   <div class="insight-item">
     <strong>May 23 was a crash day.</strong> Only 4.9h sleep, resting HR spiked to 78 (normally ~55), HRV dropped to 21 (normally ~55), readiness cratered to 42. Late bedtime (3:08am) was the likely cause. Recovery took 2-3 days.
@@ -228,9 +442,6 @@
   </div>
   <div class="insight-item">
     <strong>Deep sleep is borderline.</strong> Averaging 83 min (target: 90+). Best night was 124 min on the 8.2h sleep night. Strength training days and earlier bedtimes seem to correlate with better deep sleep.
-  </div>
-  <div class="insight-item">
-    <strong>REM is solid.</strong> Averaging 99 min, hitting the 90+ target most nights. This usually improves further with consistent sleep timing.
   </div>
 </div>
 
@@ -250,8 +461,8 @@
   <div class="card wide">
     <div class="card-label">Training & Recovery</div>
     <div class="card-detail" style="line-height: 1.8;">
-      <span>Strength:</span> Group PT 3x/week (supersets, mix of upper/full/lower)<br>
-      <span>Cardio:</span> Running 2-3x/week on off days (~30 min, 5-6K pace)<br>
+      <span>Strength:</span> Group PT 3x/week (A/B/C supersets, compound movements)<br>
+      <span>Cardio:</span> Running 2-3x/week on off days (~30 min, 4-5K)<br>
       <span>Sleep:</span> Wake at 9am daily regardless, morning sun, blue light blockers, screens off 2h before midnight<br>
       <span>Mindset:</span> No Reddit rabbit holes. No podcast binges. Follow instructions. Keep it boring.
     </div>
@@ -319,6 +530,57 @@ new Chart(document.getElementById('hrChart'), {
     datasets: [{ label: 'Resting HR (bpm)', data: restingHR, borderColor: '#f87171', backgroundColor: '#f8717122', tension: 0.3, fill: true }]
   },
   options: { ...chartDefaults, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 40, max: 90 } } }
+});
+
+// STRENGTH TRAINING CHARTS
+const volLabels = ['5/1 (A)', '5/4 (B)', '5/6 (C)', '5/11 (A)', '5/13 (B)', '5/18 (C)', '5/20 (A)', '5/22 (B)', '5/27 (C)'];
+const volumes = [1445, 2410, 3030, 2220, 4290, 4020, 2470, 5384, 4335];
+const volColors = volLabels.map(l => l.includes('(A)') ? '#f9731666' : l.includes('(B)') ? '#818cf866' : '#22d3ee66');
+const volBorders = volLabels.map(l => l.includes('(A)') ? '#f97316' : l.includes('(B)') ? '#818cf8' : '#22d3ee');
+
+new Chart(document.getElementById('volumeChart'), {
+  type: 'bar',
+  data: {
+    labels: volLabels,
+    datasets: [{ label: 'Volume (kg)', data: volumes, backgroundColor: volColors, borderColor: volBorders, borderWidth: 1 }]
+  },
+  options: { ...chartDefaults, plugins: { ...chartDefaults.plugins, legend: { display: false } }, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 0, max: 6000 } } }
+});
+
+new Chart(document.getElementById('liftChart'), {
+  type: 'line',
+  data: {
+    labels: ['Session 1\n(early May)', 'Session 2\n(mid May)', 'Session 3\n(late May)'],
+    datasets: [
+      { label: 'Front Squat', data: [70, 80, 85], borderColor: '#22d3ee', backgroundColor: '#22d3ee22', tension: 0.3, pointRadius: 5, pointBackgroundColor: '#22d3ee' },
+      { label: 'Hip Thrust', data: [80, 100, 120], borderColor: '#818cf8', backgroundColor: '#818cf822', tension: 0.3, pointRadius: 5, pointBackgroundColor: '#818cf8' },
+      { label: 'Floor Press (DB)', data: [17.5, 25, 30], borderColor: '#f97316', backgroundColor: '#f9731622', tension: 0.3, pointRadius: 5, pointBackgroundColor: '#f97316' }
+    ]
+  },
+  options: { ...chartDefaults, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 0, max: 130 } } }
+});
+
+// RUNNING CHARTS
+const runLabels = ['Apr 2', 'Apr 6', 'Apr 14', 'May 5', 'May 7', 'May 21'];
+const runDist = [5.20, 6.14, 4.77, 4.05, 4.38, 4.48];
+const runPace = [6.50, 7.00, 7.98, 9.12, 6.87, 7.23];
+
+new Chart(document.getElementById('runChart'), {
+  type: 'bar',
+  data: {
+    labels: runLabels,
+    datasets: [{ label: 'Distance (km)', data: runDist, backgroundColor: runDist.map(d => d >= 5 ? '#4ade8066' : '#facc1566'), borderColor: runDist.map(d => d >= 5 ? '#4ade80' : '#facc15'), borderWidth: 1 }]
+  },
+  options: { ...chartDefaults, plugins: { ...chartDefaults.plugins, legend: { display: false } }, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 0, max: 8 } } }
+});
+
+new Chart(document.getElementById('paceChart'), {
+  type: 'line',
+  data: {
+    labels: runLabels,
+    datasets: [{ label: 'Pace (min/km)', data: runPace, borderColor: '#f97316', backgroundColor: '#f9731622', tension: 0.3, fill: true, pointRadius: 5, pointBackgroundColor: '#f97316' }]
+  },
+  options: { ...chartDefaults, plugins: { ...chartDefaults.plugins, legend: { display: false } }, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 5, max: 11, reverse: true } } }
 });
 </script>
 </body>
