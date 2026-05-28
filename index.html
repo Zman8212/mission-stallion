@@ -37,7 +37,7 @@
   .insights { padding: 0 40px 40px; }
   .insight-item { background: #111118; border: 1px solid #1e1e2a; border-radius: 10px; padding: 16px 20px; margin-bottom: 8px; font-size: 14px; line-height: 1.5; }
   .insight-item strong { color: #fff; }
-  .goals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 0 40px 40px; }
+  .goals-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 0 40px 40px; }
   .goal-card { background: #111118; border: 1px solid #1e1e2a; border-radius: 12px; padding: 20px; }
   .goal-card .goal-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #71717a; }
   .goal-card .goal-current { font-size: 28px; font-weight: 700; color: #fff; margin: 8px 0 4px; }
@@ -77,7 +77,7 @@
   <div class="card">
     <div class="card-label">Avg Sleep (7d)</div>
     <div class="card-value ok">6.4h</div>
-    <div class="card-detail">Range: <span>4.8 - 8.2h</span></div>
+    <div class="card-detail">Range: <span>4.8 - 8.2h</span> | Wake: <span>9:34 AM avg</span></div>
   </div>
   <div class="card">
     <div class="card-label">Avg Sleep Score</div>
@@ -117,6 +117,12 @@
     <div class="goal-target">Target: midnight or earlier</div>
     <div class="goal-bar"><div class="goal-fill" style="width: 40%; background: linear-gradient(90deg, #f87171, #facc15);"></div></div>
   </div>
+  <div class="goal-card">
+    <div class="goal-label">Wake Time</div>
+    <div class="goal-current">9:34 AM avg</div>
+    <div class="goal-target">Target: 9:00 AM daily</div>
+    <div class="goal-bar"><div class="goal-fill" style="width: 70%; background: linear-gradient(90deg, #facc15, #4ade80);"></div></div>
+  </div>
 </div>
 
 <!-- SLEEP CHART -->
@@ -129,42 +135,49 @@
         <div class="day-value good">7.6h</div>
         <div class="day-sub">Score: 88</div>
         <div class="day-sub">Bed: 1:06am</div>
+        <div class="day-sub" style="color:#818cf8;">Wake: 9:15am</div>
       </div>
       <div class="day-cell">
         <div class="day-label">Fri 5/23</div>
         <div class="day-value bad">4.9h</div>
         <div class="day-sub">Score: 63</div>
         <div class="day-sub">Bed: 3:08am</div>
+        <div class="day-sub" style="color:#818cf8;">Wake: 9:02am</div>
       </div>
       <div class="day-cell">
         <div class="day-label">Sat 5/24</div>
         <div class="day-value ok">6.1h</div>
         <div class="day-sub">Score: 69</div>
         <div class="day-sub">Bed: 4:44am</div>
+        <div class="day-sub" style="color:#f87171;">Wake: 11:31am</div>
       </div>
       <div class="day-cell">
         <div class="day-label">Sun 5/25</div>
         <div class="day-value bad">4.8h</div>
         <div class="day-sub">Score: 63</div>
         <div class="day-sub">Bed: 4:36am</div>
+        <div class="day-sub" style="color:#f87171;">Wake: 10:18am</div>
       </div>
       <div class="day-cell">
         <div class="day-label">Mon 5/26</div>
         <div class="day-value good">8.2h</div>
         <div class="day-sub">Score: 91</div>
         <div class="day-sub">Bed: 1:03am</div>
+        <div class="day-sub" style="color:#facc15;">Wake: 9:57am</div>
       </div>
       <div class="day-cell">
         <div class="day-label">Tue 5/27</div>
         <div class="day-value ok">6.6h</div>
         <div class="day-sub">Score: 83</div>
         <div class="day-sub">Bed: 2:18am</div>
+        <div class="day-sub" style="color:#818cf8;">Wake: 9:07am</div>
       </div>
       <div class="day-cell">
         <div class="day-label">Wed 5/28</div>
         <div class="day-value ok">6.7h</div>
         <div class="day-sub">Score: 80</div>
         <div class="day-sub">Bed: 1:01am</div>
+        <div class="day-sub" style="color:#4ade80;">Wake: 8:08am</div>
       </div>
     </div>
   </div>
