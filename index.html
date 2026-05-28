@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission Stallion — Zak's Health Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #0a0a0f; color: #e4e4e7; min-height: 100vh; }
+  .header { padding: 32px 40px 24px; border-bottom: 1px solid #1e1e2a; }
+  .header h1 { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+  .header .subtitle { color: #71717a; font-size: 14px; margin-top: 4px; }
+  .header .updated { color: #52525b; font-size: 12px; margin-top: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 24px 40px; }
+  .card { background: #111118; border: 1px solid #1e1e2a; border-radius: 12px; padding: 20px; }
+  .card.wide { grid-column: span 2; }
+  .card.full { grid-column: span 4; }
+  .card-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #71717a; margin-bottom: 8px; }
+  .card-value { font-size: 36px; font-weight: 700; color: #fff; line-height: 1.1; }
+  .card-value.good { color: #4ade80; }
+  .card-value.ok { color: #facc15; }
+  .card-value.bad { color: #f87171; }
+  .card-detail { font-size: 13px; color: #a1a1aa; margin-top: 6px; }
+  .card-detail span { color: #d4d4d8; font-weight: 500; }
+  .section-title { font-size: 18px; font-weight: 600; color: #fff; padding: 32px 40px 12px; }
+  .chart-container { position: relative; height: 200px; }
+  .day-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+  .day-cell { text-align: center; padding: 12px 8px; border-radius: 8px; background: #18181f; }
+  .day-cell .day-label { font-size: 11px; color: #71717a; margin-bottom: 4px; }
+  .day-cell .day-value { font-size: 20px; font-weight: 700; }
+  .day-cell .day-sub { font-size: 11px; color: #71717a; margin-top: 2px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .badge-green { background: #052e16; color: #4ade80; }
+  .badge-yellow { background: #422006; color: #facc15; }
+  .badge-red { background: #450a0a; color: #f87171; }
+  .insights { padding: 0 40px 40px; }
+  .insight-item { background: #111118; border: 1px solid #1e1e2a; border-radius: 10px; padding: 16px 20px; margin-bottom: 8px; font-size: 14px; line-height: 1.5; }
+  .insight-item strong { color: #fff; }
+  .goals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 0 40px 40px; }
+  .goal-card { background: #111118; border: 1px solid #1e1e2a; border-radius: 12px; padding: 20px; }
+  .goal-card .goal-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #71717a; }
+  .goal-card .goal-current { font-size: 28px; font-weight: 700; color: #fff; margin: 8px 0 4px; }
+  .goal-card .goal-target { font-size: 13px; color: #71717a; }
+  .goal-bar { height: 6px; background: #1e1e2a; border-radius: 3px; margin-top: 12px; overflow: hidden; }
+  .goal-fill { height: 100%; border-radius: 3px; }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .card.wide { grid-column: span 2; }
+    .card.full { grid-column: span 2; }
+    .goals-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Mission Stallion</h1>
+  <div class="subtitle">Zak Columber — Health & Performance Dashboard</div>
+  <div class="updated">Data from Oura Ring | Last updated: May 28, 2026</div>
+</div>
+
+<!-- WEEKLY AVERAGES -->
+<div class="grid">
+  <div class="card">
+    <div class="card-label">Avg Sleep (7d)</div>
+    <div class="card-value ok">6.4h</div>
+    <div class="card-detail">Range: <span>4.8 – 8.2h</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">Avg Sleep Score</div>
+    <div class="card-value ok">77</div>
+    <div class="card-detail">Range: <span>63 – 91</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">Avg Readiness</div>
+    <div class="card-value ok">72</div>
+    <div class="card-detail">Range: <span>42 – 89</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">Avg Steps (7d)</div>
+    <div class="card-value good">11,806</div>
+    <div class="card-detail">Range: <span>651 – 23,454</span></div>
+  </div>
+</div>
+
+<!-- GOALS -->
+<div class="section-title">Goals & Targets</div>
+<div class="goals-grid">
+  <div class="goal-card">
+    <div class="goal-label">Weight</div>
+    <div class="goal-current">~205 lbs</div>
+    <div class="goal-target">Target: 180 lbs (flat stomach / two-pack)</div>
+    <div class="goal-bar"><div class="goal-fill" style="width: 28%; background: linear-gradient(90deg, #4ade80, #22d3ee);"></div></div>
+  </div>
+  <div class="goal-card">
+    <div class="goal-label">Sleep Target</div>
+    <div class="goal-current">6.4h avg</div>
+    <div class="goal-target">Target: 7.5h average</div>
+    <div class="goal-bar"><div class="goal-fill" style="width: 85%; background: linear-gradient(90deg, #facc15, #4ade80);"></div></div>
+  </div>
+  <div class="goal-card">
+    <div class="goal-label">Bedtime Target</div>
+    <div class="goal-current">~1:30 AM</div>
+    <div class="goal-target">Target: midnight or earlier</div>
+    <div class="goal-bar"><div class="goal-fill" style="width: 40%; background: linear-gradient(90deg, #f87171, #facc15);"></div></div>
+  </div>
+</div>
+
+<!-- SLEEP CHART -->
+<div class="section-title">Sleep — Last 7 Nights</div>
+<div class="grid">
+  <div class="card full">
+    <div class="day-grid">
+      <div class="day-cell">
+        <div class="day-label">Thu 5/22</div>
+        <div class="day-value good">7.6h</div>
+        <div class="day-sub">Score: 88</div>
+        <div class="day-sub">Bed: 1:06am</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-label">Fri 5/23</div>
+        <div class="day-value bad">4.9h</div>
+        <div class="day-sub">Score: 63</div>
+        <div class="day-sub">Bed: 3:08am</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-label">Sat 5/24</div>
+        <div class="day-value ok">6.1h</div>
+        <div class="day-sub">Score: 69</div>
+        <div class="day-sub">Bed: 4:44am</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-label">Sun 5/25</div>
+        <div class="day-value bad">4.8h</div>
+        <div class="day-sub">Score: 63</div>
+        <div class="day-sub">Bed: 4:36am</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-label">Mon 5/26</div>
+        <div class="day-value good">8.2h</div>
+        <div class="day-sub">Score: 91</div>
+        <div class="day-sub">Bed: 1:03am</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-label">Tue 5/27</div>
+        <div class="day-value ok">6.6h</div>
+        <div class="day-sub">Score: 83</div>
+        <div class="day-sub">Bed: 2:18am</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-label">Wed 5/28</div>
+        <div class="day-value ok">6.7h</div>
+        <div class="day-sub">Score: 80</div>
+        <div class="day-sub">Bed: 1:01am</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHARTS -->
+<div class="grid">
+  <div class="card wide">
+    <div class="card-label">Sleep Duration & Score</div>
+    <div class="chart-container">
+      <canvas id="sleepChart"></canvas>
+    </div>
+  </div>
+  <div class="card wide">
+    <div class="card-label">Readiness & HRV</div>
+    <div class="chart-container">
+      <canvas id="readinessChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card wide">
+    <div class="card-label">Daily Steps</div>
+    <div class="chart-container">
+      <canvas id="stepsChart"></canvas>
+    </div>
+  </div>
+  <div class="card wide">
+    <div class="card-label">Resting Heart Rate</div>
+    <div class="chart-container">
+      <canvas id="hrChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- RECOVERY METRICS -->
+<div class="section-title">Recovery Deep Dive — Last 7 Days</div>
+<div class="grid">
+  <div class="card">
+    <div class="card-label">Avg Resting HR</div>
+    <div class="card-value good">57 bpm</div>
+    <div class="card-detail">Best: <span>51</span> | Worst: <span>78</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">Avg HRV</div>
+    <div class="card-value ok">50 ms</div>
+    <div class="card-detail">Best: <span>62</span> | Worst: <span>21</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">Avg Deep Sleep</div>
+    <div class="card-value ok">83 min</div>
+    <div class="card-detail">Target: <span>90+ min</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">Avg REM Sleep</div>
+    <div class="card-value good">99 min</div>
+    <div class="card-detail">Target: <span>90+ min</span></div>
+  </div>
+</div>
+
+<!-- COACH INSIGHTS -->
+<div class="section-title">Patterns & Insights for Coach KSD</div>
+<div class="insights">
+  <div class="insight-item">
+    <strong>Bedtime consistency is the #1 lever.</strong> Bedtimes ranged from 1:01am to 4:44am. The two best nights (7.6h and 8.2h, scores 88 and 91) both had bedtimes around 1am. The two worst (4.8-4.9h, scores 63) had bedtimes after 3am. Getting to bed by midnight-1am consistently would likely push the sleep average above 7h.
+  </div>
+  <div class="insight-item">
+    <strong>May 23 was a crash day.</strong> Only 4.9h sleep, resting HR spiked to 78 (normally ~55), HRV dropped to 21 (normally ~55), readiness cratered to 42. Late bedtime (3:08am) was the likely cause. Recovery took 2-3 days.
+  </div>
+  <div class="insight-item">
+    <strong>Activity is strong when it happens.</strong> 4 of 7 days hit 12K+ steps. One day hit 23K. The low days (651, 5K) correlate with poor sleep the night before. Steps are a trailing indicator of sleep quality.
+  </div>
+  <div class="insight-item">
+    <strong>Deep sleep is borderline.</strong> Averaging 83 min (target: 90+). Best night was 124 min on the 8.2h sleep night. Strength training days and earlier bedtimes seem to correlate with better deep sleep.
+  </div>
+  <div class="insight-item">
+    <strong>REM is solid.</strong> Averaging 99 min, hitting the 90+ target most nights. This usually improves further with consistent sleep timing.
+  </div>
+</div>
+
+<!-- CURRENT PROTOCOL -->
+<div class="section-title">Current Protocol (from May 21 Call)</div>
+<div class="grid">
+  <div class="card wide">
+    <div class="card-label">Nutrition</div>
+    <div class="card-detail" style="line-height: 1.8;">
+      <span>Strategy:</span> Caloric deficit, protein high, fiber high, keep it boring<br>
+      <span>Meals:</span> 3 squares/day (no more skipping until 5pm)<br>
+      <span>Delivery:</span> Weekday lunch + dinner via meal service (high protein, veggies)<br>
+      <span>Tracking:</span> Photo + voice note log, rough breakdown via Claude<br>
+      <span>Cut the BS:</span> Less takeout, drop the bottom 2% of egregious habits
+    </div>
+  </div>
+  <div class="card wide">
+    <div class="card-label">Training & Recovery</div>
+    <div class="card-detail" style="line-height: 1.8;">
+      <span>Strength:</span> Group PT 3x/week (supersets, mix of upper/full/lower)<br>
+      <span>Cardio:</span> Running 2-3x/week on off days (~30 min, 5-6K pace)<br>
+      <span>Sleep:</span> Wake at 9am daily regardless, morning sun, blue light blockers, screens off 2h before midnight<br>
+      <span>Mindset:</span> No Reddit rabbit holes. No podcast binges. Follow instructions. Keep it boring.
+    </div>
+  </div>
+</div>
+
+<div style="height: 40px;"></div>
+
+<script>
+const labels = ['5/22', '5/23', '5/24', '5/25', '5/26', '5/27', '5/28'];
+const sleepHours = [7.6, 4.9, 6.1, 4.8, 8.2, 6.6, 6.7];
+const sleepScores = [88, 63, 69, 63, 91, 83, 80];
+const readiness = [89, 42, 68, 65, 84, 76, 78];
+const hrv = [58, 21, 47, 55, 62, 61, 49];
+const steps = [13672, 23454, 13443, 5007, 12463, 13950, 0];
+const restingHR = [57, 78, 63, 58, 51, 53, 62];
+
+const chartDefaults = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: { legend: { labels: { color: '#a1a1aa', font: { size: 11 } } } },
+  scales: {
+    x: { ticks: { color: '#71717a' }, grid: { color: '#1e1e2a' } },
+    y: { ticks: { color: '#71717a' }, grid: { color: '#1e1e2a' } }
+  }
+};
+
+new Chart(document.getElementById('sleepChart'), {
+  type: 'bar',
+  data: {
+    labels,
+    datasets: [
+      { label: 'Hours', data: sleepHours, backgroundColor: sleepHours.map(h => h >= 7 ? '#4ade8066' : h >= 6 ? '#facc1566' : '#f8717166'), borderColor: sleepHours.map(h => h >= 7 ? '#4ade80' : h >= 6 ? '#facc15' : '#f87171'), borderWidth: 1, yAxisID: 'y' },
+      { label: 'Score', data: sleepScores, type: 'line', borderColor: '#818cf8', backgroundColor: '#818cf822', tension: 0.3, yAxisID: 'y1' }
+    ]
+  },
+  options: { ...chartDefaults, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 0, max: 10 }, y1: { position: 'right', min: 0, max: 100, ticks: { color: '#71717a' }, grid: { display: false } } } }
+});
+
+new Chart(document.getElementById('readinessChart'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      { label: 'Readiness', data: readiness, borderColor: '#4ade80', backgroundColor: '#4ade8022', tension: 0.3, fill: true },
+      { label: 'HRV', data: hrv, borderColor: '#818cf8', backgroundColor: '#818cf822', tension: 0.3, fill: true }
+    ]
+  },
+  options: { ...chartDefaults, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 0, max: 100 } } }
+});
+
+new Chart(document.getElementById('stepsChart'), {
+  type: 'bar',
+  data: {
+    labels: labels.slice(0, 6),
+    datasets: [{ label: 'Steps', data: steps.slice(0, 6), backgroundColor: steps.slice(0, 6).map(s => s >= 10000 ? '#4ade8066' : s >= 5000 ? '#facc1566' : '#f8717166'), borderColor: steps.slice(0, 6).map(s => s >= 10000 ? '#4ade80' : s >= 5000 ? '#facc15' : '#f87171'), borderWidth: 1 }]
+  },
+  options: { ...chartDefaults, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 0 } } }
+});
+
+new Chart(document.getElementById('hrChart'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [{ label: 'Resting HR (bpm)', data: restingHR, borderColor: '#f87171', backgroundColor: '#f8717122', tension: 0.3, fill: true }]
+  },
+  options: { ...chartDefaults, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 40, max: 90 } } }
+});
+</script>
+</body>
+</html>
