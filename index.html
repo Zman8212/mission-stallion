@@ -69,7 +69,7 @@
 <div class="header">
   <h1>Mission Stallion</h1>
   <div class="subtitle">Zak Columber — Health & Performance Dashboard</div>
-  <div class="updated">Oura Ring + Hevy + Apple Health | All sources current as of Jun 4, 2026</div>
+  <div class="updated">Oura Ring + Hevy + Apple Health | Data current through Jun 4, 2026 &middot; refreshed Jun 5</div>
 </div>
 
 <!-- WEEKLY AVERAGES -->
@@ -90,9 +90,9 @@
     <div class="card-detail">Range: <span>52 - 87</span></div>
   </div>
   <div class="card">
-    <div class="card-label">Avg Steps (6d)</div>
-    <div class="card-value good">11,619</div>
-    <div class="card-detail">Range: <span>3,907 - 16,431</span> | <span>Jun 4 partial</span></div>
+    <div class="card-label">Avg Steps (7d)</div>
+    <div class="card-value good">11,571</div>
+    <div class="card-detail">Range: <span>3,907 - 16,431</span> | <span>Jun 5 partial, excluded</span></div>
   </div>
 </div>
 
@@ -538,7 +538,7 @@ const sleepHours = [4.5, 7.4, 7.5, 8.4, 5.6, 6.2, 8.1];
 const sleepScores = [65, 87, 81, 91, 78, 67, 82];
 const readiness = [52, 87, 70, 75, 67, 63, 77];
 const hrv = [48, 56, 44, 59, 53, 56, 49];
-const steps = [13131, 16431, 3907, 8233, 13917, 14095];
+const steps = [13131, 16431, 3907, 8233, 13917, 14095, 11282];
 const restingHR = [55, 49, 57, 47, 53, 54, 53];
 
 const chartDefaults = {
@@ -578,8 +578,8 @@ new Chart(document.getElementById('readinessChart'), {
 new Chart(document.getElementById('stepsChart'), {
   type: 'bar',
   data: {
-    labels: labels.slice(0, 6),
-    datasets: [{ label: 'Steps', data: steps.slice(0, 6), backgroundColor: steps.slice(0, 6).map(s => s >= 10000 ? '#4ade8066' : s >= 5000 ? '#facc1566' : '#f8717166'), borderColor: steps.slice(0, 6).map(s => s >= 10000 ? '#4ade80' : s >= 5000 ? '#facc15' : '#f87171'), borderWidth: 1 }]
+    labels,
+    datasets: [{ label: 'Steps', data: steps, backgroundColor: steps.map(s => s >= 10000 ? '#4ade8066' : s >= 5000 ? '#facc1566' : '#f8717166'), borderColor: steps.map(s => s >= 10000 ? '#4ade80' : s >= 5000 ? '#facc15' : '#f87171'), borderWidth: 1 }]
   },
   options: { ...chartDefaults, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 0 } } }
 });
