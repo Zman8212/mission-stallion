@@ -372,7 +372,7 @@
 </div>
 
 <!-- RUNNING & CARDIO -->
-<div class="section-title">Running & Cardio — April/May 2026</div>
+<div class="section-title">Running & Cardio — April-June 2026</div>
 <div class="grid">
   <div class="card">
     <div class="card-label">Runs (May)</div>
@@ -391,8 +391,8 @@
   </div>
   <div class="card">
     <div class="card-label">Total Cardio</div>
-    <div class="card-value good">8</div>
-    <div class="card-detail"><span>6 runs + 2 rides</span> since Apr 2</div>
+    <div class="card-value good">10</div>
+    <div class="card-detail"><span>8 runs + 2 rides</span> since Apr 2</div>
   </div>
 </div>
 
@@ -415,12 +415,6 @@
   <div class="card full">
     <div class="card-label">Run Log</div>
     <div class="day-grid" style="grid-template-columns: repeat(7, 1fr);">
-      <div class="day-cell">
-        <div class="day-label">Apr 2</div>
-        <div class="day-value good">5.2 km</div>
-        <div class="day-sub">33:48</div>
-        <div class="day-sub">6:30/km</div>
-      </div>
       <div class="day-cell">
         <div class="day-label">Apr 6</div>
         <div class="day-value good">6.1 km</div>
@@ -457,6 +451,12 @@
         <div class="day-sub">24:00</div>
         <div class="day-sub">8:27/km</div>
       </div>
+      <div class="day-cell">
+        <div class="day-label">Jun 4</div>
+        <div class="day-value ok">4.2 km</div>
+        <div class="day-sub">36:50</div>
+        <div class="day-sub">8:44/km</div>
+      </div>
     </div>
   </div>
 </div>
@@ -477,7 +477,7 @@
     <strong>Strength is holding, with two PRs still standing.</strong> Front squat hit a <strong>90kg PR on Jun 1</strong> (70 &rarr; 90, +29%), then hip thrust hit a <strong>140kg PR on Jun 5</strong> (80 &rarr; 140, +75%). Floor press +71%. No new session has logged since the lighter Jun 8 C day (80kg front squat, 4,448 kg total). Session volume runs 2,900-7,560 kg by workout type.
   </div>
   <div class="insight-item">
-    <strong>Running is still stalled.</strong> No runs logged since May 28, now two full weeks against a 2-3x/week target. Strength is carrying the load; the aerobic side remains the gap. When he does run, distance and pace are reasonable (4-4.5 km at ~7:00/km), so it is a frequency problem, not a fitness one.
+    <strong>Running is sporadic, not stalled.</strong> The most recent run was Jun 4 (4.2 km, 36:50, 8:44/km), about a week after May 28, so the cadence is roughly one run a week against the 2-3x/week target. Pace sits around 7-9 min/km depending on the day. The gap remains frequency, not fitness.
   </div>
   <div class="insight-item">
     <strong>Steps stayed excellent, with one outlier day.</strong> The complete-day step average held at 13,131, with totals clustered 7.8-12.2k and a 27.9k spike on Jun 7. Daily movement is well clear of the 10k floor even before counting runs.
@@ -606,9 +606,9 @@ new Chart(document.getElementById('liftChart'), {
 });
 
 // RUNNING CHARTS
-const runLabels = ['Apr 2', 'Apr 6', 'Apr 14', 'May 5', 'May 7', 'May 21', 'May 28'];
-const runDist = [5.20, 6.14, 4.77, 4.05, 4.38, 4.48, 2.84];
-const runPace = [6.50, 7.00, 7.98, 9.12, 6.87, 7.23, 8.45];
+const runLabels = ['Apr 6', 'Apr 14', 'May 5', 'May 7', 'May 21', 'May 28', 'Jun 4'];
+const runDist = [6.14, 4.77, 4.05, 4.38, 4.48, 2.84, 4.22];
+const runPace = [7.00, 7.98, 9.12, 6.87, 7.23, 8.45, 8.73];
 
 new Chart(document.getElementById('runChart'), {
   type: 'bar',
