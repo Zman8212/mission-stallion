@@ -325,6 +325,42 @@
   </div>
 </div>
 
+<!-- MORNING WALK -->
+<div class="section-title">Morning Walk — Last 14 Days</div>
+<div class="grid">
+  <div class="card">
+    <div class="card-label">Today</div>
+    <div class="card-value good">&#10003; Walked</div>
+    <div class="card-detail"><span>7,856</span> steps in the 8a-1p window</div>
+  </div>
+  <div class="card">
+    <div class="card-label">This Week</div>
+    <div class="card-value good">5 / 7 days</div>
+    <div class="card-detail">Target: <span>daily</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">Current Streak</div>
+    <div class="card-value ok">1 day</div>
+    <div class="card-detail">Best run <span>4 days</span> (Jun 2-5)</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Last 14 Days</div>
+    <div class="card-value good">10 / 14</div>
+    <div class="card-detail">Walked on 10 of 14 days</div>
+  </div>
+</div>
+<div class="grid">
+  <div class="card full">
+    <div class="card-label">Morning Steps (8a-1p) — Last 14 Days &middot; walk = 2,500+</div>
+    <div class="chart-container" style="height:170px; margin-top:10px;"><canvas id="walkChart"></canvas></div>
+  </div>
+</div>
+<div class="insights">
+  <div class="insight-item" style="color:#a1a1aa;font-size:13px;">
+    Inferred, not logged: steps in your 8am-1pm window (you wake ~9am). A morning burst over <strong>2,500 steps</strong> counts as a walk. Balcony-yoga days won't register here (low steps). Threshold is tunable.
+  </div>
+</div>
+
 <!-- STRENGTH TRAINING -->
 <div class="section-title">Strength Training — May 2026</div>
 <div class="grid">
@@ -646,6 +682,15 @@ const medMins = [0,0,25,0,18.8,0,0,10,30,0,10,0,7.1,0];
 new Chart(document.getElementById('medChart'), {
   type: 'bar',
   data: { labels: medLabels, datasets: [{ label: 'Minutes', data: medMins, backgroundColor: medMins.map(m => m >= 20 ? '#4ade8066' : m > 0 ? '#facc1566' : '#18181f'), borderColor: medMins.map(m => m >= 20 ? '#4ade80' : m > 0 ? '#facc15' : '#27272a'), borderWidth: 1 }] },
+  options: { ...chartDefaults, plugins: { legend: { display: false } }, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 0 } } }
+});
+
+// MORNING WALK CHART
+const walkLabels = ['6/2','6/3','6/4','6/5','6/6','6/7','6/8','6/9','6/10','6/11','6/12','6/13','6/14','6/15'];
+const walkSteps = [7122,7618,11161,2933,411,6017,8387,4517,916,6062,3900,10662,1058,7856];
+new Chart(document.getElementById('walkChart'), {
+  type: 'bar',
+  data: { labels: walkLabels, datasets: [{ label: 'Morning steps', data: walkSteps, backgroundColor: walkSteps.map(s => s >= 2500 ? '#4ade8066' : '#f8717133'), borderColor: walkSteps.map(s => s >= 2500 ? '#4ade80' : '#f87171'), borderWidth: 1 }] },
   options: { ...chartDefaults, plugins: { legend: { display: false } }, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 0 } } }
 });
 
