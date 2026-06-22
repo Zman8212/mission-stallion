@@ -83,7 +83,7 @@
   <div class="card">
     <div class="card-label">Priority 2 &middot; Meditation</div>
     <div class="card-value good" style="font-size:21px;">1 hour / day</div>
-    <div class="card-detail">KSD calls it the next big habit after sleep. Now <span>~7 min/day</span> (Apple Health synced through Jun 17). Hold a daily minimum, build from there.</div>
+    <div class="card-detail">KSD calls it the next big habit after sleep. Now <span>~13 min/day</span> this week, with a 43-min sit today (synced through Jun 22). Hold a daily minimum, build from there.</div>
   </div>
   <div class="card">
     <div class="card-label">Priority 3 &middot; Movement</div>
@@ -269,8 +269,8 @@
 <div class="grid">
   <div class="card">
     <div class="card-label">Meditation (7d)</div>
-    <div class="card-value ok">50 min</div>
-    <div class="card-detail">2 sessions <span>(Waking Up)</span> &middot; synced thru Jun 17</div>
+    <div class="card-value ok">93 min</div>
+    <div class="card-detail">3 sessions <span>(Waking Up + The Way)</span> &middot; thru Jun 22</div>
   </div>
   <div class="card">
     <div class="card-label">VO2 Max</div>
@@ -279,7 +279,7 @@
   </div>
   <div class="card">
     <div class="card-label">Mindful Days</div>
-    <div class="card-value ok">2 / 7</div>
+    <div class="card-value ok">3 / 7</div>
     <div class="card-detail">Target: <span>daily</span></div>
   </div>
   <div class="card">
@@ -294,23 +294,23 @@
 <div class="grid">
   <div class="card">
     <div class="card-label">This Week</div>
-    <div class="card-value ok">50 min</div>
-    <div class="card-detail">Avg <span>7 min/day</span> &middot; 2 sessions &middot; target <span>1h/day</span></div>
+    <div class="card-value ok">93 min</div>
+    <div class="card-detail">Avg <span>13 min/day</span> &middot; 3 sessions &middot; target <span>1h/day</span></div>
   </div>
   <div class="card">
     <div class="card-label">Mindful Days (7d)</div>
-    <div class="card-value ok">2 / 7</div>
+    <div class="card-value ok">3 / 7</div>
     <div class="card-detail">Target: <span>daily</span></div>
   </div>
   <div class="card">
     <div class="card-label">Current Streak</div>
-    <div class="card-value bad">0 days</div>
-    <div class="card-detail">Last sync Jun 17 &middot; best run <span>4 days</span> (Jun 14-17)</div>
+    <div class="card-value ok">1 day</div>
+    <div class="card-detail">Today (Jun 22) &middot; best run <span>4 days</span> (Jun 14-17)</div>
   </div>
   <div class="card">
     <div class="card-label">Last 14 Days</div>
-    <div class="card-value">147 min</div>
-    <div class="card-detail"><span>7 sessions</span> &middot; all Waking Up</div>
+    <div class="card-value">190 min</div>
+    <div class="card-detail"><span>8 sessions</span> &middot; Waking Up + The Way</div>
   </div>
 </div>
 <div class="grid">
@@ -321,7 +321,7 @@
 </div>
 <div class="insights">
   <div class="insight-item" style="color:#a1a1aa;font-size:13px;">
-    Source: Apple Health Mindful Minutes, currently <strong>Waking Up</strong> only, synced through <strong>Jun 17</strong>. Today's long sit (Jun 22) had not synced at refresh, so it is not yet counted. To fold in your <strong>The Way</strong> (Henry Shukman) sessions: open The Way &rarr; My Way &rarr; Meditation Preferences &rarr; Connect under Apple Health, and they will show up here automatically.
+    Source: Apple Health Mindful Minutes from <strong>Waking Up + The Way</strong> (Henry Shukman), synced through <strong>Jun 22</strong>. Today's 43-min sit is counted. Both apps are connected and writing automatically; the Jun 18-21 blanks are simply days with no logged session.
   </div>
 </div>
 
@@ -615,7 +615,7 @@
     <strong>The running gap is now 18 days and overdue.</strong> There has been no run since Jun 4 (4.2 km, 8:44/km). Steps are carrying the cardio load instead, averaging 15.3k over the last 13 complete days with a 34.2k peak on Jun 20. A short easy run belongs on the calendar this week.
   </div>
   <div class="insight-item">
-    <strong>Meditation slipped further this week.</strong> 50 min across just 2 of 7 days, with 147 min over the last 14, all Waking Up. Still well under the 1h/day target, and the synced streak is at zero since the last logged sit on Jun 17. Best run was four straight days, Jun 14-17. Today's long sit had not synced to Apple Health at refresh, so it is not yet on the board. KSD flagged this as the next big habit after sleep.
+    <strong>Meditation is back on the board.</strong> Today's 43-min sit (Waking Up + The Way) puts the week at 93 min across 3 of 7 days, 190 min over the last 14. Still under the 1h/day target, with the streak reset to 1 day after a Jun 18-21 gap. Best run was four straight days, Jun 14-17. KSD flagged this as the next big habit after sleep.
   </div>
 </div>
 
@@ -708,7 +708,7 @@ new Chart(document.getElementById('hrChart'), {
 
 // MEDITATION CHART
 const medLabels = ['6/9','6/10','6/11','6/12','6/13','6/14','6/15','6/16','6/17','6/18','6/19','6/20','6/21','6/22'];
-const medMins = [10,30,0,10,0,7,40,20,30,0,0,0,0,0];
+const medMins = [10,30,0,10,0,7,40,20,30,0,0,0,0,43];
 new Chart(document.getElementById('medChart'), {
   type: 'bar',
   data: { labels: medLabels, datasets: [{ label: 'Minutes', data: medMins, backgroundColor: medMins.map(m => m >= 20 ? '#4ade8066' : m > 0 ? '#facc1566' : '#18181f'), borderColor: medMins.map(m => m >= 20 ? '#4ade80' : m > 0 ? '#facc15' : '#27272a'), borderWidth: 1 }] },
