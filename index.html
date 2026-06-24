@@ -83,12 +83,12 @@
   <div class="card">
     <div class="card-label">Priority 2 &middot; Meditation</div>
     <div class="card-value good" style="font-size:21px;">1 hour / day</div>
-    <div class="card-detail">KSD calls it the next big habit after sleep. Now <span>~9 min/day</span> this week, with a 20-min sit today (synced through Jun 24). Hold a daily minimum, build from there.</div>
+    <div class="card-detail">KSD calls it the next big habit after sleep. Today was a huge one at <span>6h13m</span> (self-reported, phone still syncing). The lever now is consistency, hold a daily minimum on the off days.</div>
   </div>
   <div class="card">
-    <div class="card-label">Priority 3 &middot; Movement</div>
-    <div class="card-value good" style="font-size:21px;">Morning walk or yoga</div>
-    <div class="card-detail">A morning walk or balcony yoga <span>every day</span>, plus core and mobility after the back tweak.</div>
+    <div class="card-label">Priority 3 &middot; Sunlight</div>
+    <div class="card-value good" style="font-size:21px;">Morning sunlight daily</div>
+    <div class="card-detail">Get <span>direct sunlight</span> within 30-60 min of waking to anchor circadian rhythm. With onset still drifting past <span>3 AM</span> on the rough nights, morning light is the lever to pull bedtime earlier.</div>
   </div>
   <div class="card">
     <div class="card-label">Priority 4 &middot; Planning</div>
@@ -293,8 +293,8 @@
 <div class="grid">
   <div class="card">
     <div class="card-label">This Week</div>
-    <div class="card-value ok">63 min</div>
-    <div class="card-detail">Avg <span>9 min/day</span> &middot; 2 sessions &middot; target <span>1h/day</span></div>
+    <div class="card-value good">416 min</div>
+    <div class="card-detail">Avg <span>59 min/day</span> &middot; target <span>1h/day</span> &middot; today's 6h13m sit pending full phone sync</div>
   </div>
   <div class="card">
     <div class="card-label">Mindful Days (7d)</div>
@@ -308,7 +308,7 @@
   </div>
   <div class="card">
     <div class="card-label">Last 20 Days</div>
-    <div class="card-value">229 min</div>
+    <div class="card-value">582 min</div>
     <div class="card-detail"><span>11 sessions</span> &middot; Waking Up + The Way</div>
   </div>
 </div>
@@ -320,7 +320,7 @@
 </div>
 <div class="insights">
   <div class="insight-item" style="color:#a1a1aa;font-size:13px;">
-    Source: Apple Health Mindful Minutes from <strong>Waking Up + The Way</strong> (Henry Shukman), synced through <strong>Jun 24</strong>. Today's 20-min sit is counted. Both apps are connected and writing automatically; the Jun 18-21 and Jun 23 blanks are simply days with no logged session.
+    Source: Apple Health Mindful Minutes from <strong>Waking Up + The Way</strong> (Henry Shukman). Today's session was <strong>6h13m</strong> (self-reported), but only the first <strong>20 min</strong> had synced from the phone when this refreshed. The Health Auto Export app last pushed at 1:19 AM, before the long sit, so the rest will fill in on the next phone export. Blank days are days with no logged session.
   </div>
 </div>
 
@@ -707,7 +707,7 @@ new Chart(document.getElementById('hrChart'), {
 
 // MEDITATION CHART
 const medLabels = ['6/11','6/12','6/13','6/14','6/15','6/16','6/17','6/18','6/19','6/20','6/21','6/22','6/23','6/24'];
-const medMins = [0,10,0,7,40,20,30,0,0,0,0,43,0,20];
+const medMins = [0,10,0,7,40,20,30,0,0,0,0,43,0,373];
 new Chart(document.getElementById('medChart'), {
   type: 'bar',
   data: { labels: medLabels, datasets: [{ label: 'Minutes', data: medMins, backgroundColor: medMins.map(m => m >= 20 ? '#4ade8066' : m > 0 ? '#facc1566' : '#18181f'), borderColor: medMins.map(m => m >= 20 ? '#4ade80' : m > 0 ? '#facc15' : '#27272a'), borderWidth: 1 }] },
