@@ -69,7 +69,7 @@
 <div class="header">
   <h1>Mission Stallion</h1>
   <div class="subtitle">Zak Columber — Health & Performance Dashboard</div>
-  <div class="updated">Oura Ring + Hevy + Apple Health | Oura through Jun 29, 2026 &middot; Apple Health through Jun 29 &middot; Hevy through Jun 23 &middot; refreshed Jun 29</div>
+  <div class="updated">Oura Ring + Hevy + Apple Health | Oura through Jun 29, 2026 &middot; Apple Health through Jun 29 &middot; Hevy through Jun 29 &middot; refreshed Jun 29</div>
 </div>
 
 <!-- MASTERMIND (KSD) — TOP PRIORITIES -->
@@ -463,6 +463,13 @@
     <div style="margin-top: 12px;">
       <div class="workout-row">
         <div class="workout-row-header">
+          <div><span class="workout-type" style="color: #818cf8;">Workout B</span><span class="workout-date">Jun 29</span></div>
+          <span class="workout-vol">1,470 kg | single-leg glutes + core</span>
+        </div>
+        <div class="workout-exercises"><span>Ring Pull Up</span> x4 &middot; <span>Floor Press</span> 30kg x 12 &middot; <span>Single Leg Hip Thrust</span> x12 &middot; <span>Chest Supported Row</span> 20kg x 10 &middot; <span>Dead Bug</span> &middot; <span>Shoulder Taps</span></div>
+      </div>
+      <div class="workout-row">
+        <div class="workout-row-header">
           <div><span class="workout-type" style="color: #f97316;">Workout A</span><span class="workout-date">Jun 23</span></div>
           <span class="workout-vol">612 kg | light day</span>
         </div>
@@ -488,13 +495,6 @@
           <span class="workout-vol">2,905 kg</span>
         </div>
         <div class="workout-exercises"><span>Bench Press</span> 80kg x 6 &middot; <span>Reverse Lunge</span> 50kg x 10 &middot; <span>Shoulder Press</span> 15kg x 10</div>
-      </div>
-      <div class="workout-row">
-        <div class="workout-row-header">
-          <div><span class="workout-type" style="color: #22d3ee;">Workout C</span><span class="workout-date">Jun 1</span></div>
-          <span class="workout-vol">5,778 kg | front squat PR</span>
-        </div>
-        <div class="workout-exercises"><span>Front Squat</span> 90kg x 8 (PR) &middot; <span>Floor Press</span> 30kg x 10 &middot; <span>RDL</span> 70kg x 10 &middot; <span>Bent Over Row</span> 70kg x 8 &middot; <span>Turkish Get Up</span> 16kg x 2</div>
       </div>
     </div>
   </div>
@@ -609,7 +609,7 @@
     <strong>REM cleared target, deep is close.</strong> REM averaged 114 min, well over the 90-min target, peaking at 150 min on Jun 25 and 149 on Jun 29. Deep averaged 85 min, just under the 90-min target, with a 100 min high on Jun 28. Both ride on the long nights, so protecting onset keeps them up.
   </div>
   <div class="insight-item">
-    <strong>Strength is quiet, six days since the last logged session.</strong> The last session was Jun 23, a light Workout A (612kg, floor press, Turkish get-ups, farmers walk), an easy day rather than a heavy one. The two PRs still stand, front squat <strong>90kg on Jun 1</strong> (70 &rarr; 90, +29%) and hip thrust <strong>140kg on Jun 5</strong> (80 &rarr; 140, +75%). Per the Jun 11 KSD call, barbell hip thrusts stay on hold after the back tweak; single-leg glute work plus core and calisthenics in the interim. Time to log the next session.
+    <strong>Back in the gym today, right on the prescribed protocol.</strong> Logged Workout B on Jun 29 (1,470kg, 47 min): single-leg hip thrusts, floor press 30kg x 12, ring pull-ups, chest-supported rows, plus dead bugs and shoulder taps for core. That is exactly the Jun 11 KSD prescription, single-leg glute work plus core and calisthenics while barbell hip thrusts stay on hold after the back tweak. It breaks a six-day gap since the last session (Jun 23, a light Workout A). The two PRs still stand, front squat <strong>90kg on Jun 1</strong> (70 &rarr; 90, +29%) and hip thrust <strong>140kg on Jun 5</strong> (80 &rarr; 140, +75%). Keep the cadence going.
   </div>
   <div class="insight-item">
     <strong>Running is on pause, seven days since the last run.</strong> The most recent run was Jun 22 (2.72 km, 7:02/km), the snappiest in weeks behind only May 7's 6:52/km, but nothing logged since. June still sits at three runs (Jun 2, 4, 22). Steps held a strong ~11.5k/day this week across 6 complete days, down off the 34.2k Jun 20 travel spike that just rolled off, and today logged the first morning walk (3.8k steps in the first 2h after waking) since Jun 22. Next step: get one run back on the board this week.
@@ -734,8 +734,8 @@ new Chart(document.getElementById('stepsChart14'), {
 });
 
 // STRENGTH TRAINING CHARTS
-const volLabels = ['5/18 (C)', '5/20 (A)', '5/22 (B)', '5/27 (C)', '6/1 (C)', '6/3 (A)', '6/5 (B)', '6/8 (C)', '6/23 (A)'];
-const volumes = [4020, 2470, 5384, 4335, 5778, 2905, 7560, 4448, 612];
+const volLabels = ['5/20 (A)', '5/22 (B)', '5/27 (C)', '6/1 (C)', '6/3 (A)', '6/5 (B)', '6/8 (C)', '6/23 (A)', '6/29 (B)'];
+const volumes = [2470, 5384, 4335, 5778, 2905, 7560, 4448, 612, 1470];
 const volColors = volLabels.map(l => l.includes('(A)') ? '#f9731666' : l.includes('(B)') ? '#818cf866' : '#22d3ee66');
 const volBorders = volLabels.map(l => l.includes('(A)') ? '#f97316' : l.includes('(B)') ? '#818cf8' : '#22d3ee');
 
