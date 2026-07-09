@@ -56,6 +56,12 @@
     color:var(--dim);font-size:12px}
   .pill{display:inline-block;background:var(--card2);border:1px solid var(--line);
     border-radius:999px;padding:2px 10px;font-size:11px;color:var(--muted);margin-right:6px}
+  .v{display:inline-block;border-radius:999px;padding:2px 10px;font-size:11px;font-weight:700;white-space:nowrap}
+  .v.hit{background:rgba(34,197,94,.15);color:#22c55e}
+  .v.part{background:rgba(245,158,11,.15);color:#f59e0b}
+  .v.miss{background:rgba(239,68,68,.15);color:#ef4444}
+  .callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--A);
+    border-radius:12px;padding:16px 18px;margin-bottom:14px}
 </style>
 </head>
 <body>
@@ -91,6 +97,53 @@
       <canvas id="lbar" height="240"></canvas>
     </div>
   </div>
+
+  <h2>What we wanted vs what happened</h2>
+  <p style="color:var(--muted);font-size:13.5px;margin:-4px 0 14px;max-width:660px">
+    The core question of this assignment: what share of my time actually reflects the priorities we set. Here is the honest scorecard.
+  </p>
+  <div class="callout">
+    <div style="font-size:13px;color:var(--muted)">The priority system says the top tier, money and sleep and meditation and fitness, should lead the week.</div>
+    <div style="font-size:19px;font-weight:700;margin-top:7px;letter-spacing:-.01em;line-height:1.35">
+      In reality the stated top priorities got <span style="color:var(--A)">26%</span> of waking hours. The lower tier and leaks got <span style="color:var(--L)">74%</span>.
+    </div>
+  </div>
+  <table>
+    <tr><th>Stated priority</th><th>What we wanted</th><th>What happened</th><th>Verdict</th></tr>
+    <tr>
+      <td class="code">Sleep</td>
+      <td>Protected, a consistent early bedtime</td>
+      <td>Onsets 1:00 to 2:30am, five of six nights past 1am. The one midnight night scored 92.</td>
+      <td><span class="v miss">Missed</span></td>
+    </tr>
+    <tr>
+      <td class="code">Meditation</td>
+      <td>A daily habit, around an hour a day</td>
+      <td>3.6h logged for the week, close to half the target</td>
+      <td><span class="v part">Half</span></td>
+    </tr>
+    <tr>
+      <td class="code">Plan the week</td>
+      <td>A written weekly plan, made in advance</td>
+      <td>Never made. The planning block got steamrolled two days running.</td>
+      <td><span class="v miss">Missed</span></td>
+    </tr>
+    <tr>
+      <td class="code">Time journal</td>
+      <td>Log it every day</td>
+      <td>Done. Seven days logged, and this whole dashboard is the output.</td>
+      <td><span class="v hit">Hit</span></td>
+    </tr>
+    <tr>
+      <td class="code">Make money</td>
+      <td>The number one waking priority</td>
+      <td>11.2h, 13% of waking. It happened, but zero on weekends and fragmented into late-night blocks.</td>
+      <td><span class="v part">Partial</span></td>
+    </tr>
+  </table>
+  <p style="color:var(--muted);font-size:13.5px;margin-top:12px">
+    One clean win: the journal itself. The rest of the top priorities keep getting crowded out by the lower tier, which ate 62% of waking hours. Clearing that, starting with outsourcing chores and anchoring bedtime, is what frees the room for sleep, meditation, and a protected money block.
+  </p>
 
   <h2>The three things that matter</h2>
 
