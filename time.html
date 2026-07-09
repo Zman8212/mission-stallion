@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Where My Time Went — Week 1</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0b0b0d; --card:#151519; --card2:#1c1c22; --line:#2a2a31;
+    --txt:#ececf1; --muted:#9a9aa6; --dim:#6c6c78;
+    --A:#22c55e; --B:#3b82f6; --C:#a855f7; --D:#f59e0b; --L:#ef4444; --X:#71717a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:28px 18px 64px}
+  header{padding:8px 0 22px;border-bottom:1px solid var(--line);margin-bottom:26px}
+  h1{font-size:26px;margin:0 0 6px;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:14px;max-width:640px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);
+    margin:36px 0 14px;font-weight:600}
+  .grid{display:grid;gap:12px}
+  .cards6{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:620px){.cards6{grid-template-columns:repeat(2,1fr)}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .stat .lab{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px;margin-bottom:9px}
+  .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .stat .val{font-size:26px;font-weight:700;letter-spacing:-.02em}
+  .stat .pct{font-size:12.5px;color:var(--dim);margin-top:3px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+  @media(max-width:720px){.two{grid-template-columns:1fr}}
+  .chartbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .chartbox h3{margin:0 0 4px;font-size:15px}
+  .chartbox p{margin:0 0 14px;font-size:12.5px;color:var(--muted)}
+  canvas{max-width:100%}
+  .finding{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--L);
+    border-radius:12px;padding:16px 18px;margin-bottom:12px}
+  .finding h3{margin:0 0 7px;font-size:16px;letter-spacing:-.01em}
+  .finding p{margin:0;color:var(--muted);font-size:14px}
+  .finding .big{color:var(--txt);font-weight:600}
+  .lever{display:flex;gap:13px;align-items:flex-start;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;padding:15px 16px;margin-bottom:11px}
+  .lever .n{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--A);
+    color:#04210f;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+  .lever .t{font-size:14px}.lever .t b{color:var(--txt)}.lever .t span{color:var(--muted)}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line)}
+  th{color:var(--dim);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+  tr:last-child td{border-bottom:none}
+  td.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--txt);font-weight:600}
+  .foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
+    color:var(--dim);font-size:12px}
+  .pill{display:inline-block;background:var(--card2);border:1px solid var(--line);
+    border-radius:999px;padding:2px 10px;font-size:11px;color:var(--muted);margin-right:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Where My Time Went — Week 1</h1>
+    <div class="sub">Jul 3 to 9, 2026. Seven days logged, about 130 tracked hours. Numbers are within 20 to 30 minutes (voice-journal reconstruction), but the proportions are solid.</div>
+  </header>
+
+  <h2>The one-screen summary</h2>
+  <div class="grid cards6">
+    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--A)"></span>A · Make money</div><div class="val">11.2h</div><div class="pct">13% of waking time</div></div>
+    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--B)"></span>B · Sleep + naps</div><div class="val">41.8h</div><div class="pct">32% of all time</div></div>
+    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--C)"></span>C · Meditation</div><div class="val">3.6h</div><div class="pct">4% of waking time</div></div>
+    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--D)"></span>D · Fitness</div><div class="val">7.6h</div><div class="pct">9% of waking time</div></div>
+    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--L)"></span>L · Lower-tier life</div><div class="val">54.1h</div><div class="pct">62% of waking time</div></div>
+    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--X)"></span>X · Leaks</div><div class="val">10.3h</div><div class="pct">12% of waking time</div></div>
+  </div>
+  <p style="color:var(--muted);font-size:13.5px;margin-top:14px">
+    Waking time tracked: about 88 hours. The top three active priorities, money plus meditation plus fitness, add up to
+    <b style="color:var(--txt)">26% of waking hours</b>. My on-call estimate was about 20%, so I slightly beat it. That is basically the end of the good news.
+  </p>
+
+  <div class="two" style="margin-top:8px">
+    <div class="chartbox">
+      <h3>Where the hours go</h3>
+      <p>All tracked time, by priority bucket.</p>
+      <canvas id="donut" height="240"></canvas>
+    </div>
+    <div class="chartbox">
+      <h3>Inside the lower tier (54h)</h3>
+      <p>Life-maintenance is the single biggest slice, and most of it is cleaning and laundry.</p>
+      <canvas id="lbar" height="240"></canvas>
+    </div>
+  </div>
+
+  <h2>The three things that matter</h2>
+
+  <div class="finding">
+    <h3>1. Life-maintenance is eating my life</h3>
+    <p><span class="big">62% of my waking hours</span> go to the lower tier. Life-maintenance alone (cleaning, laundry, errands, getting ready, eating) is <span class="big">29 hours</span>, which is bigger than money, meditation, and fitness <span class="big">combined</span> (22.4h). A huge slice is cleaning and laundry, and it shows up almost every single day, usually at night. That is not just a time problem, it is the cause of the sleep problem below.</p>
+  </div>
+
+  <div class="finding" style="border-left-color:var(--B)">
+    <h3>2. Sleep is a bedtime problem, not a sleep problem</h3>
+    <p>Sleep onsets this week: <span class="big">2:00, 12:15, 2:04, 1:17, 2:30, 2:30</span>. Six nights, five of them past 1am. The exception proves it: the one night I was in bed by 12:15 scored <span class="big">92, my best of the week by 10 points</span>. I fall asleep fine once I am down. I just do not get down, because chores and late work push bedtime to 2:30.</p>
+  </div>
+
+  <div class="finding" style="border-left-color:var(--A)">
+    <h3>3. Money time is real but lopsided</h3>
+    <p>Money time was 11.2h, but <span class="big">zero hours Saturday and Sunday</span>, and it is all weekday. Tuesday's 4.8h, my biggest day, happened <span class="big">entirely after 6pm</span>, chopped into three blocks by laundry. I can do the work. It just gets squeezed into late-night fragments after the day's maintenance eats the daylight.</p>
+  </div>
+
+  <h2>The three highest-leverage changes</h2>
+  <div class="lever"><div class="n">1</div><div class="t"><b>Outsource the chores.</b> <span>A cleaner plus laundry handled for me. This is the master lever: it buys back about 10 hours a week and removes the thing pushing bedtime to 2:30am.</span></div></div>
+  <div class="lever"><div class="n">2</div><div class="t"><b>Hard bedtime anchor.</b> <span>The data proves in-bed-by-midnight equals a 92 night. Pick a lights-out time and let whatever does not fit die or get outsourced.</span></div></div>
+  <div class="lever"><div class="n">3</div><div class="t"><b>Protect one daylight money block.</b> <span>Money time keeps getting shoved to post-6pm fragments. Put one 2 to 3 hour block in the morning or early afternoon, before maintenance floods the day.</span></div></div>
+
+  <h2>How to read the codes</h2>
+  <table>
+    <tr><th>Code</th><th>Meaning</th><th>Tier</th></tr>
+    <tr><td class="code">A</td><td>Make money</td><td>Top priority</td></tr>
+    <tr><td class="code">B</td><td>Sleep and naps</td><td>Top priority</td></tr>
+    <tr><td class="code">C</td><td>Meditation</td><td>Top priority</td></tr>
+    <tr><td class="code">D</td><td>Fitness and training</td><td>Top priority</td></tr>
+    <tr><td class="code">L-lm</td><td>Life maintenance (cleaning, laundry, errands, getting ready, eating)</td><td>Lower</td></tr>
+    <tr><td class="code">L-soc</td><td>Socializing</td><td>Lower</td></tr>
+    <tr><td class="code">L-com</td><td>Commuting</td><td>Lower</td></tr>
+    <tr><td class="code">L-gf</td><td>Dating and flirting</td><td>Lower</td></tr>
+    <tr><td class="code">L-es</td><td>Spanish practice</td><td>Lower</td></tr>
+    <tr><td class="code">L-bch</td><td>Dance</td><td>Lower</td></tr>
+    <tr><td class="code">X</td><td>Leaks (scrolling, weed, aimless thinking)</td><td>Waste</td></tr>
+  </table>
+
+  <div class="foot">
+    <span class="pill">Week 1</span><span class="pill">Jul 3 to 9, 2026</span><span class="pill">7 days, ~130h tracked</span>
+    <div style="margin-top:10px">Built from Zak's time journal. Proportions are reliable; individual times are voice-reconstructed within about 20 to 30 minutes.</div>
+  </div>
+</div>
+
+<script>
+Chart.defaults.color = '#9a9aa6';
+Chart.defaults.font.family = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif";
+new Chart(document.getElementById('donut'), {
+  type:'doughnut',
+  data:{
+    labels:['L · Lower-tier (54.1h)','B · Sleep (41.8h)','A · Money (11.2h)','X · Leaks (10.3h)','D · Fitness (7.6h)','C · Meditation (3.6h)'],
+    datasets:[{data:[54.1,41.8,11.2,10.3,7.6,3.6],
+      backgroundColor:['#ef4444','#3b82f6','#22c55e','#71717a','#f59e0b','#a855f7'],
+      borderColor:'#151519',borderWidth:2}]
+  },
+  options:{responsive:true,cutout:'58%',
+    plugins:{legend:{position:'bottom',labels:{boxWidth:11,padding:9,font:{size:11}}}}}
+});
+new Chart(document.getElementById('lbar'), {
+  type:'bar',
+  data:{
+    labels:['Life maintenance','Socializing','Commuting','Dating','Spanish','Dance'],
+    datasets:[{data:[29.0,10.8,7.9,4.2,1.2,1.0],
+      backgroundColor:['#ef4444','#f87171','#f87171','#f87171','#f87171','#f87171'],
+      borderRadius:5}]
+  },
+  options:{indexAxis:'y',responsive:true,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'h'}}},
+    scales:{x:{grid:{color:'#2a2a31'},ticks:{callback:v=>v+'h'}},y:{grid:{display:false}}}}
+});
+</script>
+</body>
+</html>
