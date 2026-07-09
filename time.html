@@ -93,10 +93,29 @@
     </div>
     <div class="chartbox">
       <h3>Inside the lower tier (54h)</h3>
-      <p>Life-maintenance is the single biggest slice, and most of it is cleaning and laundry.</p>
+      <p>Life-maintenance is the single biggest slice by far. The detail is broken out below.</p>
       <canvas id="lbar" height="240"></canvas>
     </div>
   </div>
+
+  <div class="chartbox" style="margin-top:16px">
+    <h3>Inside life-maintenance (29h), the detail</h3>
+    <p>What that 29h actually was. The surprise: getting ready and grooming, not chores, is the biggest slice. Real cleaning plus laundry is only about 5.4 hours.</p>
+    <canvas id="lmbar" height="260"></canvas>
+  </div>
+  <table style="margin-top:12px">
+    <tr><th>Life-maintenance breakdown</th><th>Hours</th><th>Share of L-lm</th></tr>
+    <tr><td>Getting ready / grooming</td><td>~12.0h</td><td>43%</td></tr>
+    <tr><td>Eating</td><td>~4.2h</td><td>15%</td></tr>
+    <tr><td>Planning &amp; reflection (the journaling)</td><td>~3.5h</td><td>12%</td></tr>
+    <tr><td>Cleaning</td><td>~3.3h</td><td>12%</td></tr>
+    <tr><td>Laundry</td><td>~2.1h</td><td>7%</td></tr>
+    <tr><td>Therapy &amp; health appointments</td><td>~1.5h</td><td>5%</td></tr>
+    <tr><td>Errands &amp; admin</td><td>~1.3h</td><td>5%</td></tr>
+  </table>
+  <p style="color:var(--muted);font-size:13.5px;margin-top:12px">
+    Two takeaways. First, the real time sink is getting ready, not chores, and grooming cannot be outsourced. Second, only about 5.4h was actual cleaning plus laundry, but its late-night timing is what wrecks bedtime. Note: planning and reflection (3.5h) is really the journaling and weekly-planning Krista assigned, so it arguably should not count as lower-tier at all.
+  </p>
 
   <h2>What we wanted vs what happened</h2>
   <p style="color:var(--muted);font-size:13.5px;margin:-4px 0 14px;max-width:660px">
@@ -149,7 +168,7 @@
 
   <div class="finding">
     <h3>1. Life-maintenance is eating my life</h3>
-    <p><span class="big">62% of my waking hours</span> go to the lower tier. Life-maintenance alone (cleaning, laundry, errands, getting ready, eating) is <span class="big">29 hours</span>, which is bigger than money, meditation, and fitness <span class="big">combined</span> (22.4h). A huge slice is cleaning and laundry, and it shows up almost every single day, usually at night. That is not just a time problem, it is the cause of the sleep problem below.</p>
+    <p><span class="big">62% of my waking hours</span> go to the lower tier. Life-maintenance alone (cleaning, laundry, errands, getting ready, eating) is <span class="big">29 hours</span>, which is bigger than money, meditation, and fitness <span class="big">combined</span> (22.4h). The biggest slice is actually getting ready and grooming, about 12h, not chores. Cleaning and laundry together are only about 5.4h, but they land late at night, which is what pushes bedtime to 2:30am. That makes this not just a time problem, but the cause of the sleep problem below.</p>
   </div>
 
   <div class="finding" style="border-left-color:var(--B)">
@@ -209,6 +228,18 @@ new Chart(document.getElementById('lbar'), {
     labels:['Life maintenance','Socializing','Commuting','Dating','Spanish','Dance'],
     datasets:[{data:[29.0,10.8,7.9,4.2,1.2,1.0],
       backgroundColor:['#ef4444','#f87171','#f87171','#f87171','#f87171','#f87171'],
+      borderRadius:5}]
+  },
+  options:{indexAxis:'y',responsive:true,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'h'}}},
+    scales:{x:{grid:{color:'#2a2a31'},ticks:{callback:v=>v+'h'}},y:{grid:{display:false}}}}
+});
+new Chart(document.getElementById('lmbar'), {
+  type:'bar',
+  data:{
+    labels:['Getting ready / grooming','Eating','Planning & reflection','Cleaning','Laundry','Therapy & health','Errands & admin'],
+    datasets:[{data:[12.0,4.2,3.5,3.3,2.1,1.5,1.3],
+      backgroundColor:['#ef4444','#f59e0b','#a855f7','#fb7185','#f43f5e','#3b82f6','#71717a'],
       borderRadius:5}]
   },
   options:{indexAxis:'y',responsive:true,
