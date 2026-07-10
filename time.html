@@ -62,6 +62,15 @@
   .v.miss{background:rgba(239,68,68,.15);color:#ef4444}
   .callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--A);
     border-radius:12px;padding:16px 18px;margin-bottom:14px}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 24px}
+  .tab{background:var(--card);border:1px solid var(--line);color:var(--muted);
+    font-family:inherit;font-size:13.5px;font-weight:600;padding:9px 18px;border-radius:999px;
+    cursor:pointer;transition:color .15s,border-color .15s,background .15s}
+  .tab:hover{color:var(--txt);border-color:var(--dim)}
+  .tab.active{background:var(--card2);color:var(--txt);border-color:var(--A)}
+  .tab:focus-visible{outline:2px solid var(--A);outline-offset:2px}
+  .scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .scroll-x table{margin:0}
 </style>
 </head>
 <body>
@@ -73,6 +82,13 @@
       <a href="index.html" style="display:inline-block; background:var(--card2); border:1px solid var(--line); color:var(--txt); text-decoration:none; padding:9px 18px; border-radius:9px; font-size:13px; font-weight:600;">Mission Stallion Health Dashboard &rarr;</a>
     </div>
   </header>
+
+  <nav class="tabs" aria-label="Views">
+    <button class="tab active" type="button" data-tab="week">This Week</button>
+    <button class="tab" type="button" data-tab="budget">Budget vs Actual</button>
+  </nav>
+
+  <div id="tab-week" class="tabpanel">
 
   <h2>The one-screen summary</h2>
   <div class="grid cards6">
@@ -209,6 +225,93 @@
     <span class="pill">Week 1</span><span class="pill">Jul 3 to 9, 2026</span><span class="pill">7 days, ~130h tracked</span>
     <div style="margin-top:10px">Built from Zak's time journal. Proportions are reliable; individual times are voice-reconstructed within about 20 to 30 minutes.</div>
   </div>
+
+  </div><!-- /tab-week -->
+
+  <div id="tab-budget" class="tabpanel" hidden>
+
+    <p style="color:var(--muted);font-size:13.5px;margin:4px 0 12px;max-width:680px">
+      Your weekly time budget (how you want to spend it) vs how you actually spent Jul 3 to 9.
+    </p>
+    <p style="color:var(--dim);font-size:12.5px;margin:0 0 18px;max-width:700px">
+      Tracked window was Jul 3 (partial) to Jul 9 (partial), about 128 logged hours of a 168-hour week, so raw shortfalls on time-based categories are partly incomplete logging. The share view controls for that and tells the same story.
+    </p>
+
+    <div class="callout" style="border-left-color:var(--D)">
+      <div style="font-size:14px;line-height:1.55">Your budget totals exactly 168h a week, the whole week, with zero slack. The top four alone (sleep 63 + money 25 + meditation 14 + fitness 14) take 116h, leaving 52h for everything else and no room for the ~10h of leaks a real week always has. That is the over-budget feeling: it is maxed to the theoretical ceiling.</div>
+    </div>
+
+    <div class="chartbox" style="margin-top:16px">
+      <h3>Budget vs actual, by category</h3>
+      <p>Your target allocation (grey) against what actually happened Jul 3 to 9 (cyan). Ordered by budget size.</p>
+      <canvas id="budgetChart" height="440"></canvas>
+    </div>
+
+    <h2>The full comparison</h2>
+    <div class="scroll-x">
+    <table style="min-width:600px">
+      <tr><th>Category</th><th>Budget h/wk</th><th>Actual h (Jul 3-9)</th><th>vs Budget</th><th>Status</th></tr>
+      <tr><td class="code">Make money</td><td>25</td><td>11.2</td><td>-13.8</td><td><span style="color:#f59e0b;font-weight:700">Under (45%)</span></td></tr>
+      <tr><td class="code">Sleep</td><td>63</td><td>41.8</td><td>-21.2</td><td><span style="color:#f59e0b;font-weight:700">Under (66%)</span></td></tr>
+      <tr><td class="code">Meditation</td><td>14</td><td>3.6</td><td>-10.4</td><td><span style="color:#f59e0b;font-weight:700">Under (26%)</span></td></tr>
+      <tr><td class="code">Fitness</td><td>14</td><td>7.6</td><td>-6.4</td><td><span style="color:#f59e0b;font-weight:700">Under (54%)</span></td></tr>
+      <tr><td class="code">Girlfriend pathway</td><td>14</td><td>4.2</td><td>-9.8</td><td><span style="color:#f59e0b;font-weight:700">Under (30%)</span></td></tr>
+      <tr><td class="code">Socializing</td><td>12</td><td>10.8</td><td>-1.2</td><td><span style="color:#4ade80;font-weight:700">On track (90%)</span></td></tr>
+      <tr><td class="code">Commute</td><td>7</td><td>7.9</td><td>+0.9</td><td><span style="color:#4ade80;font-weight:700">On track (113%)</span></td></tr>
+      <tr><td class="code">Meaningful work</td><td>6</td><td>3.5</td><td>-2.5</td><td><span style="color:#f59e0b;font-weight:700">Under (58%)</span></td></tr>
+      <tr><td class="code">Life maintenance</td><td>7</td><td>24.4</td><td>+17.4</td><td><span style="color:#f87171;font-weight:700">OVER (349%)</span></td></tr>
+      <tr><td class="code">Spanish</td><td>4</td><td>1.2</td><td>-2.8</td><td><span style="color:#f59e0b;font-weight:700">Under (30%)</span></td></tr>
+      <tr><td class="code">Bachata</td><td>2</td><td>1.0</td><td>-1.0</td><td><span style="color:#f59e0b;font-weight:700">Under (50%)</span></td></tr>
+      <tr><td class="code">Leaks (unbudgeted)</td><td>0</td><td>10.3</td><td>+10.3</td><td><span style="color:#f87171;font-weight:700">OVER budget</span></td></tr>
+      <tr><td class="code">Untracked / unlogged</td><td>0</td><td>~39</td><td>+39</td><td><span style="color:var(--dim);font-weight:700">gap in logging</span></td></tr>
+    </table>
+    </div>
+
+    <h2>Where life maintenance actually went</h2>
+    <p style="color:var(--muted);font-size:13.5px;margin:-4px 0 14px;max-width:680px">
+      Budget was 7h. Actual was 24.4h, about 3.5x over. Most of it is grooming (12h) and eating (4.2h), not just chores. Grooming cannot be outsourced.
+    </p>
+    <div class="scroll-x">
+    <table>
+      <tr><th>Life maintenance breakdown</th><th>Hours</th></tr>
+      <tr><td>Getting ready / grooming</td><td>12.0h</td></tr>
+      <tr><td>Eating</td><td>4.2h</td></tr>
+      <tr><td>Cleaning</td><td>3.3h</td></tr>
+      <tr><td>Laundry</td><td>2.1h</td></tr>
+      <tr><td>Therapy &amp; health appts</td><td>1.5h</td></tr>
+      <tr><td>Errands &amp; admin</td><td>1.3h</td></tr>
+    </table>
+    </div>
+
+    <h2>Key findings</h2>
+
+    <div class="finding">
+      <h3>1. Life maintenance was the only overage</h3>
+      <p>Life maintenance is the only category over on effort: <span class="big">24.4h actual vs 7h budget</span>, about 3.5x over. The hours that should have gone to the priorities went here, plus to leaks.</p>
+    </div>
+
+    <div class="finding" style="border-left-color:var(--D)">
+      <h3>2. Every top priority came in under</h3>
+      <p>Money <span class="big">45%</span>, sleep <span class="big">66%</span>, meditation <span class="big">26%</span>, fitness <span class="big">54%</span>. Not one of the top four hit its budget.</p>
+    </div>
+
+    <div class="finding" style="border-left-color:var(--C)">
+      <h3>3. Meditation is the biggest proportional miss</h3>
+      <p><span class="big">3.6h vs the 14h target</span> (2h/day), so 26%. At that budget it needs a real daily system, not willpower.</p>
+    </div>
+
+    <div class="finding" style="border-left-color:var(--B)">
+      <h3>4. Sleep is still a bedtime problem</h3>
+      <p>Sleep <span class="big">41.8h vs 63h budget</span> is about 7h a night vs the 9h a night goal. The bedtime problem again.</p>
+    </div>
+
+    <div class="finding" style="border-left-color:var(--A)">
+      <h3>5. Reality check for Krista</h3>
+      <p>The budget has <span class="big">zero slack</span>, 168h fully allocated. Worth a gut check on whether 14h meditation AND 63h sleep both realistically fit alongside 25h of money work.</p>
+    </div>
+
+  </div><!-- /tab-budget -->
+
 </div>
 
 <script>
@@ -249,6 +352,35 @@ new Chart(document.getElementById('lmbar'), {
     plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'h'}}},
     scales:{x:{grid:{color:'#2a2a31'},ticks:{callback:v=>v+'h'}},y:{grid:{display:false}}}}
 });
+
+// --- Budget vs Actual chart (lives in the hidden tab; resized on first show) ---
+var budgetCharts = [];
+budgetCharts.push(new Chart(document.getElementById('budgetChart'), {
+  type:'bar',
+  data:{
+    labels:['Sleep','Make money','Meditation','Fitness','Girlfriend pathway','Socializing','Life maintenance','Commute','Meaningful work','Spanish','Bachata','Leaks (unbudgeted)'],
+    datasets:[
+      {label:'Budget', data:[63,25,14,14,14,12,7,7,6,4,2,0], backgroundColor:'#52525b', borderRadius:4},
+      {label:'Actual', data:[41.8,11.2,3.6,7.6,4.2,10.8,24.4,7.9,3.5,1.2,1.0,10.3], backgroundColor:'#22d3ee', borderRadius:4}
+    ]
+  },
+  options:{indexAxis:'y',responsive:true,
+    plugins:{legend:{position:'bottom',labels:{boxWidth:11,padding:9,font:{size:11}}},
+      tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw+'h'}}},
+    scales:{x:{grid:{color:'#2a2a31'},ticks:{callback:v=>v+'h'}},y:{grid:{display:false}}}}
+}));
+
+// --- Tab switching ---
+(function(){
+  var tabs = document.querySelectorAll('.tab');
+  function show(name){
+    document.getElementById('tab-week').hidden   = (name !== 'week');
+    document.getElementById('tab-budget').hidden = (name !== 'budget');
+    tabs.forEach(function(b){ b.classList.toggle('active', b.dataset.tab === name); });
+    if(name === 'budget'){ budgetCharts.forEach(function(c){ c.resize(); }); }
+  }
+  tabs.forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.tab); }); });
+})();
 </script>
 </body>
 </html>
