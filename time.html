@@ -234,36 +234,36 @@
       Your weekly time budget (how you want to spend it) vs how you actually spent Jul 3 to 9.
     </p>
     <p style="color:var(--dim);font-size:12.5px;margin:0 0 18px;max-width:700px">
-      Tracked window was Jul 3 (partial) to Jul 9 (partial), about 128 logged hours of a 168-hour week, so raw shortfalls on time-based categories are partly incomplete logging. The share view controls for that and tells the same story.
+      Prorated to a 6-day window (Jul 3 midday to Jul 9 midday, 6 days and 6 nights) for an apples-to-apples comparison, because Jul 3 was the first day of tracking and Jul 9 is still syncing. Full weekly budget is shown alongside.
     </p>
 
     <div class="callout" style="border-left-color:var(--D)">
-      <div style="font-size:14px;line-height:1.55">Your budget totals exactly 168h a week, the whole week, with zero slack. The top four alone (sleep 63 + money 25 + meditation 14 + fitness 14) take 116h, leaving 52h for everything else and no room for the ~10h of leaks a real week always has. That is the over-budget feeling: it is maxed to the theoretical ceiling.</div>
+      <div style="font-size:14px;line-height:1.55">Your budget totals exactly 168h a week, the whole week, with zero slack. The top four alone (sleep 63 + money 25 + meditation 14 + fitness 14) take 116h, leaving 52h for everything else and no room for the ~10h of leaks a real week always has. That is the over-budget feeling: it is maxed to the theoretical ceiling. Prorated to these 6 days that is 144h.</div>
     </div>
 
     <div class="chartbox" style="margin-top:16px">
       <h3>Budget vs actual, by category</h3>
-      <p>Your target allocation (grey) against what actually happened Jul 3 to 9 (cyan). Ordered by budget size.</p>
+      <p>Your prorated 6-day budget (grey) against what actually happened Jul 3 to 9 (cyan). Ordered by budget size.</p>
       <canvas id="budgetChart" height="440"></canvas>
     </div>
 
     <h2>The full comparison</h2>
     <div class="scroll-x">
-    <table style="min-width:600px">
-      <tr><th>Category</th><th>Budget h/wk</th><th>Actual h (Jul 3-9)</th><th>vs Budget</th><th>Status</th></tr>
-      <tr><td class="code">Make money</td><td>25</td><td>11.2</td><td>-13.8</td><td><span style="color:#f59e0b;font-weight:700">Under (45%)</span></td></tr>
-      <tr><td class="code">Sleep</td><td>63</td><td>41.8</td><td>-21.2</td><td><span style="color:#f59e0b;font-weight:700">Under (66%)</span></td></tr>
-      <tr><td class="code">Meditation</td><td>14</td><td>3.6</td><td>-10.4</td><td><span style="color:#f59e0b;font-weight:700">Under (26%)</span></td></tr>
-      <tr><td class="code">Fitness</td><td>14</td><td>7.6</td><td>-6.4</td><td><span style="color:#f59e0b;font-weight:700">Under (54%)</span></td></tr>
-      <tr><td class="code">Girlfriend pathway</td><td>14</td><td>4.2</td><td>-9.8</td><td><span style="color:#f59e0b;font-weight:700">Under (30%)</span></td></tr>
-      <tr><td class="code">Socializing</td><td>12</td><td>10.8</td><td>-1.2</td><td><span style="color:#4ade80;font-weight:700">On track (90%)</span></td></tr>
-      <tr><td class="code">Commute</td><td>7</td><td>7.9</td><td>+0.9</td><td><span style="color:#4ade80;font-weight:700">On track (113%)</span></td></tr>
-      <tr><td class="code">Meaningful work</td><td>6</td><td>3.5</td><td>-2.5</td><td><span style="color:#f59e0b;font-weight:700">Under (58%)</span></td></tr>
-      <tr><td class="code">Life maintenance</td><td>7</td><td>24.4</td><td>+17.4</td><td><span style="color:#f87171;font-weight:700">OVER (349%)</span></td></tr>
-      <tr><td class="code">Spanish</td><td>4</td><td>1.2</td><td>-2.8</td><td><span style="color:#f59e0b;font-weight:700">Under (30%)</span></td></tr>
-      <tr><td class="code">Bachata</td><td>2</td><td>1.0</td><td>-1.0</td><td><span style="color:#f59e0b;font-weight:700">Under (50%)</span></td></tr>
-      <tr><td class="code">Leaks (unbudgeted)</td><td>0</td><td>10.3</td><td>+10.3</td><td><span style="color:#f87171;font-weight:700">OVER budget</span></td></tr>
-      <tr><td class="code">Untracked / unlogged</td><td>0</td><td>~39</td><td>+39</td><td><span style="color:var(--dim);font-weight:700">gap in logging</span></td></tr>
+    <table style="min-width:680px">
+      <tr><th>Category</th><th>Weekly budget</th><th>This week (prorated x6/7)</th><th>Actual (Jul 3-9)</th><th>vs prorated</th><th>Status</th></tr>
+      <tr><td class="code">Make money</td><td>25</td><td>21.4</td><td>11.2</td><td>-10.2</td><td><span style="color:#f59e0b;font-weight:700">Under (52%)</span></td></tr>
+      <tr><td class="code">Sleep</td><td>63</td><td>54.0</td><td>41.8</td><td>-12.2</td><td><span style="color:#f59e0b;font-weight:700">Under (77%)</span></td></tr>
+      <tr><td class="code">Meditation</td><td>14</td><td>12.0</td><td>3.6</td><td>-8.4</td><td><span style="color:#f59e0b;font-weight:700">Under (30%)</span></td></tr>
+      <tr><td class="code">Fitness</td><td>14</td><td>12.0</td><td>7.6</td><td>-4.4</td><td><span style="color:#f59e0b;font-weight:700">Under (63%)</span></td></tr>
+      <tr><td class="code">Girlfriend pathway</td><td>14</td><td>12.0</td><td>4.2</td><td>-7.8</td><td><span style="color:#f59e0b;font-weight:700">Under (35%)</span></td></tr>
+      <tr><td class="code">Socializing</td><td>12</td><td>10.3</td><td>10.8</td><td>+0.5</td><td><span style="color:#4ade80;font-weight:700">On track (105%)</span></td></tr>
+      <tr><td class="code">Commute</td><td>7</td><td>6.0</td><td>7.9</td><td>+1.9</td><td><span style="color:#f87171;font-weight:700">Over (132%)</span></td></tr>
+      <tr><td class="code">Meaningful work</td><td>6</td><td>5.1</td><td>3.5</td><td>-1.6</td><td><span style="color:#f59e0b;font-weight:700">Under (69%)</span></td></tr>
+      <tr><td class="code">Life maintenance</td><td>7</td><td>6.0</td><td>24.4</td><td>+18.4</td><td><span style="color:#f87171;font-weight:700">OVER (407%)</span></td></tr>
+      <tr><td class="code">Spanish</td><td>4</td><td>3.4</td><td>1.2</td><td>-2.2</td><td><span style="color:#f59e0b;font-weight:700">Under (35%)</span></td></tr>
+      <tr><td class="code">Bachata</td><td>2</td><td>1.7</td><td>1.0</td><td>-0.7</td><td><span style="color:#f59e0b;font-weight:700">Under (59%)</span></td></tr>
+      <tr><td class="code">Leaks (unbudgeted)</td><td>0</td><td>0</td><td>10.3</td><td>+10.3</td><td><span style="color:#f87171;font-weight:700">OVER</span></td></tr>
+      <tr><td class="code">Untracked / gap</td><td></td><td>144 total</td><td>127.5 total</td><td>~16.5</td><td><span style="color:var(--dim);font-weight:700">logging gap</span></td></tr>
     </table>
     </div>
 
@@ -286,23 +286,23 @@
     <h2>Key findings</h2>
 
     <div class="finding">
-      <h3>1. Life maintenance was the only overage</h3>
-      <p>Life maintenance is the only category over on effort: <span class="big">24.4h actual vs 7h budget</span>, about 3.5x over. The hours that should have gone to the priorities went here, plus to leaks.</p>
+      <h3>1. Life maintenance is by far the biggest overage</h3>
+      <p>Life maintenance blew past its budget the hardest: <span class="big">24.4h actual vs the 6.0h prorated budget</span>, about 4.1x over (407%). The hours that should have gone to the priorities went here, plus to leaks.</p>
     </div>
 
     <div class="finding" style="border-left-color:var(--D)">
       <h3>2. Every top priority came in under</h3>
-      <p>Money <span class="big">45%</span>, sleep <span class="big">66%</span>, meditation <span class="big">26%</span>, fitness <span class="big">54%</span>. Not one of the top four hit its budget.</p>
+      <p>Money <span class="big">52%</span>, sleep <span class="big">77%</span>, meditation <span class="big">30%</span>, fitness <span class="big">63%</span>, girlfriend pathway <span class="big">35%</span>. Not one of the top priorities hit its prorated budget.</p>
     </div>
 
     <div class="finding" style="border-left-color:var(--C)">
       <h3>3. Meditation is the biggest proportional miss</h3>
-      <p><span class="big">3.6h vs the 14h target</span> (2h/day), so 26%. At that budget it needs a real daily system, not willpower.</p>
+      <p><span class="big">3.6h vs the 12.0h prorated target</span> (2h/day), so 30%. At that budget it needs a real daily system, not willpower.</p>
     </div>
 
     <div class="finding" style="border-left-color:var(--B)">
       <h3>4. Sleep is still a bedtime problem</h3>
-      <p>Sleep <span class="big">41.8h vs 63h budget</span> is about 7h a night vs the 9h a night goal. The bedtime problem again.</p>
+      <p>Sleep <span class="big">41.8h vs the 54.0h prorated budget</span>, so 77%, is about 7h a night vs the 9h a night goal. The bedtime problem again.</p>
     </div>
 
     <div class="finding" style="border-left-color:var(--A)">
@@ -360,7 +360,7 @@ budgetCharts.push(new Chart(document.getElementById('budgetChart'), {
   data:{
     labels:['Sleep','Make money','Meditation','Fitness','Girlfriend pathway','Socializing','Life maintenance','Commute','Meaningful work','Spanish','Bachata','Leaks (unbudgeted)'],
     datasets:[
-      {label:'Budget', data:[63,25,14,14,14,12,7,7,6,4,2,0], backgroundColor:'#52525b', borderRadius:4},
+      {label:'Budget (prorated x6/7)', data:[54.0,21.4,12.0,12.0,12.0,10.3,6.0,6.0,5.1,3.4,1.7,0], backgroundColor:'#52525b', borderRadius:4},
       {label:'Actual', data:[41.8,11.2,3.6,7.6,4.2,10.8,24.4,7.9,3.5,1.2,1.0,10.3], backgroundColor:'#22d3ee', borderRadius:4}
     ]
   },
