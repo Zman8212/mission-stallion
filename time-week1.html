@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Where My Time Went — Week 1</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0b0b0d; --card:#151519; --card2:#1c1c22; --line:#2a2a31;
+    --txt:#ececf1; --muted:#9a9aa6; --dim:#6c6c78;
+    --A:#22c55e; --B:#3b82f6; --C:#a855f7; --D:#f59e0b; --L:#ef4444; --X:#71717a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:28px 18px 64px}
+  header{padding:8px 0 22px;border-bottom:1px solid var(--line);margin-bottom:26px}
+  h1{font-size:26px;margin:0 0 6px;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:14px;max-width:640px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);
+    margin:36px 0 14px;font-weight:600}
+  .grid{display:grid;gap:12px}
+  .cards6{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:620px){.cards6{grid-template-columns:repeat(2,1fr)}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .stat .lab{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px;margin-bottom:9px}
+  .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .stat .val{font-size:26px;font-weight:700;letter-spacing:-.02em}
+  .stat .pct{font-size:12.5px;color:var(--dim);margin-top:3px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+  @media(max-width:720px){.two{grid-template-columns:1fr}}
+  .chartbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .chartbox h3{margin:0 0 4px;font-size:15px}
+  .chartbox p{margin:0 0 14px;font-size:12.5px;color:var(--muted)}
+  canvas{max-width:100%}
+  .finding{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--L);
+    border-radius:12px;padding:16px 18px;margin-bottom:12px}
+  .finding h3{margin:0 0 7px;font-size:16px;letter-spacing:-.01em}
+  .finding p{margin:0;color:var(--muted);font-size:14px}
+  .finding .big{color:var(--txt);font-weight:600}
+  .lever{display:flex;gap:13px;align-items:flex-start;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;padding:15px 16px;margin-bottom:11px}
+  .lever .n{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--A);
+    color:#04210f;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+  .lever .t{font-size:14px}.lever .t b{color:var(--txt)}.lever .t span{color:var(--muted)}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line)}
+  th{color:var(--dim);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+  tr:last-child td{border-bottom:none}
+  td.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--txt);font-weight:600}
+  .foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
+    color:var(--dim);font-size:12px}
+  .pill{display:inline-block;background:var(--card2);border:1px solid var(--line);
+    border-radius:999px;padding:2px 10px;font-size:11px;color:var(--muted);margin-right:6px}
+  .v{display:inline-block;border-radius:999px;padding:2px 10px;font-size:11px;font-weight:700;white-space:nowrap}
+  .v.hit{background:rgba(34,197,94,.15);color:#22c55e}
+  .v.part{background:rgba(245,158,11,.15);color:#f59e0b}
+  .v.miss{background:rgba(239,68,68,.15);color:#ef4444}
+  .callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--A);
+    border-radius:12px;padding:16px 18px;margin-bottom:14px}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 24px}
+  .tab{background:var(--card);border:1px solid var(--line);color:var(--muted);
+    font-family:inherit;font-size:13.5px;font-weight:600;padding:9px 18px;border-radius:999px;
+    cursor:pointer;transition:color .15s,border-color .15s,background .15s}
+  .tab:hover{color:var(--txt);border-color:var(--dim)}
+  .tab.active{background:var(--card2);color:var(--txt);border-color:var(--A)}
+  .tab:focus-visible{outline:2px solid var(--A);outline-offset:2px}
+  .scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .scroll-x table{margin:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Where My Time Went — Week 1</h1>
+    <div class="sub">Jul 3 to 9, 2026. Seven days logged, about 130 tracked hours. Numbers are within 20 to 30 minutes (voice-journal reconstruction), but the proportions are solid.</div>
+    <div style="margin-top:14px;">
+      <a href="index.html" style="display:inline-block; background:var(--card2); border:1px solid var(--line); color:var(--txt); text-decoration:none; padding:9px 18px; border-radius:9px; font-size:13px; font-weight:600;">Mission Stallion Health Dashboard &rarr;</a>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Views">
+    <button class="tab active" type="button" data-tab="week">This Week</button>
+    <button class="tab" type="button" data-tab="budget">Budget vs Actual</button>
+  </nav>
+
+  <div id="tab-week" class="tabpanel">
+
+  <h2>The one-screen summary</h2>
+  <div class="grid cards6">
+    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--A)"></span>A · Make money</div><div class="val">11.2h</div><div class="pct">13% of waking time</div></div>
+    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--B)"></span>B · Sleep + naps</div><div class="val">41.8h</div><div class="pct">32% of all time</div></div>
+    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--C)"></span>C · Meditation</div><div class="val">3.6h</div><div class="pct">4% of waking time</div></div>
+    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--D)"></span>D · Fitness</div><div class="val">7.6h</div><div class="pct">9% of waking time</div></div>
+    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--L)"></span>L · Lower-tier life</div><div class="val">54.1h</div><div class="pct">62% of waking time</div></div>
+    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--X)"></span>X · Leaks</div><div class="val">10.3h</div><div class="pct">12% of waking time</div></div>
+  </div>
+  <p style="color:var(--muted);font-size:13.5px;margin-top:14px">
+    Waking time tracked: about 88 hours. The top three active priorities, money plus meditation plus fitness, add up to
+    <b style="color:var(--txt)">26% of waking hours</b>. My on-call estimate was about 20%, so I slightly beat it. That is basically the end of the good news.
+  </p>
+
+  <div class="two" style="margin-top:8px">
+    <div class="chartbox">
+      <h3>Where the hours go</h3>
+      <p>All tracked time, by priority bucket.</p>
+      <canvas id="donut" height="240"></canvas>
+    </div>
+    <div class="chartbox">
+      <h3>Inside the lower tier (54h)</h3>
+      <p>Life-maintenance is the single biggest slice by far. The detail is broken out below.</p>
+      <canvas id="lbar" height="240"></canvas>
+    </div>
+  </div>
+
+  <div class="chartbox" style="margin-top:16px">
+    <h3>Inside life-maintenance (29h), the detail</h3>
+    <p>What that 29h actually was. The surprise: getting ready and grooming, not chores, is the biggest slice. Real cleaning plus laundry is only about 5.4 hours.</p>
+    <canvas id="lmbar" height="260"></canvas>
+  </div>
+  <table style="margin-top:12px">
+    <tr><th>Life-maintenance breakdown</th><th>Hours</th><th>Share of L-lm</th></tr>
+    <tr><td>Getting ready / grooming</td><td>~12.0h</td><td>43%</td></tr>
+    <tr><td>Eating</td><td>~4.2h</td><td>15%</td></tr>
+    <tr><td>Planning &amp; reflection (the journaling)</td><td>~3.5h</td><td>12%</td></tr>
+    <tr><td>Cleaning</td><td>~3.3h</td><td>12%</td></tr>
+    <tr><td>Laundry</td><td>~2.1h</td><td>7%</td></tr>
+    <tr><td>Therapy &amp; health appointments</td><td>~1.5h</td><td>5%</td></tr>
+    <tr><td>Errands &amp; admin</td><td>~1.3h</td><td>5%</td></tr>
+  </table>
+  <p style="color:var(--muted);font-size:13.5px;margin-top:12px">
+    Two takeaways. First, the real time sink is getting ready, not chores, and grooming cannot be outsourced. Second, only about 5.4h was actual cleaning plus laundry, but its late-night timing is what wrecks bedtime. Note: planning and reflection (3.5h) is really the journaling and weekly-planning Krista assigned, so it arguably should not count as lower-tier at all.
+  </p>
+
+  <h2>What we wanted vs what happened</h2>
+  <p style="color:var(--muted);font-size:13.5px;margin:-4px 0 14px;max-width:660px">
+    The core question of this assignment: what share of my time actually reflects the priorities we set. Here is the honest scorecard.
+  </p>
+  <div class="callout">
+    <div style="font-size:13px;color:var(--muted)">The priority system says the top tier, money and sleep and meditation and fitness, should lead the week.</div>
+    <div style="font-size:19px;font-weight:700;margin-top:7px;letter-spacing:-.01em;line-height:1.35">
+      In reality the stated top priorities got <span style="color:var(--A)">26%</span> of waking hours. The lower tier and leaks got <span style="color:var(--L)">74%</span>.
+    </div>
+  </div>
+  <table>
+    <tr><th>Stated priority</th><th>What we wanted</th><th>What happened</th><th>Verdict</th></tr>
+    <tr>
+      <td class="code">Sleep</td>
+      <td>Protected, a consistent early bedtime</td>
+      <td>Onsets 1:00 to 2:30am, five of six nights past 1am. The one midnight night scored 92.</td>
+      <td><span class="v miss">Missed</span></td>
+    </tr>
+    <tr>
+      <td class="code">Meditation</td>
+      <td>A daily habit, around an hour a day</td>
+      <td>3.6h logged for the week, close to half the target</td>
+      <td><span class="v part">Half</span></td>
+    </tr>
+    <tr>
+      <td class="code">Plan the week</td>
+      <td>A written weekly plan, made in advance</td>
+      <td>Never made. The planning block got steamrolled two days running.</td>
+      <td><span class="v miss">Missed</span></td>
+    </tr>
+    <tr>
+      <td class="code">Time journal</td>
+      <td>Log it every day</td>
+      <td>Done. Seven days logged, and this whole dashboard is the output.</td>
+      <td><span class="v hit">Hit</span></td>
+    </tr>
+    <tr>
+      <td class="code">Make money</td>
+      <td>The number one waking priority</td>
+      <td>11.2h, 13% of waking. It happened, but zero on weekends and fragmented into late-night blocks.</td>
+      <td><span class="v part">Partial</span></td>
+    </tr>
+  </table>
+  <p style="color:var(--muted);font-size:13.5px;margin-top:12px">
+    One clean win: the journal itself. The rest of the top priorities keep getting crowded out by the lower tier, which ate 62% of waking hours. Clearing that, starting with outsourcing chores and anchoring bedtime, is what frees the room for sleep, meditation, and a protected money block.
+  </p>
+
+  <h2>The three things that matter</h2>
+
+  <div class="finding">
+    <h3>1. Life-maintenance is eating my life</h3>
+    <p><span class="big">62% of my waking hours</span> go to the lower tier. Life-maintenance alone (cleaning, laundry, errands, getting ready, eating) is <span class="big">29 hours</span>, which is bigger than money, meditation, and fitness <span class="big">combined</span> (22.4h). The biggest slice is actually getting ready and grooming, about 12h, not chores. Cleaning and laundry together are only about 5.4h, but they land late at night, which is what pushes bedtime to 2:30am. That makes this not just a time problem, but the cause of the sleep problem below.</p>
+  </div>
+
+  <div class="finding" style="border-left-color:var(--B)">
+    <h3>2. Sleep is a bedtime problem, not a sleep problem</h3>
+    <p>Sleep onsets this week: <span class="big">2:00, 12:15, 2:04, 1:17, 2:30, 2:30</span>. Six nights, five of them past 1am. The exception proves it: the one night I was in bed by 12:15 scored <span class="big">92, my best of the week by 10 points</span>. I fall asleep fine once I am down. I just do not get down, because chores and late work push bedtime to 2:30.</p>
+  </div>
+
+  <div class="finding" style="border-left-color:var(--A)">
+    <h3>3. Money time is real but lopsided</h3>
+    <p>Money time was 11.2h, but <span class="big">zero hours Saturday and Sunday</span>, and it is all weekday. Tuesday's 4.8h, my biggest day, happened <span class="big">entirely after 6pm</span>, chopped into three blocks by laundry. I can do the work. It just gets squeezed into late-night fragments after the day's maintenance eats the daylight.</p>
+  </div>
+
+  <h2>The three highest-leverage changes</h2>
+  <div class="lever"><div class="n">1</div><div class="t"><b>Outsource the chores.</b> <span>A cleaner plus laundry handled for me. This is the master lever: it buys back about 10 hours a week and removes the thing pushing bedtime to 2:30am.</span></div></div>
+  <div class="lever"><div class="n">2</div><div class="t"><b>Hard bedtime anchor.</b> <span>The data proves in-bed-by-midnight equals a 92 night. Pick a lights-out time and let whatever does not fit die or get outsourced.</span></div></div>
+  <div class="lever"><div class="n">3</div><div class="t"><b>Protect one daylight money block.</b> <span>Money time keeps getting shoved to post-6pm fragments. Put one 2 to 3 hour block in the morning or early afternoon, before maintenance floods the day.</span></div></div>
+
+  <h2>How to read the codes</h2>
+  <table>
+    <tr><th>Code</th><th>Meaning</th><th>Tier</th></tr>
+    <tr><td class="code">A</td><td>Make money</td><td>Top priority</td></tr>
+    <tr><td class="code">B</td><td>Sleep and naps</td><td>Top priority</td></tr>
+    <tr><td class="code">C</td><td>Meditation</td><td>Top priority</td></tr>
+    <tr><td class="code">D</td><td>Fitness and training</td><td>Top priority</td></tr>
+    <tr><td class="code">L-lm</td><td>Life maintenance (cleaning, laundry, errands, getting ready, eating)</td><td>Lower</td></tr>
+    <tr><td class="code">L-soc</td><td>Socializing</td><td>Lower</td></tr>
+    <tr><td class="code">L-com</td><td>Commuting</td><td>Lower</td></tr>
+    <tr><td class="code">L-gf</td><td>Dating and flirting</td><td>Lower</td></tr>
+    <tr><td class="code">L-es</td><td>Spanish practice</td><td>Lower</td></tr>
+    <tr><td class="code">L-bch</td><td>Dance</td><td>Lower</td></tr>
+    <tr><td class="code">X</td><td>Leaks (scrolling, weed, aimless thinking)</td><td>Waste</td></tr>
+  </table>
+
+  <div class="foot">
+    <span class="pill">Week 1</span><span class="pill">Jul 3 to 9, 2026</span><span class="pill">7 days, ~130h tracked</span>
+    <div style="margin-top:10px">Built from Zak's time journal. Proportions are reliable; individual times are voice-reconstructed within about 20 to 30 minutes.</div>
+  </div>
+
+  </div><!-- /tab-week -->
+
+  <div id="tab-budget" class="tabpanel" hidden>
+
+    <p style="color:var(--muted);font-size:13.5px;margin:4px 0 12px;max-width:680px">
+      Your weekly time budget (how you want to spend it) vs how you actually spent Jul 3 to 9.
+    </p>
+    <p style="color:var(--dim);font-size:12.5px;margin:0 0 18px;max-width:700px">
+      Prorated to a 6-day window (Jul 3 midday to Jul 9 midday, 6 days and 6 nights) for an apples-to-apples comparison, because Jul 3 was the first day of tracking and Jul 9 is still syncing. Full weekly budget is shown alongside.
+    </p>
+
+    <div class="callout" style="border-left-color:var(--D)">
+      <div style="font-size:14px;line-height:1.55">Your budget totals exactly 168h a week, the whole week, with zero slack. The top four alone (sleep 63 + money 25 + meditation 14 + fitness 14) take 116h, leaving 52h for everything else and no room for the ~10h of leaks a real week always has. That is the over-budget feeling: it is maxed to the theoretical ceiling. Prorated to these 6 days that is 144h.</div>
+    </div>
+
+    <div class="chartbox" style="margin-top:16px">
+      <h3>Budget vs actual, by category</h3>
+      <p>Your prorated 6-day budget (grey) against what actually happened Jul 3 to 9 (cyan). Ordered by budget size.</p>
+      <canvas id="budgetChart" height="440"></canvas>
+    </div>
+
+    <h2>The full comparison</h2>
+    <div class="scroll-x">
+    <table style="min-width:680px">
+      <tr><th>Category</th><th>Weekly budget</th><th>This week (prorated x6/7)</th><th>Actual (Jul 3-9)</th><th>vs prorated</th><th>Status</th></tr>
+      <tr><td class="code">Make money</td><td>25</td><td>21.4</td><td>11.2</td><td>-10.2</td><td><span style="color:#f59e0b;font-weight:700">Under (52%)</span></td></tr>
+      <tr><td class="code">Sleep</td><td>63</td><td>54.0</td><td>41.8</td><td>-12.2</td><td><span style="color:#f59e0b;font-weight:700">Under (77%)</span></td></tr>
+      <tr><td class="code">Meditation</td><td>14</td><td>12.0</td><td>3.6</td><td>-8.4</td><td><span style="color:#f59e0b;font-weight:700">Under (30%)</span></td></tr>
+      <tr><td class="code">Fitness</td><td>14</td><td>12.0</td><td>7.6</td><td>-4.4</td><td><span style="color:#f59e0b;font-weight:700">Under (63%)</span></td></tr>
+      <tr><td class="code">Girlfriend pathway</td><td>14</td><td>12.0</td><td>4.2</td><td>-7.8</td><td><span style="color:#f59e0b;font-weight:700">Under (35%)</span></td></tr>
+      <tr><td class="code">Socializing</td><td>12</td><td>10.3</td><td>10.8</td><td>+0.5</td><td><span style="color:#4ade80;font-weight:700">On track (105%)</span></td></tr>
+      <tr><td class="code">Commute</td><td>7</td><td>6.0</td><td>7.9</td><td>+1.9</td><td><span style="color:#f87171;font-weight:700">Over (132%)</span></td></tr>
+      <tr><td class="code">Meaningful work</td><td>6</td><td>5.1</td><td>3.5</td><td>-1.6</td><td><span style="color:#f59e0b;font-weight:700">Under (69%)</span></td></tr>
+      <tr><td class="code">Life maintenance</td><td>7</td><td>6.0</td><td>24.4</td><td>+18.4</td><td><span style="color:#f87171;font-weight:700">OVER (407%)</span></td></tr>
+      <tr><td class="code">Spanish</td><td>4</td><td>3.4</td><td>1.2</td><td>-2.2</td><td><span style="color:#f59e0b;font-weight:700">Under (35%)</span></td></tr>
+      <tr><td class="code">Bachata</td><td>2</td><td>1.7</td><td>1.0</td><td>-0.7</td><td><span style="color:#f59e0b;font-weight:700">Under (59%)</span></td></tr>
+      <tr><td class="code">Leaks (unbudgeted)</td><td>0</td><td>0</td><td>10.3</td><td>+10.3</td><td><span style="color:#f87171;font-weight:700">OVER</span></td></tr>
+      <tr><td class="code">Untracked / gap</td><td></td><td>144 total</td><td>127.5 total</td><td>~16.5</td><td><span style="color:var(--dim);font-weight:700">logging gap</span></td></tr>
+    </table>
+    </div>
+
+    <h2>Where life maintenance actually went</h2>
+    <p style="color:var(--muted);font-size:13.5px;margin:-4px 0 14px;max-width:680px">
+      Budget was 7h. Actual was 24.4h, about 3.5x over. Most of it is grooming (12h) and eating (4.2h), not just chores. Grooming cannot be outsourced.
+    </p>
+    <div class="scroll-x">
+    <table>
+      <tr><th>Life maintenance breakdown</th><th>Hours</th></tr>
+      <tr><td>Getting ready / grooming</td><td>12.0h</td></tr>
+      <tr><td>Eating</td><td>4.2h</td></tr>
+      <tr><td>Cleaning</td><td>3.3h</td></tr>
+      <tr><td>Laundry</td><td>2.1h</td></tr>
+      <tr><td>Therapy &amp; health appts</td><td>1.5h</td></tr>
+      <tr><td>Errands &amp; admin</td><td>1.3h</td></tr>
+    </table>
+    </div>
+
+    <h2>Key findings</h2>
+
+    <div class="finding">
+      <h3>1. Life maintenance is by far the biggest overage</h3>
+      <p>Life maintenance blew past its budget the hardest: <span class="big">24.4h actual vs the 6.0h prorated budget</span>, about 4.1x over (407%). The hours that should have gone to the priorities went here, plus to leaks.</p>
+    </div>
+
+    <div class="finding" style="border-left-color:var(--D)">
+      <h3>2. Every top priority came in under</h3>
+      <p>Money <span class="big">52%</span>, sleep <span class="big">77%</span>, meditation <span class="big">30%</span>, fitness <span class="big">63%</span>, girlfriend pathway <span class="big">35%</span>. Not one of the top priorities hit its prorated budget.</p>
+    </div>
+
+    <div class="finding" style="border-left-color:var(--C)">
+      <h3>3. Meditation is the biggest proportional miss</h3>
+      <p><span class="big">3.6h vs the 12.0h prorated target</span> (2h/day), so 30%. At that budget it needs a real daily system, not willpower.</p>
+    </div>
+
+    <div class="finding" style="border-left-color:var(--B)">
+      <h3>4. Sleep is still a bedtime problem</h3>
+      <p>Sleep <span class="big">41.8h vs the 54.0h prorated budget</span>, so 77%, is about 7h a night vs the 9h a night goal. The bedtime problem again.</p>
+    </div>
+
+    <div class="finding" style="border-left-color:var(--A)">
+      <h3>5. Reality check for Krista</h3>
+      <p>The budget has <span class="big">zero slack</span>, 168h fully allocated. Worth a gut check on whether 14h meditation AND 63h sleep both realistically fit alongside 25h of money work.</p>
+    </div>
+
+  </div><!-- /tab-budget -->
+
+</div>
+
+<script>
+Chart.defaults.color = '#9a9aa6';
+Chart.defaults.font.family = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif";
+new Chart(document.getElementById('donut'), {
+  type:'doughnut',
+  data:{
+    labels:['L · Lower-tier (54.1h)','B · Sleep (41.8h)','A · Money (11.2h)','X · Leaks (10.3h)','D · Fitness (7.6h)','C · Meditation (3.6h)'],
+    datasets:[{data:[54.1,41.8,11.2,10.3,7.6,3.6],
+      backgroundColor:['#ef4444','#3b82f6','#22c55e','#71717a','#f59e0b','#a855f7'],
+      borderColor:'#151519',borderWidth:2}]
+  },
+  options:{responsive:true,cutout:'58%',
+    plugins:{legend:{position:'bottom',labels:{boxWidth:11,padding:9,font:{size:11}}}}}
+});
+new Chart(document.getElementById('lbar'), {
+  type:'bar',
+  data:{
+    labels:['Life maintenance','Socializing','Commuting','Dating','Spanish','Dance'],
+    datasets:[{data:[29.0,10.8,7.9,4.2,1.2,1.0],
+      backgroundColor:['#ef4444','#f87171','#f87171','#f87171','#f87171','#f87171'],
+      borderRadius:5}]
+  },
+  options:{indexAxis:'y',responsive:true,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'h'}}},
+    scales:{x:{grid:{color:'#2a2a31'},ticks:{callback:v=>v+'h'}},y:{grid:{display:false}}}}
+});
+new Chart(document.getElementById('lmbar'), {
+  type:'bar',
+  data:{
+    labels:['Getting ready / grooming','Eating','Planning & reflection','Cleaning','Laundry','Therapy & health','Errands & admin'],
+    datasets:[{data:[12.0,4.2,3.5,3.3,2.1,1.5,1.3],
+      backgroundColor:['#ef4444','#f59e0b','#a855f7','#fb7185','#f43f5e','#3b82f6','#71717a'],
+      borderRadius:5}]
+  },
+  options:{indexAxis:'y',responsive:true,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'h'}}},
+    scales:{x:{grid:{color:'#2a2a31'},ticks:{callback:v=>v+'h'}},y:{grid:{display:false}}}}
+});
+
+// --- Budget vs Actual chart (lives in the hidden tab; resized on first show) ---
+var budgetCharts = [];
+budgetCharts.push(new Chart(document.getElementById('budgetChart'), {
+  type:'bar',
+  data:{
+    labels:['Sleep','Make money','Meditation','Fitness','Girlfriend pathway','Socializing','Life maintenance','Commute','Meaningful work','Spanish','Bachata','Leaks (unbudgeted)'],
+    datasets:[
+      {label:'Budget (prorated x6/7)', data:[54.0,21.4,12.0,12.0,12.0,10.3,6.0,6.0,5.1,3.4,1.7,0], backgroundColor:'#52525b', borderRadius:4},
+      {label:'Actual', data:[41.8,11.2,3.6,7.6,4.2,10.8,24.4,7.9,3.5,1.2,1.0,10.3], backgroundColor:'#22d3ee', borderRadius:4}
+    ]
+  },
+  options:{indexAxis:'y',responsive:true,
+    plugins:{legend:{position:'bottom',labels:{boxWidth:11,padding:9,font:{size:11}}},
+      tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw+'h'}}},
+    scales:{x:{grid:{color:'#2a2a31'},ticks:{callback:v=>v+'h'}},y:{grid:{display:false}}}}
+}));
+
+// --- Tab switching ---
+(function(){
+  var tabs = document.querySelectorAll('.tab');
+  function show(name){
+    document.getElementById('tab-week').hidden   = (name !== 'week');
+    document.getElementById('tab-budget').hidden = (name !== 'budget');
+    tabs.forEach(function(b){ b.classList.toggle('active', b.dataset.tab === name); });
+    if(name === 'budget'){ budgetCharts.forEach(function(c){ c.resize(); }); }
+  }
+  tabs.forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.tab); }); });
+})();
+</script>
+</body>
+</html>
