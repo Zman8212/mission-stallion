@@ -74,7 +74,7 @@
 <div class="header">
   <h1>Mission Stallion</h1>
   <div class="subtitle">Zak Columber — Health & Performance Dashboard</div>
-  <div class="updated">Oura Ring + Hevy + Apple Health | Oura through Jul 18, 2026 (Jul 9 manual: 6.5h, ring off) &middot; Apple Health through Jul 18 (today's steps partial through the 1:44pm sync; no sit logged yet today) &middot; Hevy through Jul 15 (live, no session since; C day due) &middot; refreshed Jul 18 afternoon</div>
+  <div class="updated">Oura Ring + Hevy + Apple Health | Oura through Jul 18, 2026 (Jul 9 manual: 6.5h, ring off) &middot; Apple Health through Jul 18 (today's steps still partial through the 1:44pm sync, the phone export has not written since; no sit logged yet today) &middot; Hevy through Jul 15 (live, no session since; C day due) &middot; refreshed Jul 18 evening</div>
   <div style="margin-top:16px;">
     <a href="time.html" style="display:inline-block; background:linear-gradient(90deg,rgba(34,211,238,0.13),rgba(74,222,128,0.13)); border:1px solid rgba(34,211,238,0.35); color:#22d3ee; text-decoration:none; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:600;">Time Journal Dashboard &rarr;</a>
   </div>
@@ -119,7 +119,7 @@
   </div>
   <div class="card">
     <div class="card-label">Avg Readiness</div>
-    <div class="card-value ok">82</div>
+    <div class="card-value ok">83</div>
     <div class="card-detail">Range: <span>73 - 93</span></div>
   </div>
   <div class="card">
@@ -682,7 +682,7 @@
     <strong>The wake anchor slipped this week, in both directions.</strong> Four of the seven mornings landed inside twelve minutes of the 9:00 target (9:08, 9:08, 9:01, 9:12). The other three are the story: Jul 16's 11:04am catch-up, Jul 17's <strong>8:41am</strong> on the crash night, and this morning's <strong>10:04am</strong> after the restless one. Mean wake drifted out to <strong>9:28am</strong> from 9:19. The pattern is mechanical: every off-anchor morning this week was the direct product of the night before it, so the anchor is not failing on its own, it is absorbing damage from the onset side. Hold the 9:00 wake and the recoverable hours stay where they have always been, on the front end of the night.
   </div>
   <div class="insight-item">
-    <strong>Recovery flagged last night as a stressed night, not just a restless one.</strong> Readiness actually rose to <strong>78</strong> from 73, but the inputs are the tell: resting HR <strong>55</strong> was the highest of the window against a 47-51 band all week (its readiness contributor dropped to 54), HRV fell to <strong>39ms</strong> (window low), and skin temperature ran <strong>+0.28C</strong> over baseline. That cluster usually means the body was working on something overnight, a late meal, alcohol, or an incoming bug, and the food log has been empty since Jul 5 so the page cannot say which. The window averages are still fine, readiness <strong>82</strong> (range 73-93), HRV <strong>54ms</strong>, resting HR <strong>49bpm</strong>, because one night does not move a week. Watch tonight: resting HR back under 52 makes it a one-night event; if it holds high, plan tomorrow easy.
+    <strong>Recovery flagged last night as a stressed night, not just a restless one.</strong> Readiness actually rose to <strong>79</strong> from 73 (revised up a point on the evening re-sync), but the inputs are the tell: resting HR <strong>55</strong> was the highest of the window against a 47-51 band all week (its readiness contributor dropped to 54), HRV fell to <strong>39ms</strong> (window low), and skin temperature ran <strong>+0.28C</strong> over baseline. That cluster usually means the body was working on something overnight, a late meal, alcohol, or an incoming bug, and the food log has been empty since Jul 5 so the page cannot say which. The afternoon confirmed the night cost something: <strong>two naps landed, a 30m nap at 3:00pm and an 11m doze at 4:15pm</strong>, the same next-day-nap signature as Jul 17's 3:35pm doze, and both outside the nap protocol (under 25 min, done by 4pm) so they are a small tax on tonight's onset too. The window averages are still fine, readiness <strong>83</strong> (range 73-93), HRV <strong>54ms</strong>, resting HR <strong>49bpm</strong>, because one night does not move a week. Watch tonight: resting HR back under 52 makes it a one-night event; if it holds high, plan tomorrow easy.
   </div>
   <div class="insight-item">
     <strong>Deep sleep slipped further under target, 80 min against the 90-min goal, and last night both stages took the hit together.</strong> The usual pattern on this page is that short nights cost REM while front-loaded deep survives; Jul 17 ran exactly that way (71 min of deep inside 5.2h). Last night broke the pattern: <strong>41 min of deep and 49 min of REM</strong>, both window lows, inside a 7.1h night that had the length to do far better. A 71%-efficiency night fragments every stage at once; the architecture was the casualty of the wake-ups, not the clock. REM still averages <strong>105 min</strong> for the week, over target; deep at <strong>80 min</strong> is the one to rebuild, and the fastest route is a consolidated, unfragmented night behind a midnight onset, the same onset story as everywhere else on this page. If the food journal (Priority 2) starts capturing dinner timing, deep is still the metric to correlate it against.
@@ -731,7 +731,7 @@
 const labels = ['7/12', '7/13', '7/14', '7/15', '7/16', '7/17', '7/18'];
 const sleepHours = [7.7, 7.8, 6.8, 6.6, 9.1, 5.2, 7.1];
 const sleepScores = [89, 88, 82, 81, 91, 67, 68];
-const readiness = [80, 82, 85, 85, 93, 73, 78];
+const readiness = [81, 82, 85, 85, 93, 73, 79];
 const hrv = [51, 46, 73, 58, 61, 47, 39];
 const restingHR = [49, 47, 47, 51, 47, 49, 55];
 const steps = [16147, 4552, 6754, 7259, 9674, 14453, null];
