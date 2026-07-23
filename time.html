@@ -4,499 +4,114 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Where My Time Went, Week 2</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<title>Time Journal, Partial Week 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,650&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0b0b0d; --card:#151519; --card2:#1c1c22; --line:#2a2a31;
-    --txt:#ececf1; --muted:#9a9aa6; --dim:#6c6c78;
-    --A:#22c55e; --B:#3b82f6; --C:#a855f7; --D:#f59e0b; --L:#ef4444; --X:#71717a; --R:#22d3ee;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--txt);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:920px;margin:0 auto;padding:28px 18px 64px}
-  header{padding:8px 0 22px;border-bottom:1px solid var(--line);margin-bottom:26px}
-  h1{font-size:26px;margin:0 0 6px;letter-spacing:-.02em}
-  .sub{color:var(--muted);font-size:14px;max-width:640px}
-  h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);
-    margin:36px 0 14px;font-weight:600}
-  .grid{display:grid;gap:12px}
-  .cards6{grid-template-columns:repeat(3,1fr)}
-  @media(max-width:620px){.cards6{grid-template-columns:repeat(2,1fr)}}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
-  .stat .lab{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px;margin-bottom:9px}
-  .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
-  .stat .val{font-size:26px;font-weight:700;letter-spacing:-.02em}
-  .stat .pct{font-size:12.5px;color:var(--dim);margin-top:3px}
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
-  @media(max-width:720px){.two{grid-template-columns:1fr}}
-  .chartbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
-  .chartbox h3{margin:0 0 4px;font-size:15px}
-  .chartbox p{margin:0 0 14px;font-size:12.5px;color:var(--muted)}
-  canvas{max-width:100%}
-  .finding{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--L);
-    border-radius:12px;padding:16px 18px;margin-bottom:12px}
-  .finding h3{margin:0 0 7px;font-size:16px;letter-spacing:-.01em}
-  .finding p{margin:0;color:var(--muted);font-size:14px}
-  .finding .big{color:var(--txt);font-weight:600}
-  .lever{display:flex;gap:13px;align-items:flex-start;background:var(--card);
-    border:1px solid var(--line);border-radius:12px;padding:15px 16px;margin-bottom:11px}
-  .lever .n{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--A);
-    color:#04210f;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
-  .lever .t{font-size:14px}.lever .t b{color:var(--txt)}.lever .t span{color:var(--muted)}
-  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);
-    border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line)}
-  th{color:var(--dim);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
-  tr:last-child td{border-bottom:none}
-  td.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--txt);font-weight:600}
-  td.sub{padding-left:26px;color:var(--muted);font-style:italic}
-  .foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
-    color:var(--dim);font-size:12px}
-  .pill{display:inline-block;background:var(--card2);border:1px solid var(--line);
-    border-radius:999px;padding:2px 10px;font-size:11px;color:var(--muted);margin-right:6px}
-  .v{display:inline-block;border-radius:999px;padding:2px 10px;font-size:11px;font-weight:700;white-space:nowrap}
-  .v.hit{background:rgba(34,197,94,.15);color:#22c55e}
-  .v.part{background:rgba(245,158,11,.15);color:#f59e0b}
-  .v.miss{background:rgba(239,68,68,.15);color:#ef4444}
-  .callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--A);
-    border-radius:12px;padding:16px 18px;margin-bottom:14px}
-  .warn{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.35);border-left:3px solid var(--D);
-    border-radius:12px;padding:13px 16px;margin:0 0 20px;font-size:13px;color:#f1cd8b}
-  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 24px}
-  .tab{background:var(--card);border:1px solid var(--line);color:var(--muted);
-    font-family:inherit;font-size:13.5px;font-weight:600;padding:9px 18px;border-radius:999px;
-    cursor:pointer;transition:color .15s,border-color .15s,background .15s}
-  .tab:hover{color:var(--txt);border-color:var(--dim)}
-  .tab.active{background:var(--card2);color:var(--txt);border-color:var(--A)}
-  .tab:focus-visible{outline:2px solid var(--A);outline-offset:2px}
-  .scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .scroll-x table{margin:0}
-  .navlinks{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
-  .navlinks a{display:inline-block; background:var(--card2); border:1px solid var(--line); color:var(--txt);
-    text-decoration:none; padding:9px 18px; border-radius:9px; font-size:13px; font-weight:600;}
-  .navlinks a:hover{border-color:var(--dim)}
-  .rep h3{font-size:17px;margin:26px 0 8px;letter-spacing:-.01em}
-  .rep p{color:var(--muted);font-size:14px;margin:0 0 12px}
-  .rep .big{color:var(--txt);font-weight:600}
-  .rep ul{color:var(--muted);font-size:14px;margin:0 0 14px;padding-left:20px}
-  .rep li{margin-bottom:6px}
+  :root { --ink:#e7ebe4; --dim:#91a09a; --faint:#5f6d68; --bg:#0d1210; --panel:#131b17; --line:#26342d; --med:#b9ef5a; --move:#4bd9d4; --amber:#e9bb60; }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); background:radial-gradient(circle at 85% -10%, #1d3b23 0, transparent 30%), var(--bg); font-family:"DM Mono", monospace; }
+  .sheet { max-width:1040px; margin:0 auto; padding:38px 22px 72px; }
+  .eyebrow, .label { color:var(--dim); font-size:11px; letter-spacing:.12em; text-transform:uppercase; }
+  header { display:flex; justify-content:space-between; align-items:flex-start; gap:24px; border-bottom:1px solid var(--line); padding-bottom:26px; }
+  h1 { margin:7px 0 8px; font:650 clamp(38px,7vw,72px)/.98 Fraunces, Georgia, serif; letter-spacing:-.055em; }
+  .sub { max-width:640px; color:var(--dim); font-size:13px; line-height:1.65; }
+  .stamp { flex:0 0 auto; margin-top:4px; border:1px solid #547340; color:var(--med); padding:8px 10px; border-radius:5px; font-size:10px; letter-spacing:.1em; text-transform:uppercase; }
+  .nav { display:flex; gap:8px; flex-wrap:wrap; margin-top:18px; }
+  .nav a { color:var(--dim); text-decoration:none; font-size:12px; border:1px solid var(--line); border-radius:999px; padding:7px 11px; }
+  .nav a:hover { color:var(--ink); border-color:var(--dim); }
+  .rule { margin:28px 0 18px; padding:14px 16px; background:#182119; border-left:3px solid var(--med); color:#c4d2c8; font-size:13px; line-height:1.6; }
+  .rule strong { color:var(--med); }
+  .metrics { display:grid; grid-template-columns:1.45fr repeat(3,1fr); gap:10px; }
+  .metric { min-height:150px; padding:18px; border:1px solid var(--line); background:linear-gradient(145deg, #162019, var(--panel)); border-radius:7px; }
+  .metric.hero { background:linear-gradient(145deg, #24351c, #141d17 68%); }
+  .value { margin-top:13px; font:650 38px/.95 Fraunces, Georgia, serif; letter-spacing:-.04em; }
+  .metric.hero .value { font-size:56px; color:var(--med); }
+  .detail { margin-top:8px; color:var(--dim); font-size:12px; line-height:1.55; }
+  .section-head { display:flex; align-items:baseline; justify-content:space-between; gap:20px; margin:44px 0 14px; }
+  h2 { margin:0; font:650 28px/1 Fraunces, Georgia, serif; letter-spacing:-.035em; }
+  .section-note { color:var(--faint); font-size:11px; text-align:right; }
+  .story { display:grid; grid-template-columns:1.3fr .7fr; gap:10px; }
+  .panel { border:1px solid var(--line); border-radius:7px; padding:20px; background:rgba(19,27,23,.92); }
+  .bars { margin-top:23px; display:grid; gap:17px; }
+  .bar-row { display:grid; grid-template-columns:88px 1fr 48px; align-items:center; gap:10px; font-size:12px; }
+  .track { height:10px; background:#0b100d; border-radius:999px; overflow:hidden; border:1px solid #202d26; }
+  .fill { height:100%; border-radius:999px; }
+  .fill.med { width:89.5%; background:linear-gradient(90deg,#6d9f35,var(--med)); }
+  .fill.move { width:10.5%; min-width:10px; background:var(--move); }
+  .share { display:grid; place-items:center; align-content:center; min-height:228px; text-align:center; background:conic-gradient(var(--med) 0 89.5%, var(--move) 89.5% 100%); border-radius:50%; aspect-ratio:1; width:min(220px,100%); margin:auto; position:relative; }
+  .share::before { content:""; position:absolute; inset:12px; background:var(--panel); border-radius:50%; }
+  .share > * { position:relative; }
+  .share .big { font:650 33px/.9 Fraunces, Georgia, serif; }
+  .share .small { color:var(--dim); font-size:10px; margin-top:7px; letter-spacing:.08em; text-transform:uppercase; }
+  table { width:100%; border-collapse:collapse; font-size:12px; border:1px solid var(--line); border-radius:7px; overflow:hidden; background:var(--panel); }
+  th, td { padding:14px 16px; border-bottom:1px solid var(--line); text-align:left; }
+  th { color:var(--dim); font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:500; }
+  tr:last-child td { border-bottom:0; }
+  .time { color:var(--med); font-variant-numeric:tabular-nums; }
+  .tag { display:inline-block; border-radius:3px; padding:3px 6px; font-size:10px; letter-spacing:.06em; text-transform:uppercase; }
+  .tag.med { color:var(--med); background:#24371b; } .tag.move { color:var(--move); background:#123837; }
+  .blank { margin-top:10px; border:1px dashed #3b4b43; padding:15px 16px; color:var(--dim); font-size:12px; line-height:1.65; }
+  .blank b { color:var(--amber); }
+  footer { margin-top:38px; padding-top:18px; border-top:1px solid var(--line); color:var(--faint); font-size:10px; line-height:1.65; }
+  @media (max-width:720px) { header{display:block}.stamp{display:inline-block}.metrics,.story{grid-template-columns:1fr 1fr}.metric.hero{grid-column:span 2}.bar-row{grid-template-columns:68px 1fr 42px}.sheet{padding:28px 16px 54px}.section-head{align-items:flex-start;display:block}.section-note{text-align:left;margin-top:7px} }
+  @media (max-width:450px) { .metrics,.story{grid-template-columns:1fr}.metric.hero{grid-column:auto}.metric{min-height:auto}.share{width:180px}.value{font-size:33px}.metric.hero .value{font-size:52px} }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main class="sheet">
   <header>
-    <h1>Where My Time Went, Week 2</h1>
-    <div class="sub">Jul 10 to 16, 2026. Seven days, reconstructed from the phone time journal (88 dictations). Numbers are within about 30 minutes. This week we retired the "life maintenance" lump and broke it into real categories, added Reading as its own bucket, and counted Dan's class as Bachata.</div>
-    <div class="navlinks">
-      <a href="index.html">Mission Stallion Health Dashboard &rarr;</a>
-      <a href="time-week1.html">&larr; Week 1 (Jul 3 to 9)</a>
+    <div>
+      <div class="eyebrow">Mission Stallion / Time Journal</div>
+      <h1>Captured time,<br>not invented time.</h1>
+      <div class="sub">Partial week of Jul 17–23, 2026. This page reports only time that was actually recorded in Toggl. Blank dates remain blank: they are neither zeros nor hidden inside an average.</div>
     </div>
+    <div class="stamp">Partial capture · 3 dates</div>
   </header>
 
-  <div class="callout" style="border-left-color:var(--A)">
-    <div style="font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;font-weight:600;margin-bottom:9px">TL;DR for Krista &middot; week of Jul 10 to 16</div>
-    <ul style="margin:0;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.65">
-      <li><b style="color:var(--txt)">The win:</b> fitness doubled (7.6h to ~14.25h) and hit budget. Sunday was a movement marathon, padel plus 4h of beach volleyball, on top of a Saturday run and three gym sessions.</li>
-      <li><b style="color:var(--txt)">Real progress:</b> daily upkeep came down ~9h (29h to ~20h). We killed the "life maintenance" bucket and itemized it, which shows the truth: grooming (~7h) is the big piece and cannot be outsourced, while laundry plus cleaning (~4h) is the actual outsourcing target.</li>
-      <li><b style="color:var(--txt)">Still stuck:</b> money (~12h, under half the 25h goal, zero on weekends, pushed to late afternoon) and meditation (~3.5h vs the 14h goal) did not move from last week.</li>
-      <li><b style="color:var(--txt)">Sleep:</b> hours are fine (~65h) but onsets are still past 1am. Last night got 9.1h only by sleeping in to 11am. Bedtime is the one unbuilt habit.</li>
-      <li><b style="color:var(--txt)">System changes:</b> retired the "life maintenance" lump, added Reading as its own valued bucket (not a leak), and counted Dan's class as Bachata.</li>
-      <li><b style="color:var(--txt)">To settle with you:</b> set per-category targets for the upkeep split (the old 7h lump is unrealistic when grooming alone runs 7h), and set a Reading target.</li>
-    </ul>
-  </div>
-
-  <div class="warn">
-    <b>Data note.</b> Toggl was not populated live this week, so the reality side is reconstructed from the phone journal. Three stretches were low-detail and are best-guessed: <b>Mon Jul 13</b> afternoon work, <b>Tue Jul 14</b> daytime, and <b>Thu Jul 16</b> (today, partial to ~4pm). Read single-category totals as plus or minus an hour.
-  </div>
-
-  <nav class="tabs" aria-label="Views">
-    <button class="tab active" type="button" data-tab="week">This Week</button>
-    <button class="tab" type="button" data-tab="budget">Budget vs Actual</button>
-    <button class="tab" type="button" data-tab="report">Full Report</button>
-    <button class="tab" type="button" data-tab="food">Food Journal</button>
+  <nav class="nav" aria-label="Dashboard navigation">
+    <a href="index.html">Health dashboard</a>
+    <a href="time-week2.html">Previous full week</a>
+    <a href="time-week1.html">Week 1</a>
   </nav>
 
-  <!-- ============ THIS WEEK ============ -->
-  <div id="tab-week" class="tabpanel">
+  <div class="rule"><strong>Ledger rule:</strong> no time-journal entry means no line item, no zero, and no contribution to a total. Jul 21–23 are deliberately excluded.</div>
 
-  <h2>The priorities, at a glance</h2>
-  <div class="grid cards6">
-    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--A)"></span>A · Make money</div><div class="val">~12h</div><div class="pct">48% of the 25h budget</div></div>
-    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--B)"></span>B · Sleep + naps</div><div class="val">~65h</div><div class="pct">103% of budget</div></div>
-    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--C)"></span>C · Meditation</div><div class="val">~3.5h</div><div class="pct">25% of the 14h budget</div></div>
-    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--D)"></span>D · Fitness</div><div class="val">~14.25h</div><div class="pct">102% of budget</div></div>
-    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--R)"></span>Reading</div><div class="val">~3.5h</div><div class="pct">new bucket, not a leak</div></div>
-    <div class="card stat"><div class="lab"><span class="dot" style="background:var(--X)"></span>X · Leaks</div><div class="val">~10.5h</div><div class="pct">mostly sports-watching</div></div>
-  </div>
-  <p style="color:var(--muted);font-size:13.5px;margin-top:14px">
-    Waking time tracked: about 93 hours (plus ~10h of low-detail gaps). Fitness roughly doubled from last week and beat budget. Money and meditation did not move. The old "life maintenance" bucket is gone, replaced by the real categories below.
-  </p>
+  <section class="metrics" aria-label="Partial week summary">
+    <div class="metric hero"><div class="label">Captured total</div><div class="value">6h 20m</div><div class="detail">Across three recorded dates only: Jul 18–20.</div></div>
+    <div class="metric"><div class="label">Meditation</div><div class="value">5h 40m</div><div class="detail">Three recorded sessions.<br>89.5% of captured time.</div></div>
+    <div class="metric"><div class="label">Movement</div><div class="value">40m</div><div class="detail">One recorded walk.<br>10.5% of captured time.</div></div>
+    <div class="metric"><div class="label">Recorded-date avg</div><div class="value">2h 07m</div><div class="detail">Not a seven-day average.<br>Only the three dated records.</div></div>
+  </section>
 
-  <div class="chartbox" style="margin-top:8px">
-    <h3>Where the waking hours went, itemized</h3>
-    <p>No more "life maintenance" lump. Every category on its own line, sorted by size. Green is a top priority, cyan is reading, gray is leaks, red is daily upkeep and other lower-tier life.</p>
-    <canvas id="itemBar" height="420"></canvas>
-  </div>
-
-  <div class="callout" style="border-left-color:var(--D);margin-top:16px">
-    <div style="font-size:13px;color:var(--muted)">Week over week, the picture is one big win and two stuck levers.</div>
-    <div style="font-size:16px;font-weight:600;margin-top:7px;line-height:1.5">
-      Fitness <span style="color:var(--D)">doubled</span> (7.6h &rarr; ~14.25h) and beat budget. Daily upkeep <span style="color:#4ade80">dropped ~9h</span> (29h &rarr; ~20h). But money (~12h) and meditation (~3.5h) are <span style="color:var(--L)">unchanged</span>, and bedtime is still past 1am.
+  <div class="section-head"><h2>What made it into the ledger</h2><div class="section-note">Minute-exact from Toggl</div></div>
+  <section class="story">
+    <div class="panel">
+      <div class="label">Captured-time mix</div>
+      <div class="bars">
+        <div class="bar-row"><span>Meditation</span><div class="track"><div class="fill med"></div></div><span>5h40</span></div>
+        <div class="bar-row"><span>Movement</span><div class="track"><div class="fill move"></div></div><span>0h40</span></div>
+      </div>
+      <p class="detail" style="margin:24px 0 0;">Two backfilled 2-hour meditation blocks landed on the weekend. Monday added a 1h40m meditation session and a 40-minute walk. Nothing else is inferred from app activity, calendar blocks, or gaps between entries.</p>
     </div>
-  </div>
+    <div class="panel"><div class="share"><div><div class="big">89.5%</div><div class="small">Meditation</div></div></div></div>
+  </section>
 
-  <h2>Daily upkeep, broken out (this is the old "life maintenance")</h2>
-  <p style="color:var(--muted);font-size:13.5px;margin:-4px 0 14px;max-width:680px">
-    ~20h total, but now you can see what it actually is. Grooming and getting-ready is the biggest single slice and it cannot be outsourced. The chores (laundry + cleaning = ~4h) are the outsourcing target.
-  </p>
-  <div class="two">
-    <div class="chartbox">
-      <h3>The ~20h, itemized</h3>
-      <p>Six real categories instead of one bucket.</p>
-      <canvas id="upkeepBar" height="240"></canvas>
-    </div>
-    <div class="scroll-x">
-    <table>
-      <tr><th>Upkeep category</th><th>Hours</th></tr>
-      <tr><td>Grooming / getting ready</td><td>~7.0h</td></tr>
-      <tr><td>Eating</td><td>~4.5h</td></tr>
-      <tr><td>Laundry</td><td>~2.5h</td></tr>
-      <tr><td>Errands / admin</td><td>~2.5h</td></tr>
-      <tr><td>Health appts (dermatologist, therapy, doctor)</td><td>~2.0h</td></tr>
-      <tr><td>Cleaning</td><td>~1.5h</td></tr>
-    </table>
-    </div>
-  </div>
-
-  <h2>What we wanted vs what happened</h2>
+  <div class="section-head"><h2>Recorded entries</h2><div class="section-note">No fabricated coverage</div></div>
   <table>
-    <tr><th>Stated priority</th><th>What we wanted</th><th>What happened</th><th>Verdict</th></tr>
-    <tr>
-      <td class="code">Fitness</td>
-      <td>Consistent training, ~14h/week</td>
-      <td>~14.25h, at budget. Padel + 4h beach volleyball Sunday, a Saturday run, three gym sessions.</td>
-      <td><span class="v hit">Hit</span></td>
-    </tr>
-    <tr>
-      <td class="code">Sleep</td>
-      <td>Protected, a consistent midnight bedtime</td>
-      <td>Hours fine (~65h) but onsets still past 1am. Woke 11am today after a 1am onset (9.1h night).</td>
-      <td><span class="v part">Half</span></td>
-    </tr>
-    <tr>
-      <td class="code">Make money</td>
-      <td>The number one waking priority, 25h</td>
-      <td>~12h, still under half budget. Zero on the weekend, fragmented into late-afternoon blocks.</td>
-      <td><span class="v miss">Missed</span></td>
-    </tr>
-    <tr>
-      <td class="code">Meditation</td>
-      <td>A daily habit, ~2h/day</td>
-      <td>~3.5h for the week (~28 min/day), several zero days.</td>
-      <td><span class="v miss">Missed</span></td>
-    </tr>
-    <tr>
-      <td class="code">Time journal</td>
-      <td>Log it every day, keep Toggl current</td>
-      <td>88 dictations captured. Toggl was not kept live, so there was no cross-check this week.</td>
-      <td><span class="v part">Partial</span></td>
-    </tr>
+    <thead><tr><th>Date</th><th>Time</th><th>Category</th><th>Entry</th><th>Duration</th></tr></thead>
+    <tbody>
+      <tr><td>Sat Jul 18</td><td class="time">08:00</td><td><span class="tag med">Meditation</span></td><td>Meditation, backfilled</td><td>2h 00m</td></tr>
+      <tr><td>Sun Jul 19</td><td class="time">08:00</td><td><span class="tag med">Meditation</span></td><td>Meditation, backfilled</td><td>2h 00m</td></tr>
+      <tr><td>Mon Jul 20</td><td class="time">08:00</td><td><span class="tag med">Meditation</span></td><td>Meditation</td><td>1h 40m</td></tr>
+      <tr><td>Mon Jul 20</td><td class="time">14:28</td><td><span class="tag move">Movement</span></td><td>Walking</td><td>0h 40m</td></tr>
+    </tbody>
   </table>
 
-  <h2>How to read the codes</h2>
-  <div class="scroll-x">
-  <table>
-    <tr><th>Code</th><th>Meaning</th><th>Tier</th></tr>
-    <tr><td class="code">A</td><td>Make money</td><td>Top priority</td></tr>
-    <tr><td class="code">B</td><td>Sleep and naps</td><td>Top priority</td></tr>
-    <tr><td class="code">C</td><td>Meditation</td><td>Top priority</td></tr>
-    <tr><td class="code">D</td><td>Fitness and training</td><td>Top priority</td></tr>
-    <tr><td class="code">Reading</td><td>Reading (its own bucket now, valued, not a leak)</td><td>Valued</td></tr>
-    <tr><td class="code">Grooming</td><td>Getting ready, showering, hygiene</td><td>Upkeep</td></tr>
-    <tr><td class="code">Eating</td><td>Meals and shakes</td><td>Upkeep</td></tr>
-    <tr><td class="code">Laundry</td><td>Laundry</td><td>Upkeep</td></tr>
-    <tr><td class="code">Cleaning</td><td>Cleaning</td><td>Upkeep</td></tr>
-    <tr><td class="code">Errands</td><td>Admin, ordering, taxes, planning logistics</td><td>Upkeep</td></tr>
-    <tr><td class="code">Health</td><td>Dermatologist, therapy, doctor</td><td>Upkeep</td></tr>
-    <tr><td class="code">L-soc</td><td>Socializing</td><td>Lower</td></tr>
-    <tr><td class="code">L-gf</td><td>Dating and flirting</td><td>Lower</td></tr>
-    <tr><td class="code">L-com</td><td>Commuting</td><td>Lower</td></tr>
-    <tr><td class="code">L-mw</td><td>Meaningful work (the Krista assignments)</td><td>Lower</td></tr>
-    <tr><td class="code">L-es</td><td>Spanish practice</td><td>Lower</td></tr>
-    <tr><td class="code">L-bch</td><td>Bachata / dance (includes Dan's class)</td><td>Lower</td></tr>
-    <tr><td class="code">X</td><td>Leaks (Instagram, weed, sports-watching, rumination)</td><td>Waste</td></tr>
-  </table>
-  </div>
+  <div class="blank"><b>Unlogged dates:</b> Jul 17 and Jul 21–23 have no Toggl time entry. They are omitted from the 6h20 total and from the recorded-date average. Jul 22–23 are the two days explicitly left out of this update.</div>
 
-  <div class="foot">
-    <span class="pill">Week 2</span><span class="pill">Jul 10 to 16, 2026</span><span class="pill">7 days</span><span class="pill">itemized upkeep + Reading bucket</span>
-    <div style="margin-top:10px">Built from Zak's phone time journal. Proportions are reliable; individual times are voice-reconstructed within about 30 minutes.</div>
-  </div>
-
-  </div><!-- /tab-week -->
-
-  <!-- ============ BUDGET VS ACTUAL ============ -->
-  <div id="tab-budget" class="tabpanel" hidden>
-
-    <p style="color:var(--muted);font-size:13.5px;margin:4px 0 12px;max-width:680px">
-      Your weekly time budget (how you want to spend it) vs how you actually spent Jul 10 to 16, against the full weekly budget (168h). Today (Thu) is partial, so the actuals run slightly light on the last day.
-    </p>
-
-    <div class="callout" style="border-left-color:var(--D)">
-      <div style="font-size:14px;line-height:1.55">The budget totals 168h with zero slack, so most lines read "under" even in a good week. Two things to settle with Krista this week: <b>(1)</b> the old 7h "life maintenance" budget now needs splitting into per-category targets (grooming, eating, chores, health), since we retired the lump; and <b>(2)</b> Reading is a new bucket with no target yet.</div>
-    </div>
-
-    <div class="chartbox" style="margin-top:16px">
-      <h3>Budget vs actual, by category</h3>
-      <p>Weekly budget (grey) against actual Jul 10 to 16 (cyan). "Daily upkeep" is the old life-maintenance lump, shown against its old 7h budget.</p>
-      <canvas id="budgetChart" height="460"></canvas>
-    </div>
-
-    <h2>The full comparison</h2>
-    <div class="scroll-x">
-    <table style="min-width:640px">
-      <tr><th>Category</th><th>Weekly budget</th><th>Actual (Jul 10-16)</th><th>vs budget</th><th>Status</th></tr>
-      <tr><td class="code">Sleep</td><td>63</td><td>~65</td><td>+2</td><td><span style="color:#4ade80;font-weight:700">On track (103%)</span></td></tr>
-      <tr><td class="code">Make money</td><td>25</td><td>~12</td><td>-13</td><td><span style="color:#f59e0b;font-weight:700">Under (48%)</span></td></tr>
-      <tr><td class="code">Meditation</td><td>14</td><td>~3.5</td><td>-10.5</td><td><span style="color:#f87171;font-weight:700">Under (25%)</span></td></tr>
-      <tr><td class="code">Fitness</td><td>14</td><td>~14.25</td><td>+0.25</td><td><span style="color:#4ade80;font-weight:700">On track (102%)</span></td></tr>
-      <tr><td class="code">Girlfriend pathway</td><td>14</td><td>~5.5</td><td>-8.5</td><td><span style="color:#f59e0b;font-weight:700">Under (39%)</span></td></tr>
-      <tr><td class="code">Socializing</td><td>12</td><td>~14.5</td><td>+2.5</td><td><span style="color:#f87171;font-weight:700">Over (121%)</span></td></tr>
-      <tr><td class="code">Daily upkeep (was "life maint.")</td><td>7</td><td>~20</td><td>+13</td><td><span style="color:#f87171;font-weight:700">OVER (286%)</span></td></tr>
-      <tr><td class="sub">grooming / getting ready</td><td>n/a</td><td>~7.0</td><td></td><td></td></tr>
-      <tr><td class="sub">eating</td><td>n/a</td><td>~4.5</td><td></td><td></td></tr>
-      <tr><td class="sub">laundry</td><td>n/a</td><td>~2.5</td><td></td><td></td></tr>
-      <tr><td class="sub">errands / admin</td><td>n/a</td><td>~2.5</td><td></td><td></td></tr>
-      <tr><td class="sub">health appts</td><td>n/a</td><td>~2.0</td><td></td><td></td></tr>
-      <tr><td class="sub">cleaning</td><td>n/a</td><td>~1.5</td><td></td><td></td></tr>
-      <tr><td class="code">Commute</td><td>7</td><td>~5</td><td>-2</td><td><span style="color:#f59e0b;font-weight:700">Under (71%)</span></td></tr>
-      <tr><td class="code">Meaningful work</td><td>6</td><td>~1.5</td><td>-4.5</td><td><span style="color:#f87171;font-weight:700">Under (25%)</span></td></tr>
-      <tr><td class="code">Spanish</td><td>4</td><td>~1.25</td><td>-2.75</td><td><span style="color:#f59e0b;font-weight:700">Under (31%)</span></td></tr>
-      <tr><td class="code">Bachata (incl. Dan's class)</td><td>2</td><td>~1.25</td><td>-0.75</td><td><span style="color:#f59e0b;font-weight:700">Under (63%)</span></td></tr>
-      <tr><td class="code">Reading</td><td>n/a (new)</td><td>~3.5</td><td>n/a</td><td><span style="color:var(--R);font-weight:700">set a target</span></td></tr>
-      <tr><td class="code">Leaks (unbudgeted)</td><td>0</td><td>~10.5</td><td>+10.5</td><td><span style="color:#f87171;font-weight:700">OVER</span></td></tr>
-    </table>
-    </div>
-
-    <h2>Week 1 vs Week 2, side by side</h2>
-    <div class="scroll-x">
-    <table style="min-width:560px">
-      <tr><th>Category</th><th>Budget</th><th>Wk 1 (Jul 3-9)</th><th>Wk 2 (Jul 10-16)</th><th>Change</th></tr>
-      <tr><td class="code">Make money</td><td>25</td><td>11.2</td><td>~12</td><td>flat</td></tr>
-      <tr><td class="code">Fitness</td><td>14</td><td>7.6</td><td>~14.25</td><td><span style="color:#4ade80;font-weight:700">up big</span></td></tr>
-      <tr><td class="code">Meditation</td><td>14</td><td>3.6</td><td>~3.5</td><td>flat</td></tr>
-      <tr><td class="code">Daily upkeep</td><td>7</td><td>29.0</td><td>~20</td><td><span style="color:#4ade80;font-weight:700">down ~9h</span></td></tr>
-      <tr><td class="code">Socializing</td><td>12</td><td>10.8</td><td>~14.5</td><td><span style="color:#f87171;font-weight:700">up</span></td></tr>
-      <tr><td class="code">Dating</td><td>14</td><td>4.2</td><td>~5.5</td><td>up slightly</td></tr>
-      <tr><td class="code">Leaks</td><td>0</td><td>10.3</td><td>~10.5</td><td>flat (shifted to sports)</td></tr>
-    </table>
-    </div>
-
-  </div><!-- /tab-budget -->
-
-  <!-- ============ FULL REPORT ============ -->
-  <div id="tab-report" class="tabpanel rep" hidden>
-
-    <p style="color:var(--muted);font-size:13.5px;margin:4px 0 6px;max-width:680px">
-      The written read on the week, in one place. The charts are in the other two tabs; this is the argument.
-    </p>
-
-    <h3>The one-line version</h3>
-    <p>One clear win (fitness doubled and beat budget), one real improvement (daily upkeep down ~9h), and two levers that did not move at all from Week 1 (money and meditation). Bedtime is still past 1am.</p>
-
-    <h3>Finding 1: Fitness is the win, it doubled and hit budget</h3>
-    <p>Fitness went <span class="big">7.6h to ~14.25h</span>, from 54% of budget to 102%. <span class="big">Sunday alone was a movement marathon</span>: padel 1 to 2:30, then 4 hours of beach volleyball, plus biking. A ~5km run Saturday and three gym sessions filled the rest. The only caution: it is weekend-clustered, not spread across the week.</p>
-
-    <h3>Finding 2: We retired "life maintenance," and upkeep came down ~9h</h3>
-    <p>The lump is gone. The ~20h of daily upkeep is now six real categories: <span class="big">grooming ~7h, eating ~4.5h, laundry ~2.5h, errands ~2.5h, health appts ~2h, cleaning ~1.5h</span>. Two takeaways fall straight out of the split: grooming is the biggest and cannot be outsourced, while chores (laundry + cleaning, ~4h) are the real outsourcing target. Total upkeep is down from 29h in Week 1, the most encouraging structural move in the data, if it holds.</p>
-
-    <h3>Finding 3: Money and meditation did not move</h3>
-    <p>Money is <span class="big">~12h, still 48% of budget</span>, still zero on the weekend, still shoved into late-afternoon fragments (Wednesday's block ran 5 to 6:45pm after the whole day). Meditation is <span class="big">~3.5h against a 14h target</span>, several days at zero. These are the same two misses as Week 1, unchanged.</p>
-
-    <h3>Finding 4: Leaks are flat but shifted to sports-watching</h3>
-    <p>Leaks held at <span class="big">~10.5h</span> (Week 1 was 10.3h), but the mix moved. <span class="big">Sports-watching is the new big one</span>: World Cup Tuesday (~3h), soccer Wednesday and Thursday, ~5.5h in total. Instagram-on-waking is still nearly daily; weed on the weekend nights. Note that <span class="big">reading is no longer counted here</span>, it got promoted to its own bucket (~3.5h) because it is genuinely good for you, not dead time.</p>
-
-    <h3>Bedtime is still the unbuilt habit</h3>
-    <p>Onsets stayed past 1am all week; last night went down at 12:52am and slept 9.1h but only by waking at 11:04am, so it was catch-up sleep, not an earlier bedtime. The Week 1 finding held: you sleep fine once you are down, you just do not get down before 1am.</p>
-
-    <h3>Progress on last week's three levers</h3>
-    <ul>
-      <li><b>Outsource the chores:</b> partial. Upkeep down ~9h, and you were pricing a cleaning setup Friday, but nothing is standing yet.</li>
-      <li><b>Hard bedtime anchor:</b> not done. Still 1am-plus onsets every night.</li>
-      <li><b>Protect one daylight money block:</b> not done. Money work is still fragmented and pushed past 5pm.</li>
-    </ul>
-
-    <h3>Two changes we made to the system this week</h3>
-    <ul>
-      <li><b>Killed the "life maintenance" bucket</b> and itemized it into grooming, eating, laundry, errands, health, cleaning, so we can see and target each one.</li>
-      <li><b>Reading is its own bucket now</b> (not a leak), and <b>Dan's class counts as Bachata</b>.</li>
-    </ul>
-
-    <h3>For the coach: two things to settle</h3>
-    <ul>
-      <li><b>Re-budget the upkeep split.</b> The old 7h life-maintenance target now needs to become per-category targets. Grooming alone ran ~7h, so 7h total was never realistic.</li>
-      <li><b>Set a Reading target</b> and, if we want it, carve it out of the budget (which is currently maxed at 168h with no slack).</li>
-    </ul>
-
-    <h3>Data honesty</h3>
-    <p>Toggl was not populated this week, so there is no second source behind the numbers. Mon Jul 13 afternoon, Tue Jul 14 daytime, and today were low-detail and are best-guessed. Everything here is plus or minus about 30 minutes; the proportions are what matter and they are solid.</p>
-
-  </div><!-- /tab-report -->
-
-  <!-- ============ FOOD JOURNAL ============ -->
-  <div id="tab-food" class="tabpanel" hidden>
-
-    <p style="color:var(--muted);font-size:13.5px;margin:4px 0 12px;max-width:680px">
-      Every meal this week, Jul 10 to 16, reconstructed from the phone voice notes. Times are approximate.
-    </p>
-
-    <div class="callout" style="border-left-color:var(--D)">
-      <div style="font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;font-weight:600;margin-bottom:8px">The eating pattern, for Krista</div>
-      <ul style="margin:0;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.6">
-        <li><b style="color:var(--txt)">First meal is consistently late</b>, usually noon or after, onto an empty gut after a long overnight fast. This is the meal-timing pattern we have been tracking.</li>
-        <li><b style="color:var(--txt)">Heavy reliance on protein shakes</b> as the fallback, sometimes as a 1am couldn't-sleep refeed (Mon night).</li>
-        <li><b style="color:var(--txt)">Frequent late-night meals</b>, poke bowls near midnight (Sun), chicken and rice at 12:30am (Fri), a 1:18am shake (Mon). These push bedtime.</li>
-        <li><b style="color:var(--txt)">Alcohol on a few nights</b> (beers Fri and Tue).</li>
-        <li><b style="color:var(--txt)">Go-to real meals</b> are solid: Honest Greens steak and falafel, beef or chicken with rice and vegetables.</li>
-        <li><b style="color:var(--txt)">One logistics gap</b> (Mon): chips instead of a real first meal because there were no shake ingredients in the house, which he flagged himself.</li>
-      </ul>
-    </div>
-
-    <h2>Fri Jul 10</h2>
-    <div class="scroll-x"><table style="min-width:520px">
-      <tr><th>Time</th><th>What</th><th>Notes</th></tr>
-      <tr><td>~11:30am</td><td>Noodles, chicken, spinach (half) + leftover protein shake</td><td>First food</td></tr>
-      <tr><td>~4:30pm</td><td>Other half: noodles, chicken</td><td></td></tr>
-      <tr><td>evening</td><td>Patatas bravas + 2 beers</td><td>Social, alcohol</td></tr>
-      <tr><td>~7:00pm</td><td>2 protein shakes (mini market)</td><td></td></tr>
-      <tr><td>~8:00pm</td><td>Healthy meal (post-gym)</td><td></td></tr>
-      <tr><td>~12:30am</td><td>2/3 healthy meal: chicken, rice, veggies</td><td>Late-night meal</td></tr>
-    </table></div>
-
-    <h2>Sat Jul 11</h2>
-    <div class="scroll-x"><table style="min-width:520px">
-      <tr><th>Time</th><th>What</th><th>Notes</th></tr>
-      <tr><td>~1:00pm</td><td>Small gelato cone (2 scoops)</td><td>First food, sugar-only start</td></tr>
-      <tr><td>~3:00pm</td><td>Chicken and rice</td><td></td></tr>
-      <tr><td>~5:00pm</td><td>Honest Greens: steak, falafel, green salad</td><td></td></tr>
-      <tr><td>~11:00pm</td><td>Steak, falafel, potatoes, sweet potato fries, Honest Greens</td><td>Dinner</td></tr>
-    </table></div>
-
-    <h2>Sun Jul 12</h2>
-    <div class="scroll-x"><table style="min-width:520px">
-      <tr><th>Time</th><th>What</th><th>Notes</th></tr>
-      <tr><td>~10:00am</td><td>Steak and potatoes</td><td>First food</td></tr>
-      <tr><td>3:45-5:10pm</td><td>Brunch</td><td></td></tr>
-      <tr><td>~midnight</td><td>2 large poke bowls, extra salmon</td><td>Late dinner</td></tr>
-    </table></div>
-
-    <h2>Mon Jul 13</h2>
-    <div class="scroll-x"><table style="min-width:520px">
-      <tr><th>Time</th><th>What</th><th>Notes</th></tr>
-      <tr><td>~11:50am</td><td>Big bag of chips (~2 snack bags' worth)</td><td>Logistics gap: no shake ingredients, flagged</td></tr>
-      <tr><td>~1:20pm</td><td>3/4 delivery meal: chicken, quinoa, vegetables</td><td></td></tr>
-      <tr><td>~9:00pm</td><td>Rice + beef + vegetables (large)</td><td></td></tr>
-      <tr><td>~1:18am</td><td>Protein shake: 3 scoops chocolate whey, banana, water</td><td>Couldn't-sleep refeed</td></tr>
-    </table></div>
-
-    <h2>Tue Jul 14</h2>
-    <div class="scroll-x"><table style="min-width:520px">
-      <tr><th>Time</th><th>What</th><th>Notes</th></tr>
-      <tr><td>~12:30pm</td><td>First meal, after the dermatologist</td><td>Late first meal</td></tr>
-      <tr><td>~6:45pm</td><td>Meal (end of work block)</td><td></td></tr>
-      <tr><td>late</td><td>Steak, falafel, greens, sweet potato fries + 2 beers</td><td>Dinner, alcohol</td></tr>
-    </table></div>
-
-    <h2>Wed Jul 15</h2>
-    <div class="scroll-x"><table style="min-width:520px">
-      <tr><th>Time</th><th>What</th><th>Notes</th></tr>
-      <tr><td>~12:00pm</td><td>First meal (eaten in the shower)</td><td>Late first meal</td></tr>
-      <tr><td>afternoon</td><td>Healthy meal</td><td></td></tr>
-      <tr><td>~5:00pm</td><td>Another healthy meal</td><td></td></tr>
-      <tr><td>~6:10pm</td><td>Ate</td><td></td></tr>
-    </table></div>
-
-    <h2>Thu Jul 16 (partial, to ~4pm)</h2>
-    <div class="scroll-x"><table style="min-width:520px">
-      <tr><th>Time</th><th>What</th><th>Notes</th></tr>
-      <tr><td>~midnight</td><td>Food + a shake, watching the game</td><td>Late-night eating (Wed into Thu)</td></tr>
-      <tr><td>~3:00pm</td><td>Protein shake (with a friend)</td><td></td></tr>
-      <tr><td>~3:45pm</td><td>Shake</td><td></td></tr>
-    </table></div>
-
-    <div class="foot">
-      <span class="pill">Food journal</span><span class="pill">Jul 10 to 16, 2026</span><span class="pill">reconstructed from voice notes</span>
-    </div>
-
-  </div><!-- /tab-food -->
-
-</div>
-
-<script>
-Chart.defaults.color = '#9a9aa6';
-Chart.defaults.font.family = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif";
-
-// Itemized waking-hours bar (This Week)
-new Chart(document.getElementById('itemBar'), {
-  type:'bar',
-  data:{
-    labels:['Socializing','Fitness','Make money','Leaks','Grooming','Dating','Commute','Eating','Reading','Meditation','Laundry','Errands / admin','Health appts','Meaningful work','Cleaning','Spanish','Bachata'],
-    datasets:[{data:[14.5,14.25,12,10.5,7,5.5,5,4.5,3.5,3.5,2.5,2.5,2,1.5,1.5,1.25,1.25],
-      backgroundColor:['#f87171','#f59e0b','#22c55e','#71717a','#ef4444','#f87171','#f87171','#ef4444','#22d3ee','#a855f7','#ef4444','#ef4444','#ef4444','#f87171','#ef4444','#f87171','#f87171'],
-      borderRadius:5}]
-  },
-  options:{indexAxis:'y',responsive:true,
-    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'h'}}},
-    scales:{x:{grid:{color:'#2a2a31'},ticks:{callback:v=>v+'h'}},y:{grid:{display:false}}}}
-});
-
-// Daily-upkeep breakdown bar
-new Chart(document.getElementById('upkeepBar'), {
-  type:'bar',
-  data:{
-    labels:['Grooming / getting ready','Eating','Laundry','Errands / admin','Health appts','Cleaning'],
-    datasets:[{data:[7,4.5,2.5,2.5,2,1.5],
-      backgroundColor:['#ef4444','#f59e0b','#f43f5e','#71717a','#3b82f6','#fb7185'],
-      borderRadius:5}]
-  },
-  options:{indexAxis:'y',responsive:true,
-    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'h'}}},
-    scales:{x:{grid:{color:'#2a2a31'},ticks:{callback:v=>v+'h'}},y:{grid:{display:false}}}}
-});
-
-// Budget vs Actual chart (hidden tab; resized on first show)
-var budgetCharts = [];
-budgetCharts.push(new Chart(document.getElementById('budgetChart'), {
-  type:'bar',
-  data:{
-    labels:['Sleep','Make money','Meditation','Fitness','Girlfriend pathway','Socializing','Daily upkeep','Commute','Meaningful work','Spanish','Bachata','Reading','Leaks (unbudgeted)'],
-    datasets:[
-      {label:'Weekly budget', data:[63,25,14,14,14,12,7,7,6,4,2,0,0], backgroundColor:'#52525b', borderRadius:4},
-      {label:'Actual (Jul 10-16)', data:[65,12,3.5,14.25,5.5,14.5,20,5,1.5,1.25,1.25,3.5,10.5], backgroundColor:'#22d3ee', borderRadius:4}
-    ]
-  },
-  options:{indexAxis:'y',responsive:true,
-    plugins:{legend:{position:'bottom',labels:{boxWidth:11,padding:9,font:{size:11}}},
-      tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw+'h'}}},
-    scales:{x:{grid:{color:'#2a2a31'},ticks:{callback:v=>v+'h'}},y:{grid:{display:false}}}}
-}));
-
-// Tab switching
-(function(){
-  var tabs = document.querySelectorAll('.tab');
-  function show(name){
-    document.getElementById('tab-week').hidden   = (name !== 'week');
-    document.getElementById('tab-budget').hidden = (name !== 'budget');
-    document.getElementById('tab-report').hidden = (name !== 'report');
-    document.getElementById('tab-food').hidden   = (name !== 'food');
-    tabs.forEach(function(b){ b.classList.toggle('active', b.dataset.tab === name); });
-    if(name === 'budget'){ budgetCharts.forEach(function(c){ c.resize(); }); }
-  }
-  tabs.forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.tab); }); });
-})();
-</script>
+  <footer>Source: Toggl Track, pulled Jul 23, 2026 for Jul 17–23. This is a transparent partial ledger, not a complete-week judgment.</footer>
+</main>
 </body>
 </html>
