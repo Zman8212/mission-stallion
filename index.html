@@ -74,7 +74,7 @@
 <div class="header">
   <h1>Mission Stallion</h1>
   <div class="subtitle">Zak Columber — Health & Performance Dashboard</div>
-  <div class="updated">Oura Ring + Hevy + Apple Health | Oura sleep, readiness, and activity re-pulled through Aug 20; <span style="color:#4ade80;">all seven current-window nights are tracked; Aug 20 came in at 7.0h, sleep score 78 and readiness 78</span> &middot; <span style="color:#facc15;">total sleep now counts daytime sleep the way Oura counts it: the 7-day average is 7.57h with naps, 6.95h from nights alone</span> &middot; <span style="color:#facc15;">Apple Health now finalized through Aug 18, three days fresher than the last run; Aug 19-20 remain unavailable and are excluded rather than treated as zero</span> &middot; <span style="color:#4ade80;">Hevy live through Aug 20 with a new session this morning</span> &middot; <span style="color:#22d3ee;">Zak is in the US until Sep 4; all current-window times are EDT</span> &middot; refreshed Aug 20, 2026 10:03am EDT</div>
+  <div class="updated">Oura Ring + Hevy + Apple Health | Oura sleep, readiness, and activity re-pulled through Aug 20; <span style="color:#4ade80;">all seven current-window nights are tracked; Aug 20 came in at 7.0h, sleep score 78 and readiness 78</span> &middot; <span style="color:#facc15;">total sleep now counts daytime sleep the way Oura counts it: the 7-day average is 7.57h with naps, 6.95h from nights alone</span> &middot; <span style="color:#facc15;">Apple Health now finalized through Aug 18, three days fresher than the last run; Aug 19-20 remain unavailable and are excluded rather than treated as zero</span> &middot; <span style="color:#4ade80;">Hevy live through Aug 20 with a new session this morning</span> &middot; <span style="color:#22d3ee;">Zak is in the US until Sep 4; all current-window times are EDT</span> &middot; refreshed Aug 20, 2026 11:39am EDT</div>
   <div style="margin-top:16px;">
     <a href="time.html" style="display:inline-block; background:linear-gradient(90deg,rgba(34,211,238,0.13),rgba(74,222,128,0.13)); border:1px solid rgba(34,211,238,0.35); color:#22d3ee; text-decoration:none; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:600;">Time Journal Dashboard &rarr;</a>
   </div>
@@ -750,7 +750,7 @@ const labels = ['8/14','8/15','8/16','8/17','8/18','8/19','8/20'];
 // Total sleep = night + daytime, as Oura counts it. Night and daytime kept separate so the chart can stack them.
 const nightHours = [6.8,7.6,6.9,6.2,6.7,7.5,7.0];
 const napHours   = [1.6,0,0.1,1.0,1.6,0,0];
-const sleepHours = nightHours.map((h,i) => Math.round((h + napHours[i]) * 10) / 10);
+const sleepHours = [8.4,7.6,7.0,7.2,8.3,7.5,7.0];
 const sleepScores = [78,77,75,82,79,80,78];
 const readiness = [74,77,69,85,82,79,78];
 const hrv = [36,38,37,56,54,55,46];
