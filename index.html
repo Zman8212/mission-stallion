@@ -74,7 +74,7 @@
 <div class="header">
   <h1>Mission Stallion</h1>
   <div class="subtitle">Zak Columber — Health & Performance Dashboard</div>
-  <div class="updated">Oura Ring + Hevy + Apple Health | <span style="color:#4ade80;">Oura pull covered Sep 19; all seven current-window nights have long-sleep detail</span> &middot; <span style="color:#facc15;">7-day average 7.75h total, 7.51h on the night line</span> &middot; newest day 5.26h, score 71, readiness 70 &middot; <span style="color:#facc15;">Apple Health files exist through Sep 4 but remain unreadable iCloud placeholders, so the last usable Aug 18 values are preserved rather than invented</span> &middot; <span style="color:#4ade80;">Hevy live through Sep 18; no newer workout today</span> &middot; sleep times use each record's local clock &middot; refreshed Sep 19, 2026 CEST</div>
+  <div class="updated">Oura Ring + Hevy + Apple Health | <span style="color:#4ade80;">Oura pull covered Sep 19; all seven current-window nights have long-sleep detail</span> &middot; <span style="color:#facc15;">7-day average 7.76h total, 7.51h on the night line</span> &middot; newest day 5.33h, score 71, readiness 70 &middot; <span style="color:#facc15;">Apple Health files exist through Sep 4 but remain unreadable iCloud placeholders, so the last usable Aug 18 values are preserved rather than invented</span> &middot; <span style="color:#4ade80;">Hevy live through Sep 18; no newer workout today</span> &middot; sleep times use each record's local clock &middot; refreshed Sep 19, 2026 CEST</div>
   <div style="margin-top:16px;">
     <a href="time.html" style="display:inline-block; background:linear-gradient(90deg,rgba(34,211,238,0.13),rgba(74,222,128,0.13)); border:1px solid rgba(34,211,238,0.35); color:#22d3ee; text-decoration:none; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:600;">Time Journal Dashboard &rarr;</a>
   </div>
@@ -86,7 +86,7 @@
   <div class="card">
     <div class="card-label">Priority 1 &middot; Sleep</div>
     <div class="card-value good" style="font-size:21px;">Nothing more important</div>
-    <div class="card-detail">Jul 9 call: sleep is the top priority, full stop. Three levers named: <span>hire a cleaner 2-3x/week</span> to kill the late-night laundry, lock a <span>consistent bedtime routine</span>, and schedule dates to end <span>by 8pm</span>. Target (set Jul 13): <span>8.0h actual sleep, 9h in bed</span>. The 7-day average is <span>7.75h total, 7.51h on the night line</span>. Sep 19 fell to <span>5.26h</span> after a 3:39am onset and 9:56am wake. Weighted debt is <span>+0.66h/day</span>.</div>
+    <div class="card-detail">Jul 9 call: sleep is the top priority, full stop. Three levers named: <span>hire a cleaner 2-3x/week</span> to kill the late-night laundry, lock a <span>consistent bedtime routine</span>, and schedule dates to end <span>by 8pm</span>. Target (set Jul 13): <span>8.0h actual sleep, 9h in bed</span>. The 7-day average is <span>7.76h total, 7.51h on the night line</span>. Sep 19 reached <span>5.33h total</span> after a 3:39am onset, 9:56am wake and a short late-afternoon session. Weighted debt is <span>+0.65h/day</span>.</div>
   </div>
   <div class="card">
     <div class="card-label">Priority 2 &middot; Food Journal</div>
@@ -177,7 +177,7 @@
         <div class="day-label">Sat 9/19</div>
         <div class="day-value bad">5.3h</div>
         <div class="day-sub">Night: 5.3h &middot; Score: 71</div>
-        <div class="day-sub" style="color:#22d3ee;">No additional sleep</div>
+        <div class="day-sub" style="color:#22d3ee;">+0.08h additional</div>
         <div class="day-sub">Bed: 3:39am</div>
         <div class="day-sub" style="color:#818cf8;">Wake: 9:56am</div>
       </div>
@@ -217,15 +217,15 @@
 <!-- SLEEP DEBT -->
 <div class="section-title">Sleep Debt &mdash; 14-Day Weighted</div>
 <div class="grid">
-  <div class="card"><div class="card-label">Weighted Debt</div><div class="card-value ok">+0.66 h</div><div class="card-detail">per day vs the <span>8.0h</span> target &middot; 30-day-plus warm-up</div></div>
+  <div class="card"><div class="card-label">Weighted Debt</div><div class="card-value ok">+0.65 h</div><div class="card-detail">per day vs the <span>8.0h</span> target &middot; 30-day-plus warm-up</div></div>
   <div class="card"><div class="card-label">Peak (this window)</div><div class="card-value ok">+0.97 h</div><div class="card-detail">Sep 12 &middot; highest reading in the current 14-day window</div></div>
-  <div class="card"><div class="card-label">14-Day Flat Avg</div><div class="card-value bad">7.39h</div><div class="card-detail">7-day flat avg: <span>7.75h</span> &middot; total sleep, including standing estimates</div></div>
-  <div class="card"><div class="card-label">Consistency (7d)</div><div class="card-value bad">&plusmn;1.19h</div><div class="card-detail">sample standard deviation &middot; swing <span>5.3h to 8.7h</span> &middot; outside the &plusmn;1h target</div></div>
+  <div class="card"><div class="card-label">14-Day Flat Avg</div><div class="card-value bad">7.40h</div><div class="card-detail">7-day flat avg: <span>7.76h</span> &middot; total sleep, including standing estimates</div></div>
+  <div class="card"><div class="card-label">Consistency (7d)</div><div class="card-value bad">&plusmn;1.17h</div><div class="card-detail">sample standard deviation &middot; swing <span>5.3h to 8.7h</span> &middot; outside the &plusmn;1h target</div></div>
 </div>
 <div class="grid"><div class="card full"><div class="card-label">Weighted Sleep Debt (h/night) &mdash; Last 14 Days</div><div class="chart-container" style="height:170px; margin-top:10px;"><canvas id="debtChart"></canvas></div></div></div>
 <div class="insights">
   <div class="insight-item"><strong>What this is.</strong> The exponentially weighted line keeps older nights fading smoothly instead of dropping them abruptly. It uses a 7-day decay constant, an 8.0h actual-sleep target and a 30-day-plus warm-up.</div>
-  <div class="insight-item"><strong>The Sep 19 read has seven measured nights.</strong> Daily totals for Sep 13-Sep 19 are 8.49, 8.39, 8.68, 7.32, 7.83, 8.29 and 5.26h. Weighted debt peaked at <strong>+0.97h/day after Sep 12</strong>, recovered to <strong>+0.34h/day after Sep 18</strong>, then rose to <strong>+0.66h/day after Sep 19</strong>. Fourteen-day flat sleep is <strong>7.39h</strong>, 7-day flat sleep is <strong>7.75h</strong>, and consistency is <strong>&plusmn;1.19h</strong>.</div>
+  <div class="insight-item"><strong>The Sep 19 read has seven measured nights.</strong> Daily totals for Sep 13-Sep 19 are 8.49, 8.39, 8.68, 7.32, 7.83, 8.29 and 5.33h. Weighted debt peaked at <strong>+0.97h/day after Sep 12</strong>, recovered to <strong>+0.34h/day after Sep 18</strong>, then rose to <strong>+0.65h/day after Sep 19</strong>. Fourteen-day flat sleep is <strong>7.40h</strong>, 7-day flat sleep is <strong>7.76h</strong>, and consistency is <strong>&plusmn;1.17h</strong>.</div>
 </div>
 
 <!-- RECOVERY METRICS -->
@@ -558,10 +558,10 @@
 <!-- COACH INSIGHTS -->
 <div class="section-title">Patterns &amp; Insights for Coach KSD</div>
 <div class="insights">
-  <div class="insight-item"><strong>The Sep 13-Sep 19 window averages 7.75h total sleep and 7.51h on the night line.</strong> All seven nights are measured. Sep 13, Sep 14, Sep 15 and Sep 18 met the 8.0h daily target. Sep 19 fell to 5.26h after a 3:39am onset and 9:56am wake. Mean onset is 1:26am and mean wake is 9:57am.</div>
-  <div class="insight-item"><strong>Sep 19 gave back part of the week's recovery.</strong> The day reached 5.26h, all in the long-sleep record at 84% efficiency. It scored 71 with readiness 70, HRV 49ms and resting HR 55. Deep sleep held at 98 minutes, but REM was 83 minutes and total duration missed the target by 2.74h.</div>
-  <div class="insight-item"><strong>The daytime total still runs slightly generous.</strong> Per the standing rule all Oura sleep sessions count, but still-body meditation can be misclassified as sleep. The current 7-day total includes 1.70h of additional sleep outside the long-sleep records. Sep 15 contributes 0.76h, Sep 16 adds 0.25h and Sep 17 adds 0.39h; Sep 18-19 have none. Several additional sessions in the window began after 3pm, when sleep can reduce overnight sleep pressure.</div>
-  <div class="insight-item"><strong>Weighted sleep debt is +0.66h/day.</strong> It rose to +0.97h after Sep 12's short night, improved to +0.34h after Sep 18, then moved back up after Sep 19. The 14-day peak is +0.97h on Sep 12, the 14-day flat average is 7.39h, the 7-day flat average is 7.75h, and variability is &plusmn;1.19h.</div>
+  <div class="insight-item"><strong>The Sep 13-Sep 19 window averages 7.76h total sleep and 7.51h on the night line.</strong> All seven nights are measured. Sep 13, Sep 14, Sep 15 and Sep 18 met the 8.0h daily target. Sep 19 reached 5.33h after a 3:39am onset, 9:56am wake and a short late-afternoon session. Mean onset is 1:26am and mean wake is 9:57am.</div>
+  <div class="insight-item"><strong>Sep 19 gave back part of the week's recovery.</strong> The overnight record reached 5.26h at 84% efficiency, and a 4.5-minute late-afternoon sleep record lifted the daily total to 5.33h. The night scored 71 with readiness 70, HRV 49ms and resting HR 55. Deep sleep held at 98 minutes, but REM was 83 minutes and the daily total missed the target by 2.67h.</div>
+  <div class="insight-item"><strong>The daytime total still runs slightly generous.</strong> Per the standing rule all Oura sleep sessions count, but still-body meditation can be misclassified as sleep. The current 7-day total includes 1.78h of additional sleep outside the long-sleep records. Sep 15 contributes 0.76h, Sep 16 adds 0.25h, Sep 17 adds 0.39h and Sep 19 adds 0.08h. Several additional sessions in the window began after 3pm, when sleep can reduce overnight sleep pressure.</div>
+  <div class="insight-item"><strong>Weighted sleep debt is +0.65h/day.</strong> It rose to +0.97h after Sep 12's short night, improved to +0.34h after Sep 18, then moved back up after Sep 19. The 14-day peak is +0.97h on Sep 12, the 14-day flat average is 7.40h, the 7-day flat average is 7.76h, and variability is &plusmn;1.17h.</div>
   <div class="insight-item"><strong>Hevy is live through Sep 18.</strong> Sep 17's upper-body work progressed reps versus Sep 14, then Sep 18 added a 28-minute lower-body session. Assisted pistol squats moved from 5, 4, 4 reps on Sep 16 to 5, 6, 4, while single-leg hip thrusts held at three sets of 15. No external-load PR was logged; the Aug 18 bench-volume PR and Aug 20 single-leg RDL volume PR remain the latest loaded records.</div>
   <div class="insight-item"><strong>The Apple Health files remain unreadable.</strong> Weekly and per-day files exist through Sep 4, but iCloud returns a resource-deadlock error when their contents are read. The newest usable internal metric date remains Aug 18. Steps, meditation, VO2 max and Apple resting HR were preserved rather than rolled forward as fake zeros. The missing line is a feed problem, not evidence of inactivity.</div>
   <div class="insight-item"><strong>Running remains unchanged.</strong> No qualifying run newer than Jul 27 has been verified. AutoSync ends at Jun 28 and the newer weekly Apple files remain evicted iCloud placeholders, so the run cards, log and charts stay on the last verified seven runs rather than guessing from an unreadable feed.</div>
@@ -599,8 +599,8 @@
 const labels = ["9/13","9/14","9/15","9/16","9/17","9/18","9/19"];
 // Total sleep = night + daytime, as Oura counts it. Night and daytime kept separate so the chart can stack them.
 const nightHours = [8.24,8.34,7.92,7.07,7.44,8.29,5.26];
-const napHours = [0.25,0.05,0.76,0.25,0.39,0.00,0.00];
-const sleepHours = [8.49,8.39,8.68,7.32,7.83,8.29,5.26];
+const napHours = [0.25,0.05,0.76,0.25,0.39,0.00,0.08];
+const sleepHours = [8.49,8.39,8.68,7.32,7.83,8.29,5.33];
 const sleepScores = [91,86,79,87,85,92,71];
 const readiness = [78,74,77,74,79,82,70];
 const hrv = [50,52,41,37,43,53,49];
@@ -612,7 +612,7 @@ const steps = [null,null,null,null,null,null,null];
 // debt_t = 0.867*debt_(t-1) + 0.133*(8.0 - TST_t), deficit clipped below at -0.9h (sleep-banking cap, Ramakrishnan 2016).
 // TST is the DAILY total: overnight sleep plus any daytime sleep Oura logged, matching how Oura totals a day.
 const debtLabels = ["9/6","9/7","9/8","9/9","9/10","9/11","9/12","9/13","9/14","9/15","9/16","9/17","9/18","9/19"];
-const debtHours = [0.69,0.89,0.82,0.92,0.80,0.74,0.97,0.77,0.62,0.45,0.48,0.44,0.34,0.66];
+const debtHours = [0.69,0.89,0.82,0.92,0.80,0.74,0.97,0.77,0.62,0.45,0.48,0.44,0.34,0.65];
 
 const chartDefaults = {
   responsive: true,
