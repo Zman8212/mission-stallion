@@ -12,6 +12,9 @@
   .header h1 { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
   .header .subtitle { color: #71717a; font-size: 14px; margin-top: 4px; }
   .header .updated { color: #52525b; font-size: 12px; margin-top: 8px; }
+  .tabnav { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .tabnav a { color: #a1a1aa; text-decoration: none; border: 1px solid #27272a; background: #111118; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+  .tabnav a:hover, .tabnav a.active { color: #22d3ee; border-color: rgba(34,211,238,0.45); background: rgba(34,211,238,0.09); }
   .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 24px 40px; }
   .card { background: #111118; border: 1px solid #1e1e2a; border-radius: 12px; padding: 20px; }
   .card.wide { grid-column: span 2; }
@@ -67,6 +70,11 @@
     .card.full { grid-column: span 2; }
     .goals-grid { grid-template-columns: 1fr; }
   }
+  @media (max-width: 600px) {
+    .header { padding: 22px 16px 18px; }
+    .tabnav { gap: 6px; }
+    .tabnav a { font-size: 12px; padding: 7px 9px; }
+  }
 </style>
 </head>
 <body>
@@ -75,9 +83,14 @@
   <h1>Mission Stallion</h1>
   <div class="subtitle">Zak Columber &mdash; Health & Performance Dashboard</div>
   <div class="updated">Oura Ring + Hevy + Apple Health | <span style="color:#4ade80;">Oura pull covered Sep 24; all seven current-window nights have long-sleep detail</span> &middot; <span style="color:#facc15;">7-day average 7.71h total, 7.54h on the night line</span> &middot; newest day 7.23h, score 79, readiness 84 &middot; <span style="color:#4ade80;">Apple Health current through Sep 24; today's 749 steps are partial</span> &middot; Hevy live through Sep 22 &middot; sleep times use each record's local clock &middot; refreshed Sep 24, 2026 CEST</div>
-  <div style="margin-top:16px;">
-    <a href="time.html" style="display:inline-block; background:linear-gradient(90deg,rgba(34,211,238,0.13),rgba(74,222,128,0.13)); border:1px solid rgba(34,211,238,0.35); color:#22d3ee; text-decoration:none; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:600;">Time Journal Dashboard &rarr;</a>
-  </div>
+  <!-- TABNAV START -->
+  <nav class="tabnav" aria-label="Mission Stallion pages">
+    <a href="index.html" class="active">Dashboard</a>
+    <a href="food.html">Food Journal</a>
+    <a href="schedule.html">This Week</a>
+    <a href="time.html">Time Journal</a>
+  </nav>
+  <!-- TABNAV END -->
 </div>
 
 <!-- MASTERMIND (KSD) &mdash; TOP PRIORITIES -->
@@ -116,7 +129,7 @@
 <!-- GOALS -->
 <div class="section-title">Goals &amp; Targets</div>
 <div class="goals-grid">
-  <div class="goal-card"><div class="goal-label">Weight (7-day avg)</div><div class="goal-current">207.0 lbs</div><div class="goal-target">Target: 180 lbs &middot; latest 208.0 (Sep 20), self-reported rather than a single morning weigh-in</div><div class="goal-bar"><div class="goal-fill" style="width: 23%;"></div></div></div>
+  <div class="goal-card"><div class="goal-label">Weight (7-day avg)</div><div class="goal-current">207.1 lbs</div><div class="goal-target">Target: 180 lbs &middot; latest 206.6 (Sep 24 morning)</div><div class="goal-bar"><div class="goal-fill" style="width: 23%;"></div></div></div>
   <div class="goal-card"><div class="goal-label">Sleep Target</div><div class="goal-current">7.7h avg</div><div class="goal-target">Target: 8.0h actual sleep (9h in bed) &middot; <span style="color:#facc15;">3 of 7 days met 8.0h</span></div><div class="goal-bar"><div class="goal-fill" style="width: 96%; background: linear-gradient(90deg, #facc15, #4ade80);"></div></div></div>
   <div class="goal-card"><div class="goal-label">Bedtime Target</div><div class="goal-current">~1:15 AM</div><div class="goal-target">Target: midnight &middot; tracked range 12:06 AM to 3:39 AM &middot; 0 of 7 measured onsets was ahead of target</div><div class="goal-bar"><div class="goal-fill" style="width: 58%; background: linear-gradient(90deg, #facc15, #4ade80);"></div></div></div>
   <div class="goal-card"><div class="goal-label">Wake Time</div><div class="goal-current">9:42 AM avg</div><div class="goal-target">Target: 9:00 AM daily &middot; measured mean wake is 42m late; newest measured wake 10:22 AM</div><div class="goal-bar"><div class="goal-fill" style="width: 77%; background: linear-gradient(90deg, #facc15, #4ade80);"></div></div></div>
@@ -288,13 +301,13 @@
 <div class="grid">
   <div class="card">
     <div class="card-label">Latest</div>
-    <div class="card-value">208.0</div>
-    <div class="card-detail">lbs &middot; Sep 20 self-reported, after two deliberately higher-carb days</div>
+    <div class="card-value">206.6</div>
+    <div class="card-detail">lbs &middot; Sep 24 morning</div>
   </div>
   <div class="card">
     <div class="card-label">7-Day Avg</div>
-    <div class="card-value">207.0</div>
-    <div class="card-detail"><span>2 entries</span> &middot; Sep 18-Sep 24 &middot; both self-reported</div>
+    <div class="card-value">207.1</div>
+    <div class="card-detail"><span>7 morning weigh-ins</span> &middot; Sep 18-Sep 24</div>
   </div>
   <div class="card">
     <div class="card-label">Lowest Logged</div>
@@ -303,7 +316,7 @@
   </div>
   <div class="card">
     <div class="card-label">To Target</div>
-    <div class="card-value">27.0</div>
+    <div class="card-value">27.1</div>
     <div class="card-detail">lbs to 180</div>
   </div>
 </div>
@@ -331,14 +344,21 @@
       <tr><td>Jul 13</td><td class="w">203.4</td><td style="color:#f87171;">+1.0</td><td></td></tr>
       <tr><td>Jul 14</td><td class="w">202.8</td><td style="color:#4ade80;">-0.6</td><td>Morning</td></tr>
       <tr><td>Jul 16</td><td class="w">200.2</td><td style="color:#4ade80;">-2.6</td><td>Morning; lowest since Jun 28</td></tr>
-      <tr><td>Sep 18</td><td class="w">206.0</td><td style="color:#f87171;">+5.8</td><td>Self-reported current average; not a single morning weigh-in</td></tr>
-      <tr><td>Sep 20</td><td class="w">208.0</td><td style="color:#f87171;">+2.0</td><td>Self-reported after two higher-carb days; glycogen and water context</td></tr>
+      <tr><td>Sep 14</td><td class="w">206.4</td><td style="color:#f87171;">+6.2</td><td>Morning</td></tr>
+      <tr><td>Sep 15</td><td class="w">206.4</td><td style="color:#a1a1aa;">0.0</td><td>Morning</td></tr>
+      <tr><td>Sep 18</td><td class="w">206.0</td><td style="color:#4ade80;">-0.4</td><td>Morning</td></tr>
+      <tr><td>Sep 19</td><td class="w">206.8</td><td style="color:#f87171;">+0.8</td><td>Morning</td></tr>
+      <tr><td>Sep 20</td><td class="w">208.4</td><td style="color:#f87171;">+1.6</td><td>Morning after higher-carb day; glycogen and water context</td></tr>
+      <tr><td>Sep 21</td><td class="w">207.4</td><td style="color:#4ade80;">-1.0</td><td>Morning</td></tr>
+      <tr><td>Sep 22</td><td class="w">207.2</td><td style="color:#4ade80;">-0.2</td><td>Morning</td></tr>
+      <tr><td>Sep 23</td><td class="w">207.4</td><td style="color:#f87171;">+0.2</td><td>Morning</td></tr>
+      <tr><td>Sep 24</td><td class="w">206.6</td><td style="color:#4ade80;">-0.8</td><td>Morning</td></tr>
     </table>
   </div>
 </div>
 <div class="insights">
   <div class="insight-item" style="color:#a1a1aa;font-size:13px;">
-    <strong>The weight line is live again, but it is still soft evidence.</strong> The Sep 18 and Sep 20 entries are self-reported rather than standardized morning weigh-ins. Their 7-day average is <strong>207.0 lbs</strong>, 27.0 lbs from target, with 23% of the baseline-to-target span covered. The 206 to 208 move followed two deliberately higher-carb days and reads as glycogen plus bound water, not a two-pound fat gain. Daily morning readings remain the missing piece needed to turn this baseline into a defensible trend.
+    <strong>The weight line now has a full current week.</strong> Seven morning weigh-ins from Sep 18 through Sep 24 average <strong>207.1 lbs</strong>, 27.1 lbs from target, with 23% of the baseline-to-target span covered. The Sep 20 spike to 208.4 followed a deliberately higher-carb day and reads as glycogen plus bound water; the line settled back to 206.6 by Sep 24. Keep the daily morning cadence so the trend can separate fat loss from water movement.
   </div>
 </div>
 
@@ -516,7 +536,7 @@
   <div class="insight-item"><strong>Hevy is live through Sep 22.</strong> The new upper-body session progressed pull-ups from 5, 4, 4 on Sep 17 to 6, 5, 4, and push-ups from 15, 12, 12 to 15, 15, 15. No external-load PR was logged; the Aug 18 bench-volume PR and Aug 20 single-leg RDL volume PR remain the latest loaded records.</div>
   <div class="insight-item"><strong>Apple Health is current again.</strong> Sep 21-23 now resolve to 9,865, 9,076 and 16,003 steps, plus 20, 60 and 80 mindful minutes. Sep 24 has 749 partial steps and no mindful minutes yet, so it is shown but excluded from complete-day step averages. VO2 max remains 42.97 from Aug 15; Apple resting HR is 63 from Aug 24.</div>
   <div class="insight-item"><strong>Running remains unchanged.</strong> No qualifying run newer than Jul 27 has been verified. AutoSync ends at Jun 28, and the current weekly exports have empty workouts arrays, so the run cards, log and charts stay on the last verified seven runs rather than inferring runs from step totals.</div>
-  <div class="insight-item"><strong>Weight has two soft inputs, not yet a trend.</strong> The Sep 18 and Sep 20 self-reports remain inside the Sep 18-24 window and average 207.0 lbs, putting the progress bar at 23%. The 206 to 208 move followed two deliberately higher-carb days and is consistent with glycogen plus water returning, not a two-pound fat gain. Standardized morning weigh-ins are still required for a defensible trend.</div>
+  <div class="insight-item"><strong>Weight now has seven standardized morning inputs in the current window.</strong> Sep 18-24 averages 207.1 lbs and ends at 206.6, with the progress bar at 23%. The Sep 20 rise to 208.4 after a higher-carb day washed back out over the next four mornings, which supports glycogen and water rather than rapid fat gain. Keep the morning streak intact so the multi-week trend becomes defensible.</div>
 </div>
 
 <!-- CURRENT PROTOCOL -->
@@ -658,8 +678,8 @@ new Chart(document.getElementById('debtChart'), {
 });
 
 // WEIGHT DAILY CHART
-const weightLabels = ['6/25','6/26','6/28','6/29','7/1','7/5','7/6','7/9','7/11','7/12','7/13','7/14','7/16','9/18','9/20'];
-const weightData = [200.0,202.4,198.6,200.2,202.4,205.0,203.2,203.8,204.1,202.4,203.4,202.8,200.2,206.0,208.0];
+const weightLabels = ['6/25','6/26','6/28','6/29','7/1','7/5','7/6','7/9','7/11','7/12','7/13','7/14','7/16','9/14','9/15','9/18','9/19','9/20','9/21','9/22','9/23','9/24'];
+const weightData = [200.0,202.4,198.6,200.2,202.4,205.0,203.2,203.8,204.1,202.4,203.4,202.8,200.2,206.4,206.4,206.0,206.8,208.4,207.4,207.2,207.4,206.6];
 new Chart(document.getElementById('weightChart'), {
   type: 'line',
   data: { labels: weightLabels, datasets: [{ label: 'Weight (lbs)', data: weightData, borderColor: '#22d3ee', backgroundColor: '#22d3ee22', borderWidth: 2, tension: 0.3, pointRadius: 4, pointBackgroundColor: '#22d3ee', fill: true }] },
