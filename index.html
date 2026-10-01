@@ -82,7 +82,7 @@
 <div class="header">
   <h1>Mission Stallion</h1>
   <div class="subtitle">Zak Columber &mdash; Health & Performance Dashboard</div>
-  <div class="updated">Oura Ring + Hevy + Apple Health | <span style="color:#4ade80;">Oura pull covered Oct 1; all seven current-window nights have long-sleep detail</span> &middot; <span style="color:#facc15;">7-day average 7.34h total, 7.20h on the night line</span> &middot; newest day 6.13h, score 73, readiness 66 &middot; <span style="color:#4ade80;">Apple Health current through Oct 1; today's 2,493 steps are partial</span> &middot; Hevy live through Sep 30 &middot; sleep times use each record's local clock &middot; refreshed Oct 1, 2026 CEST</div>
+  <div class="updated">Oura Ring + Hevy + Apple Health | <span style="color:#4ade80;">Oura pull covered Oct 1; all seven current-window nights have long-sleep detail</span> &middot; <span style="color:#facc15;">7-day average 7.34h total, 7.20h on the night line</span> &middot; newest day 6.13h, score 73, readiness 66 &middot; <span style="color:#4ade80;">Apple Health current through Oct 1; today's 10,342 steps are partial</span> &middot; Hevy live through Sep 30 &middot; sleep times use each record's local clock &middot; refreshed Oct 1, 2026 CEST</div>
   <!-- TABNAV START -->
   <nav class="tabnav" aria-label="Mission Stallion pages">
     <a href="index.html" class="active">Dashboard</a>
@@ -98,7 +98,7 @@
   <div class="card">
     <div class="card-label">Priority 1 &middot; Sleep</div>
     <div class="card-value good" style="font-size:21px;">Nothing more important</div>
-    <div class="card-detail">Jul 9 call: sleep is the top priority, full stop. Three levers named: <span>hire a cleaner 2-3x/week</span> to kill the late-night laundry, lock a <span>consistent bedtime routine</span>, and schedule dates to end <span>by 8pm</span>. Target (set Jul 13): <span>8.0h actual sleep, 9h in bed</span>. The 7-day average is <span>7.34h total, 7.20h on the night line</span>. Oct 1 fell to <span>6.13h</span> after a 3:19am onset. Weighted debt is <span>+0.59h/day</span>.</div>
+    <div class="card-detail">Jul 9 call: sleep is the top priority, full stop. Three levers named: <span>hire a cleaner 2-3x/week</span> to kill the late-night laundry, lock a <span>consistent bedtime routine</span>, and schedule dates to end <span>by 8pm</span>. Target (set Jul 13): <span>8.0h actual sleep, 9h in bed</span>. The 7-day average is <span>7.34h total, 7.20h on the night line</span>. Oct 1 fell to <span>6.13h</span> after a 3:19am onset. Weighted debt is <span>+0.64h/day</span>.</div>
   </div>
   <div class="card">
     <div class="card-label">Priority 2 &middot; Food Journal</div>
@@ -229,15 +229,15 @@
 <!-- SLEEP DEBT -->
 <div class="section-title">Sleep Debt &mdash; 14-Day Weighted</div>
 <div class="grid">
-  <div class="card"><div class="card-label">Weighted Debt</div><div class="card-value good">+0.59 h</div><div class="card-detail">per day vs the <span>8.0h</span> target &middot; 30-day-plus warm-up</div></div>
-  <div class="card"><div class="card-label">Peak (this window)</div><div class="card-value ok">+0.65 h</div><div class="card-detail">Sep 19 &middot; highest reading in the current 14-day window</div></div>
+  <div class="card"><div class="card-label">Weighted Debt</div><div class="card-value good">+0.64 h</div><div class="card-detail">per day vs the <span>8.0h</span> target &middot; warm-up from May 29</div></div>
+  <div class="card"><div class="card-label">Peak (this window)</div><div class="card-value ok">+0.92 h</div><div class="card-detail">Sep 19 &middot; highest reading in the current 14-day window</div></div>
   <div class="card"><div class="card-label">14-Day Flat Avg</div><div class="card-value ok">7.54h</div><div class="card-detail">7-day flat avg: <span>7.34h</span> &middot; total sleep, including standing estimates</div></div>
   <div class="card"><div class="card-label">Consistency (7d)</div><div class="card-value good">&plusmn;0.92h</div><div class="card-detail">sample standard deviation &middot; swing <span>6.0h to 8.2h</span> &middot; inside the &plusmn;1h target</div></div>
 </div>
 <div class="grid"><div class="card full"><div class="card-label">Weighted Sleep Debt (h/night) &mdash; Last 14 Days</div><div class="chart-container" style="height:170px; margin-top:10px;"><canvas id="debtChart"></canvas></div></div></div>
 <div class="insights">
   <div class="insight-item"><strong>What this is.</strong> The exponentially weighted line keeps older nights fading smoothly instead of dropping them abruptly. It uses a 7-day decay constant, an 8.0h actual-sleep target and a 30-day-plus warm-up.</div>
-  <div class="insight-item"><strong>The Oct 1 read has seven measured nights.</strong> Daily totals for Sep 25-Oct 1 are 8.17, 7.09, 8.14, 6.04, 7.89, 7.88 and 6.13h. Weighted debt peaked at <strong>+0.65h/day after Sep 19</strong>, eased to <strong>+0.40h/day after Sep 30</strong>, then rose to <strong>+0.59h/day after Oct 1</strong>. Fourteen-day flat sleep reads <strong>7.54h</strong>, the 7-day flat average reads <strong>7.34h</strong>, and consistency is <strong>&plusmn;0.92h</strong>.</div>
+  <div class="insight-item"><strong>The Oct 1 read has seven measured nights.</strong> Daily totals for Sep 25-Oct 1 are 8.17, 7.09, 8.14, 6.04, 7.89, 7.88 and 6.13h. Recomputed from the May 29 seed, weighted debt peaked at <strong>+0.92h/day after Sep 19</strong>, eased to <strong>+0.45h/day after Sep 30</strong>, then rose to <strong>+0.64h/day after Oct 1</strong>. Fourteen-day flat sleep reads <strong>7.54h</strong>, the 7-day flat average reads <strong>7.34h</strong>, and consistency is <strong>&plusmn;0.92h</strong>.</div>
 </div>
 
 <!-- RECOVERY METRICS -->
@@ -288,13 +288,13 @@
 <!-- STEPS -->
 <div class="section-title">Steps &mdash; Last 14 Days</div>
 <div class="grid">
-  <div class="card"><div class="card-label">Steps Today</div><div class="card-value bad">2,493</div><div class="card-detail">Oct 1 partial at the latest Apple Health snapshot</div></div>
+  <div class="card"><div class="card-label">Steps Today</div><div class="card-value good">10,342</div><div class="card-detail">Oct 1 partial at the latest Apple Health snapshot</div></div>
   <div class="card"><div class="card-label">Avg / Day</div><div class="card-value ok">8,963</div><div class="card-detail">13 complete days Sep 18-30 &middot; today excluded</div></div>
-  <div class="card"><div class="card-label">14-Day Total</div><div class="card-value ok">119,010</div><div class="card-detail">includes Oct 1's <span>2,493 partial steps</span></div></div>
+  <div class="card"><div class="card-label">14-Day Total</div><div class="card-value ok">126,859</div><div class="card-detail">includes Oct 1's <span>10,342 partial steps</span></div></div>
   <div class="card"><div class="card-label">Best Day</div><div class="card-value good">17,904</div><div class="card-detail">Sep 26 &middot; <span>best complete day in the verified 14-day window</span></div></div>
 </div>
 <div class="grid"><div class="card full"><div class="card-label">Total Daily Steps &mdash; Last 14 Days</div><div class="chart-container" style="height:160px; margin-top:10px;"><canvas id="stepsChart14"></canvas></div></div></div>
-<div class="insights"><div class="insight-item" style="color:#a1a1aa;font-size:13px;"><strong>All steps per day</strong> (Apple Health), any time of day. The six complete days Sep 25-30 ran 6,763, 17,904, 8,183, 6,933, 2,414 and 6,075, averaging <strong>8,045</strong>. The 14-day display has 13 complete days through Sep 30, averaging <strong>8,963</strong>; Oct 1's 2,493 partial steps are shown but excluded from averages. Sep 26 is the peak at <strong>17,904</strong>.</div></div>
+<div class="insights"><div class="insight-item" style="color:#a1a1aa;font-size:13px;"><strong>All steps per day</strong> (Apple Health), any time of day. The six complete days Sep 25-30 ran 6,763, 17,904, 8,183, 6,933, 2,414 and 6,075, averaging <strong>8,045</strong>. The 14-day display has 13 complete days through Sep 30, averaging <strong>8,963</strong>; Oct 1's 10,342 partial steps are shown but excluded from averages. Sep 26 is the peak at <strong>17,904</strong>.</div></div>
 
 <div class="section-title">Weight &mdash; Daily Log</div>
 <div class="grid">
@@ -531,9 +531,9 @@
   <div class="insight-item"><strong>The Sep 25-Oct 1 window averages 7.34h total sleep and 7.20h on the night line.</strong> All seven nights are measured. Sep 25 and Sep 27 met the 8.0h daily target. Mean onset is 1:43am and mean wake is 9:48am.</div>
   <div class="insight-item"><strong>Oct 1 is the recovery flag.</strong> Sleep fell to 6.13h after a 3:19am onset, with score 73, readiness 66, HRV 33ms and resting HR 61. Deep sleep was 58 minutes and REM 94. The prior morning's 4,923 kg lower-body session plus the short night are plausible load context; watch the next tracked night for a rebound rather than reading one night as a trend.</div>
   <div class="insight-item"><strong>The additional-sleep total still runs slightly generous.</strong> Per the standing rule all Oura sleep sessions count, but still-body meditation can be misclassified as sleep. The current 7-day total includes 0.98h outside the long-sleep records: 0.94h on Sep 27 and 0.04h on Sep 29. Sep 27's 0.43h early-afternoon session is the only daytime session in this window.</div>
-  <div class="insight-item"><strong>Weighted sleep debt is +0.59h/day.</strong> It peaked at +0.65h after Sep 19, eased to +0.40h after Sep 30, then rose after Oct 1's short night. The 14-day flat average is 7.54h, the 7-day flat average is 7.34h, and variability is &plusmn;0.92h.</div>
+  <div class="insight-item"><strong>Weighted sleep debt is +0.64h/day.</strong> Recomputed from the May 29 seed, it peaked at +0.92h after Sep 19, eased to +0.45h after Sep 30, then rose after Oct 1's short night. The 14-day flat average is 7.54h, the 7-day flat average is 7.34h, and variability is &plusmn;0.92h.</div>
   <div class="insight-item"><strong>Hevy is live through Sep 30.</strong> The latest 40-minute lower-body gym session logged 4,923 kg of counted external-load volume, led by leg press at 127.6 kg for 10, 12 and 10 reps. It establishes a machine-based baseline but is not a directly comparable load PR against the prior bodyweight lower sessions.</div>
-  <div class="insight-item"><strong>Apple Health is current through Oct 1.</strong> The six complete days Sep 25-30 average 8,045 steps, with a 17,904 peak on Sep 26; Oct 1 is partial at 2,493. Mindful time totals 172 minutes across five of the last seven days. VO2 max remains 42.97 from Aug 15; Apple resting HR remains 63 from Aug 24.</div>
+  <div class="insight-item"><strong>Apple Health is current through Oct 1.</strong> The six complete days Sep 25-30 average 8,045 steps, with a 17,904 peak on Sep 26; Oct 1 is partial at 10,342. Mindful time totals 172 minutes across five of the last seven days. VO2 max remains 42.97 from Aug 15; Apple resting HR remains 63 from Aug 24.</div>
   <div class="insight-item"><strong>Running remains unchanged.</strong> No qualifying run newer than Jul 27 has been verified. AutoSync ends at Jun 28, and the current weekly exports have empty workouts arrays, so the run cards, log and charts stay on the last verified seven runs rather than inferring runs from step totals.</div>
   <div class="insight-item"><strong>The current weight window is empty.</strong> No weigh-in falls inside Sep 25-Oct 1. The latest remains 206.6 lbs from Sep 24, so the 24% progress bar is last-known context rather than a current seven-day average.</div>
 </div>
@@ -576,13 +576,13 @@ const readiness = [89,83,87,82,85,88,66];
 const hrv = [55,46,46,48,48,57,33];
 const restingHR = [49,53,52,51,52,49,61];
 // Apple Health is current through Oct 1; today's value is partial.
-const steps = [6763,17904,8183,6933,2414,6075,2493];
+const steps = [6763,17904,8183,6933,2414,6075,10342];
 
 // Sleep debt: exponentially weighted (tau = 7d, lambda = e^-1/7 = 0.867) vs an 8.0h actual-sleep target.
 // debt_t = 0.867*debt_(t-1) + 0.133*(8.0 - TST_t), deficit clipped below at -0.9h (sleep-banking cap, Ramakrishnan 2016).
 // TST is the DAILY total: overnight sleep plus any daytime sleep Oura logged, matching how Oura totals a day.
 const debtLabels = ["9/18","9/19","9/20","9/21","9/22","9/23","9/24","9/25","9/26","9/27","9/28","9/29","9/30","10/1"];
-const debtHours = [0.34,0.65,0.46,0.36,0.32,0.26,0.30,0.24,0.33,0.26,0.49,0.44,0.40,0.59];
+const debtHours = [0.65,0.92,0.70,0.56,0.50,0.41,0.43,0.35,0.43,0.35,0.56,0.50,0.45,0.64];
 
 const chartDefaults = {
   responsive: true,
@@ -649,8 +649,8 @@ new Chart(document.getElementById('medChart'), {
 
 // DAILY STEPS (14d) CHART
 const steps14Labels = ["9/18","9/19","9/20","9/21","9/22","9/23","9/24","9/25","9/26","9/27","9/28","9/29","9/30","10/1"];
-// Apple Health is current through Oct 1; today's 2,493 is partial.
-const steps14 = [7169,7606,10316,9865,9076,16003,8210,6763,17904,8183,6933,2414,6075,2493];
+// Apple Health is current through Oct 1; today's 10,342 is partial.
+const steps14 = [7169,7606,10316,9865,9076,16003,8210,6763,17904,8183,6933,2414,6075,10342];
 new Chart(document.getElementById('stepsChart14'), {
   type: 'bar',
   data: { labels: steps14Labels, datasets: [{ label: 'Steps', data: steps14, backgroundColor: steps14.map(s => s == null ? 'transparent' : s >= 10000 ? '#4ade8066' : s >= 5000 ? '#facc1566' : '#f8717166'), borderColor: steps14.map(s => s == null ? 'transparent' : s >= 10000 ? '#4ade80' : s >= 5000 ? '#facc15' : '#f87171'), borderWidth: 1 }] },
