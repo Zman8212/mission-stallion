@@ -122,7 +122,7 @@
   <div class="card"><div class="card-label">Avg Sleep (7d)</div><div class="card-value good">8.9h</div><div class="card-detail">Range: <span>7.2 - 10.2h</span> | Wake: <span>11:49 AM avg</span> across all 7 tracked nights &middot; night line <span>8.6h</span></div></div>
   <div class="card"><div class="card-label">Avg Sleep Score</div><div class="card-value ok">78</div><div class="card-detail">Range: <span>63 - 93</span> &middot; all 7 nights tracked</div></div>
   <div class="card"><div class="card-label">Avg Readiness</div><div class="card-value ok">75</div><div class="card-detail">Range: <span>44 - 94</span> &middot; all 7 nights tracked</div></div>
-  <div class="card"><div class="card-label">Avg Steps</div><div class="card-value ok">8,845</div><div class="card-detail">Range: <span>3,755 - 14,699</span> &middot; 5 complete days through Oct 10; Oct 11-12 unavailable</div></div>
+  <div class="card"><div class="card-label">Avg Steps</div><div class="card-value ok">8,926</div><div class="card-detail">Range: <span>4,160 - 14,699</span> &middot; 5 complete days through Oct 10; Oct 11-12 unavailable</div></div>
 </div>
 
 <!-- GOALS -->
@@ -273,12 +273,12 @@
 <div class="section-title">Steps &mdash; Last 14 Days</div>
 <div class="grid">
   <div class="card"><div class="card-label">Steps Today</div><div class="card-value">No export</div><div class="card-detail">Oct 12 unavailable &middot; newest verified day is Oct 10</div></div>
-  <div class="card"><div class="card-label">Avg / Day</div><div class="card-value ok">8,167</div><div class="card-detail">12 complete days Sep 29-Oct 10 &middot; Oct 11-12 unavailable</div></div>
-  <div class="card"><div class="card-label">14-Day Total</div><div class="card-value good">98,009</div><div class="card-detail">Sep 29-Oct 12 &middot; verified complete data through <span>Oct 10</span></div></div>
+  <div class="card"><div class="card-label">Avg / Day</div><div class="card-value ok">8,201</div><div class="card-detail">12 complete days Sep 29-Oct 10 &middot; Oct 11-12 unavailable</div></div>
+  <div class="card"><div class="card-label">14-Day Total</div><div class="card-value good">98,414</div><div class="card-detail">Sep 29-Oct 12 &middot; verified complete data through <span>Oct 10</span></div></div>
   <div class="card"><div class="card-label">Best Day</div><div class="card-value good">14,699</div><div class="card-detail">Oct 10 &middot; <span>best complete day in the verified 14-day window</span></div></div>
 </div>
 <div class="grid"><div class="card full"><div class="card-label">Total Daily Steps &mdash; Last 14 Days</div><div class="chart-container" style="height:160px; margin-top:10px;"><canvas id="stepsChart14"></canvas></div></div></div>
-<div class="insights"><div class="insight-item" style="color:#a1a1aa;font-size:13px;"><strong>Apple Health is stale at Oct 10.</strong> The current sleep window has 5 complete step days averaging <strong>8,845</strong>; Oct 11-12 remain unavailable. The 14-day display has 12 complete days averaging <strong>8,167</strong>, with Oct 10 the peak at <strong>14,699</strong>.</div></div>
+<div class="insights"><div class="insight-item" style="color:#a1a1aa;font-size:13px;"><strong>Apple Health is stale at Oct 10.</strong> The current sleep window has 5 complete step days averaging <strong>8,926</strong>; Oct 11-12 remain unavailable. The 14-day display has 12 complete days averaging <strong>8,201</strong>, with Oct 10 the peak at <strong>14,699</strong>.</div></div>
 
 <div class="section-title">Weight &mdash; Daily Log</div>
 <div class="grid">
@@ -517,7 +517,7 @@
   <div class="insight-item"><strong>The additional-sleep total runs slightly generous.</strong> Per the standing rule all Oura sleep sessions count, but still-body meditation can be misclassified as sleep. The current 7-day total includes 2.00h outside the long-sleep records. Oct 8 supplied 0.90h ending at 4:50pm; sleep after about 3pm can reduce homeostatic pressure and push bedtime later.</div>
   <div class="insight-item"><strong>Weighted sleep debt is +0.04h/day.</strong> Recomputed with all sleep sessions included and a May 29 warm-up. The 14-day flat average is 8.09h, the 7-day flat average is 8.87h, and variability is &plusmn;1.17h.</div>
   <div class="insight-item"><strong>Hevy is live through Oct 5.</strong> The new 35-minute lower-body session logged 3,773 kg of counted volume. Leg press topped at 127.6 kg x 8, with 107.6 kg x 10 on the two back-off sets; no new PR landed.</div>
-  <div class="insight-item"><strong>Apple Health is stale at Oct 10, with Oct 11-12 unavailable.</strong> The current window has 5 complete step days averaging 8,845 and 53 mindful minutes across Oct 6 and Oct 10. VO2 max is 41.0 from Oct 8 and Apple resting HR is 64 from Oct 8.</div>
+  <div class="insight-item"><strong>Apple Health is stale at Oct 10, with Oct 11-12 unavailable.</strong> The current window has 5 complete step days averaging 8,926 and 53 mindful minutes across Oct 6 and Oct 10. VO2 max is 41.0 from Oct 8 and Apple resting HR is 64 from Oct 8.</div>
   <div class="insight-item"><strong>A second return run is now verified on Oct 4.</strong> The weekly workout export records 1.79 km in 14:00 at 7:49/km, average HR 123 and max HR 143. It followed the Oct 1 run three days later; the Jul 30 1.09 km entry remains excluded because the contemporaneous log identifies it as a walk recorded with the run app.</div>
   <div class="insight-item"><strong>The current weight window is empty.</strong> No weigh-in falls inside Oct 6-12. The latest remains 206.6 lbs from Sep 24, so the 24% progress bar is last-known context rather than a current seven-day average.</div>
 </div>
@@ -560,7 +560,7 @@ const readiness = [44,44,88,81,87,84,94];
 const hrv = [29,42,70,58,54,46,50];
 const restingHR = [65,60,52,50,49,52,49];
 // Apple Health is verified through Oct 10; Oct 11-12 are unavailable.
-const steps = [5836,3755,7275,12658,14699,null,null];
+const steps = [5836,4160,7275,12658,14699,null,null];
 
 // Sleep debt: exponentially weighted (tau = 7d, lambda = e^-1/7 = 0.867) vs an 8.0h actual-sleep target.
 // debt_t = 0.867*debt_(t-1) + 0.133*(8.0 - TST_t), deficit clipped below at -0.9h (sleep-banking cap, Ramakrishnan 2016).
@@ -634,7 +634,7 @@ new Chart(document.getElementById('medChart'), {
 // DAILY STEPS (14d) CHART
 const steps14Labels = ["9/29","9/30","10/1","10/2","10/3","10/4","10/5","10/6","10/7","10/8","10/9","10/10","10/11","10/12"];
 // Apple Health is verified through Oct 10; Oct 11-12 are unavailable.
-const steps14 = [2414,6075,12990,7047,7488,10915,6856,5836,3755,7275,12658,14699,null,null];
+const steps14 = [2414,6075,12990,7047,7488,10915,6856,5836,4160,7275,12658,14699,null,null];
 new Chart(document.getElementById('stepsChart14'), {
   type: 'bar',
   data: { labels: steps14Labels, datasets: [{ label: 'Steps', data: steps14, backgroundColor: steps14.map(s => s == null ? 'transparent' : s >= 10000 ? '#4ade8066' : s >= 5000 ? '#facc1566' : '#f8717166'), borderColor: steps14.map(s => s == null ? 'transparent' : s >= 10000 ? '#4ade80' : s >= 5000 ? '#facc15' : '#f87171'), borderWidth: 1 }] },
