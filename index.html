@@ -122,7 +122,7 @@
   <div class="card"><div class="card-label">Avg Sleep (7d)</div><div class="card-value good">8.2h</div><div class="card-detail">Range: <span>7.2 - 9.3h</span> | Wake: <span>11:00 AM avg</span> across all 7 tracked nights &middot; night line <span>8.1h</span></div></div>
   <div class="card"><div class="card-label">Avg Sleep Score</div><div class="card-value good">83</div><div class="card-detail">Range: <span>73 - 93</span> &middot; all 7 nights tracked</div></div>
   <div class="card"><div class="card-label">Avg Readiness</div><div class="card-value good">87</div><div class="card-detail">Range: <span>80 - 94</span> &middot; all 7 nights tracked</div></div>
-  <div class="card"><div class="card-label">Avg Steps</div><div class="card-value good">9,433</div><div class="card-detail">Range: <span>4,990 - 14,699</span> &middot; 6 complete days; today's partial 933 excluded</div></div>
+  <div class="card"><div class="card-label">Avg Steps</div><div class="card-value good">9,433</div><div class="card-detail">Range: <span>4,990 - 14,699</span> &middot; 6 complete days; today's partial 1,548 excluded</div></div>
 </div>
 
 <!-- GOALS -->
@@ -272,13 +272,13 @@
 <!-- STEPS -->
 <div class="section-title">Steps &mdash; Last 14 Days</div>
 <div class="grid">
-  <div class="card"><div class="card-label">Steps Today</div><div class="card-value">933</div><div class="card-detail">Oct 15 partial at export time</div></div>
+  <div class="card"><div class="card-label">Steps Today</div><div class="card-value">1,548</div><div class="card-detail">Oct 15 partial at export time</div></div>
   <div class="card"><div class="card-label">Avg / Day</div><div class="card-value ok">8,167</div><div class="card-detail">13 complete days Oct 2-14 &middot; today's partial excluded</div></div>
-  <div class="card"><div class="card-label">14-Day Total</div><div class="card-value good">107,110</div><div class="card-detail">Oct 2-15 &middot; includes today's <span>933 partial steps</span></div></div>
+  <div class="card"><div class="card-label">14-Day Total</div><div class="card-value good">107,725</div><div class="card-detail">Oct 2-15 &middot; includes today's <span>1,548 partial steps</span></div></div>
   <div class="card"><div class="card-label">Best Day</div><div class="card-value good">14,699</div><div class="card-detail">Oct 10 &middot; <span>best complete day in the verified 14-day window</span></div></div>
 </div>
 <div class="grid"><div class="card full"><div class="card-label">Total Daily Steps &mdash; Last 14 Days</div><div class="chart-container" style="height:160px; margin-top:10px;"><canvas id="stepsChart14"></canvas></div></div></div>
-<div class="insights"><div class="insight-item" style="color:#a1a1aa;font-size:13px;"><strong>Apple Health is current through Oct 15.</strong> The current sleep window has 6 complete step days averaging <strong>9,433</strong>; today's 933 partial steps are excluded from that average. The 14-day display totals <strong>107,110</strong> including today, with Oct 10 the peak at <strong>14,699</strong>.</div></div>
+<div class="insights"><div class="insight-item" style="color:#a1a1aa;font-size:13px;"><strong>Apple Health is current through Oct 15.</strong> The current sleep window has 6 complete step days averaging <strong>9,433</strong>; today's 1,548 partial steps are excluded from that average. The 14-day display totals <strong>107,725</strong> including today, with Oct 10 the peak at <strong>14,699</strong>.</div></div>
 
 <div class="section-title">Weight &mdash; Daily Log</div>
 <div class="grid">
@@ -517,7 +517,7 @@
   <div class="insight-item"><strong>The additional-sleep total runs slightly generous.</strong> Per the standing rule all Oura sleep sessions count, but still-body meditation can be misclassified as sleep. The current 7-day total includes 0.56h outside the long-sleep records. Oct 10 included a 0.15h session ending at 4:28pm; sleep after about 3pm can reduce homeostatic pressure and push bedtime later.</div>
   <div class="insight-item"><strong>Weighted sleep debt is -0.03h/day, near balance.</strong> Recomputed with all sleep sessions included and a warm-up from May 29. The 14-day flat average is 8.28h, the 7-day flat average is 8.15h, and variability is &plusmn;0.75h.</div>
   <div class="insight-item"><strong>Hevy is live through Oct 5.</strong> No newer workout or PR landed. The latest 35-minute lower-body session logged 3,773 kg of counted volume, with leg press at 127.6 kg x 8 and 107.6 kg x 10 on the two back-off sets.</div>
-  <div class="insight-item"><strong>Apple Health is current through Oct 15.</strong> The current window has 6 complete step days averaging 9,433, plus 933 partial steps today, and 25 mindful minutes across Oct 10 and Oct 13. VO2 max remains 41.0 from Oct 8 and Apple resting HR remains 64 from Oct 8.</div>
+  <div class="insight-item"><strong>Apple Health is current through Oct 15.</strong> The current window has 6 complete step days averaging 9,433, plus 1,548 partial steps today, and 25 mindful minutes across Oct 10 and Oct 13. VO2 max remains 41.0 from Oct 8 and Apple resting HR remains 64 from Oct 8.</div>
   <div class="insight-item"><strong>A second return run is now verified on Oct 4.</strong> The weekly workout export records 1.79 km in 14:00 at 7:49/km, average HR 123 and max HR 143. It followed the Oct 1 run three days later; the Jul 30 1.09 km entry remains excluded because the contemporaneous log identifies it as a walk recorded with the run app.</div>
   <div class="insight-item"><strong>The current weight window is empty.</strong> No weigh-in falls inside Oct 9-15. The latest remains 206.6 lbs from Sep 24, so the 24% progress bar is last-known context rather than a current seven-day average.</div>
 </div>
@@ -634,7 +634,7 @@ new Chart(document.getElementById('medChart'), {
 // DAILY STEPS (14d) CHART
 const steps14Labels = ["10/2","10/3","10/4","10/5","10/6","10/7","10/8","10/9","10/10","10/11","10/12","10/13","10/14","10/15"];
 // Apple Health is current through Oct 15; the last value is today's partial total.
-const steps14 = [7047,7488,10915,6856,5836,4160,7275,12658,14699,8462,4990,7815,7976,933];
+const steps14 = [7047,7488,10915,6856,5836,4160,7275,12658,14699,8462,4990,7815,7976,1548];
 new Chart(document.getElementById('stepsChart14'), {
   type: 'bar',
   data: { labels: steps14Labels, datasets: [{ label: 'Steps', data: steps14, backgroundColor: steps14.map(s => s == null ? 'transparent' : s >= 10000 ? '#4ade8066' : s >= 5000 ? '#facc1566' : '#f8717166'), borderColor: steps14.map(s => s == null ? 'transparent' : s >= 10000 ? '#4ade80' : s >= 5000 ? '#facc15' : '#f87171'), borderWidth: 1 }] },
