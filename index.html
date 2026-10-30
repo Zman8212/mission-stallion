@@ -125,8 +125,8 @@ new Chart(document.getElementById('weightChart'), {
 });
 
 // STRENGTH TRAINING CHARTS
-const volLabels = ["9/18 (L)","9/22 (U)","9/25 (L)","9/28 (U)","9/30 (L)","10/2 (U)","10/5 (L)","10/17 (U)","10/19 (L)"];
-const volumes = [0,0,0,0,4923,0,3773,0,3987];
+const volLabels = ["9/22 (U)","9/25 (L)","9/28 (U)","9/30 (L)","10/2 (U)","10/5 (L)","10/17 (U)","10/19 (L)","10/30 (L)"];
+const volumes = [0,0,0,4923,0,3773,0,3987,4270];
 const volColors = volLabels.map(l => l.includes('(A)') ? '#f9731666' : l.includes('(B)') ? '#818cf866' : l.includes('(M)') ? '#4ade8066' : '#22d3ee66');
 const volBorders = volLabels.map(l => l.includes('(A)') ? '#f97316' : l.includes('(B)') ? '#818cf8' : l.includes('(M)') ? '#4ade80' : '#22d3ee');
 
@@ -139,8 +139,8 @@ new Chart(document.getElementById('volumeChart'), {
   options: { ...chartDefaults, plugins: { ...chartDefaults.plugins, legend: { display: false } }, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, min: 0, max: 9000 } } }
 });
 
-const hackLabels = ['9/30','10/5','10/19'];
-const hackE1rm = [170.1,161.6,170.1];
+const hackLabels = ['9/30','10/5','10/19','10/30'];
+const hackE1rm = [170.1,161.6,170.1,178.6];
 new Chart(document.getElementById('liftChart'), {
   type: 'line',
   data: {
