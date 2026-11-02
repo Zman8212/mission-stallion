@@ -59,16 +59,16 @@
 <div class="header">
   <h1>Mission Stallion</h1>
   <div class="subtitle">Energy Balance - estimate what we can, prove it when the logs are ready</div>
-  <div class="updated">Window: 2026-10-20 to 2026-11-02 · Refreshed Nov 2, 2026 1:14 PM CEST<br>Oura: live REST API · Hevy: saved hevy-cache.json</div>
+  <div class="updated">Window: 2026-10-20 to 2026-11-02 · Refreshed Nov 2, 2026 8:00 PM CEST<br>Oura: live REST API · Hevy: saved hevy-cache.json</div>
   <!-- TABNAV START --><nav class="tabnav" aria-label="Mission Stallion pages"><a href="index.html">Dashboard</a><a href="krista.html">For Krista</a><a href="food.html">Food Journal</a><a href="schedule.html">Last 7 days</a><a href="energy-balance.html" class="active">Energy Balance</a></nav><!-- TABNAV END -->
 </div>
 
 <div class="section-title">1. Estimated Daily Burn <span class="section-kicker">temporary estimate, not the final answer</span></div>
 <div class="grid">
-  <div class="card"><div class="card-label">Oura Raw</div><div class="card-value">3,107 kcal</div><div class="card-detail">Mean daily <code>total_calories</code>. 14 of 14 Oura activity days available.</div></div>
+  <div class="card"><div class="card-label">Oura Raw</div><div class="card-value">3,113 kcal</div><div class="card-detail">Mean daily <code>total_calories</code>. 14 of 14 Oura activity days available.</div></div>
   <div class="card"><div class="card-label">Workout Compensation</div><div class="card-value ok">1 kcal</div><div class="card-detail">Daily average added for ring-off Hevy time. 1 Hevy sessions · 13 kcal total across 14 days · includes 7% EPOC. E-bike correction: 3 Oura cycling session(s) counted at 40%, removing 255 kcal across 14 days.</div></div>
-  <div class="card"><div class="card-label">Adjusted Burn</div><div class="card-value good">3,108 kcal</div><div class="card-detail">Oura raw + workout compensation. Estimate only; back-calculated TDEE below supersedes this when ready.</div></div>
-  <div class="card"><div class="card-label">Uncertainty Band</div><div class="card-value">2,642-3,574</div><div class="card-detail">&plusmn;15% around adjusted burn because wearable calorie estimates are noisy. Using fallback 207 lb because the latest weigh-in (206.6 lb on 2026-09-24) is more than 30 days old.</div></div>
+  <div class="card"><div class="card-label">Adjusted Burn</div><div class="card-value good">3,113 kcal</div><div class="card-detail">Oura raw + workout compensation. Estimate only; back-calculated TDEE below supersedes this when ready.</div></div>
+  <div class="card"><div class="card-label">Uncertainty Band</div><div class="card-value">2,646-3,580</div><div class="card-detail">&plusmn;15% around adjusted burn because wearable calorie estimates are noisy. Using fallback 207 lb because the latest weigh-in (206.6 lb on 2026-09-24) is more than 30 days old.</div></div>
 </div>
 
 <div class="section-title">2. Back-Calculated TDEE <span class="section-kicker">the real answer</span></div>
@@ -99,9 +99,9 @@
 <div style="height:40px;"></div>
 <script>
 const labels = ["10/20","10/21","10/22","10/23","10/24","10/25","10/26","10/27","10/28","10/29","10/30","10/31","11/1","11/2"];
-const ouraRaw = [3379.8,2989.0,3134.0,2905.0,3085.0,2567.0,3205.0,3669.7,3012.0,3030.0,4086.0,3203.0,2773.0,2457.9];
+const ouraRaw = [3379.8,2989.0,3134.0,2905.0,3085.0,2567.0,3205.0,3669.7,3012.0,3030.0,4086.0,3203.0,2773.0,2536.9];
 const workoutComp = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,12.7,0.0,0.0,0.0];
-const adjustedBurn = [3460.4,3039.1,3329.6,2916.0,3121.8,2602.2,3431.9,3743.3,3183.4,3102.0,4159.0,3234.3,2881.0,2482.1];
+const adjustedBurn = [3460.4,3039.1,3329.6,2916.0,3121.8,2602.2,3431.9,3743.3,3183.4,3102.0,4159.0,3234.3,2881.0,2698.8];
 const intake = [970.0,null,null,null,null,null,null,1525.0,null,2145.0,2125.0,null,null,null];
 const intakeComplete = [false,false,false,false,false,false,false,false,false,false,false,false,false,false];
 const cumulativeDeficit = [2490.4,null,null,null,null,null,null,4708.7,null,5665.7,7699.7,null,null,null];
